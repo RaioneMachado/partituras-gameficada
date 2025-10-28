@@ -474,7 +474,8 @@
     </div>
     
     <div class="container">
-        <header>
+        <!-- Cabeçalho apenas na primeira etapa -->
+        <header id="main-header">
             <h1>Descubra Seu Combo de Partituras <span class="highlight">Ideal</span></h1>
             <p class="subtitle">Responda algumas perguntas e encontre o combo <span class="highlight">perfeito</span> para o seu instrumento e estilo musical</p>
         </header>
@@ -688,6 +689,7 @@
         const comboLink = document.getElementById('combo-link');
         const feedbackMessage = document.getElementById('feedback-message');
         const musicControl = document.getElementById('music-control');
+        const mainHeader = document.getElementById('main-header');
         
         // Elementos de resultado
         const instrumentResult = document.getElementById('instrument-result');
@@ -979,6 +981,11 @@
         // Avançar para o próximo passo
         function nextStep() {
             currentStep++;
+            
+            // Ocultar cabeçalho principal após a primeira etapa
+            if (currentStep > 0) {
+                mainHeader.style.display = 'none';
+            }
             
             // Se chegou ao final, mostrar resultado
             if (currentStep >= steps.length - 1) {
