@@ -283,6 +283,7 @@
             border-left: 4px solid var(--accent);
             animation: slideIn 0.5s ease;
             display: none;
+            position: relative;
         }
 
         .feedback-message.show {
@@ -503,10 +504,6 @@
                 </div>
             </div>
             
-            <div class="feedback-message" id="feedback-message">
-                <p><span class="highlight">Excelente escolha!</span> Você está cada vez mais perto do combo perfeito!</p>
-            </div>
-            
             <!-- Etapa 1: Instrumento -->
             <div class="step active" id="step-1">
                 <div class="question-container">
@@ -568,6 +565,10 @@
             
             <!-- Etapa 2: Nível de Habilidade -->
             <div class="step" id="step-2">
+                <div class="feedback-message" id="feedback-1">
+                    <p><span class="highlight">Maravilha!</span> Um ótimo instrumento! Você vai adorar o combo que preparamos!</p>
+                </div>
+                
                 <div class="question-container">
                     <h2 class="question">Qual é o seu <span class="highlight">nível</span> de habilidade?</h2>
                     <p class="question-desc">Nos conte um pouco sobre sua <span class="highlight">experiência</span> com o instrumento</p>
@@ -599,6 +600,10 @@
             
             <!-- Etapa 3: Gênero Musical -->
             <div class="step" id="step-3">
+                <div class="feedback-message" id="feedback-2">
+                    <p><span class="highlight">Perfeito!</span> Agora sabemos exatamente como personalizar suas partituras!</p>
+                </div>
+                
                 <div class="question-container">
                     <h2 class="question">Qual <span class="highlight">gênero musical</span> você mais gosta?</h2>
                     <p class="question-desc">Selecione seu <span class="highlight">estilo musical</span> preferido</p>
@@ -634,6 +639,10 @@
             
             <!-- Etapa 4: Objetivo -->
             <div class="step" id="step-4">
+                <div class="feedback-message" id="feedback-3">
+                    <p><span class="highlight">Excelente escolha!</span> Esse estilo musical combina perfeitamente com você!</p>
+                </div>
+                
                 <div class="question-container">
                     <h2 class="question">Qual é o seu principal <span class="highlight">objetivo</span>?</h2>
                     <p class="question-desc">O que você busca <span class="highlight">alcançar</span> com as partituras?</p>
@@ -665,6 +674,10 @@
             
             <!-- Etapa 5: Resultado -->
             <div class="step" id="step-5">
+                <div class="feedback-message" id="feedback-4">
+                    <p><span class="highlight">Incrível!</span> Você está a um passo do melhor combo de partituras que já viu!</p>
+                </div>
+                
                 <div class="result">
                     <div class="instrument-display" id="result-instrument-icon">🎻</div>
                     <h2><span class="highlight">Parabéns!</span> Combo Encontrado! 🎉</h2>
@@ -687,7 +700,6 @@
         const progressBar = document.getElementById('progress-bar');
         const achievements = document.querySelectorAll('.achievement');
         const comboLink = document.getElementById('combo-link');
-        const feedbackMessage = document.getElementById('feedback-message');
         const musicControl = document.getElementById('music-control');
         const mainHeader = document.getElementById('main-header');
         
@@ -817,14 +829,6 @@
                 'gospel': 'https://exemplo.com/combo-piano-gospel'
             }
         };
-        
-        // Mensagens de feedback para cada etapa
-        const feedbackMessages = [
-            "🎵 <span class='highlight'>Maravilha!</span> Um ótimo instrumento! Você vai adorar o combo que preparamos!",
-            "👏 <span class='highlight'>Perfeito!</span> Agora sabemos exatamente como personalizar suas partituras!",
-            "🎶 <span class='highlight'>Excelente escolha!</span> Esse estilo musical combina perfeitamente com você!",
-            "🚀 <span class='highlight'>Incrível!</span> Você está a um passo do melhor combo de partituras que já viu!"
-        ];
         
         // Inicialização
         let currentStep = 0;
@@ -957,16 +961,29 @@
                     // Iniciar música do instrumento selecionado automaticamente
                     playInstrumentMusic(value);
                     musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-1').classList.add('show');
+                    }, 100);
                 } else if (stepId === 'step-2') {
                     userData.level = value;
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-2').classList.add('show');
+                    }, 100);
                 } else if (stepId === 'step-3') {
                     userData.genre = value;
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-3').classList.add('show');
+                    }, 100);
                 } else if (stepId === 'step-4') {
                     userData.goal = value;
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-4').classList.add('show');
+                    }, 100);
                 }
-                
-                // Mostrar feedback
-                showFeedback(currentStep);
                 
                 // Atualizar conquista
                 updateAchievement(stepId);
@@ -1044,19 +1061,6 @@
                 setTimeout(() => {
                     achievement.style.animation = '';
                 }, 1500);
-            }
-        }
-        
-        // Mostrar mensagem de feedback
-        function showFeedback(stepIndex) {
-            if (stepIndex < feedbackMessages.length) {
-                feedbackMessage.innerHTML = `<p>${feedbackMessages[stepIndex]}</p>`;
-                feedbackMessage.classList.add('show');
-                
-                // Ocultar feedback após alguns segundos
-                setTimeout(() => {
-                    feedbackMessage.classList.remove('show');
-                }, 3000);
             }
         }
         
