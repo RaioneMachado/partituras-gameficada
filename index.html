@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partituras Personalizadas - Descubra Seu Combo Ideal</title>
+    <title>Combo de Partituras Personalizadas - Descubra o Ideal para Você</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -69,39 +69,41 @@
             max-width: 900px;
             width: 100%;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 20px;
             position: relative;
             z-index: 1;
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: clamp(2rem, 5vw, 3.2rem);
             margin-bottom: 15px;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            line-height: 1.2;
         }
 
         .subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             color: #B0B0D0;
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
         }
 
         .game-container {
             background: rgba(10, 10, 26, 0.7);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
@@ -118,16 +120,17 @@
         }
 
         .question-container {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
         .question {
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
             margin-bottom: 15px;
             color: var(--light);
             position: relative;
             display: inline-block;
+            line-height: 1.3;
         }
 
         .question::after {
@@ -141,24 +144,30 @@
         }
 
         .question-desc {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             color: #B0B0D0;
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: bold;
         }
 
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .option {
             background: rgba(20, 20, 40, 0.7);
             border: 2px solid rgba(100, 100, 150, 0.3);
             border-radius: 15px;
-            padding: 25px 15px;
+            padding: 20px 10px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
@@ -168,10 +177,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 140px;
         }
 
         .option:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--primary);
             box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
         }
@@ -179,13 +189,13 @@
         .option.selected {
             background: rgba(30, 30, 60, 0.9);
             border-color: var(--accent);
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4);
         }
 
         .option-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             transition: var(--transition);
         }
 
@@ -195,27 +205,34 @@
         }
 
         .option-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .option-desc {
+            font-size: 0.85rem;
+            color: #B0B0D0;
+            line-height: 1.3;
         }
 
         .achievements {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 40px 0;
+            gap: 10px;
+            margin: 30px 0;
             flex-wrap: wrap;
         }
 
         .achievement {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: rgba(30, 30, 60, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             border: 2px solid rgba(100, 100, 150, 0.3);
             transition: var(--transition);
             position: relative;
@@ -244,7 +261,7 @@
             height: 8px;
             background: rgba(30, 30, 60, 0.7);
             border-radius: 10px;
-            margin: 30px 0;
+            margin: 25px 0;
             overflow: hidden;
         }
 
@@ -257,9 +274,51 @@
             box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
         }
 
+        .feedback-message {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            animation: slideIn 0.5s ease;
+            display: none;
+        }
+
+        .feedback-message.show {
+            display: block;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(30, 30, 60, 0.8);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            border: 2px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .music-control i {
+            font-size: 1.2rem;
+            color: var(--light);
+        }
+
         .result {
             text-align: center;
-            padding: 30px;
+            padding: 25px 15px;
             background: rgba(20, 20, 40, 0.7);
             border-radius: 15px;
             margin-top: 20px;
@@ -267,25 +326,27 @@
         }
 
         .result h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin-bottom: 20px;
             color: var(--success);
+            line-height: 1.3;
         }
 
         .result p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 15px;
             color: #D0D0F0;
+            line-height: 1.5;
         }
 
         .combo-link {
             display: inline-block;
             background: linear-gradient(to right, var(--primary), var(--accent));
             color: white;
-            padding: 18px 40px;
+            padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
             transition: var(--transition);
             margin-top: 20px;
@@ -316,8 +377,8 @@
         }
 
         .instrument-display {
-            font-size: 5rem;
-            margin: 30px 0;
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin: 25px 0;
             animation: bounce 2s infinite;
         }
 
@@ -334,13 +395,18 @@
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
         }
 
         @keyframes glow {
             0% { box-shadow: 0 0 5px var(--primary); }
             50% { box-shadow: 0 0 20px var(--primary), 0 0 30px var(--accent); }
             100% { box-shadow: 0 0 5px var(--primary); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .confetti {
@@ -352,21 +418,46 @@
             opacity: 0;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+        /* Responsividade para telas muito pequenas */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .game-container {
+                padding: 15px;
             }
             
             .options-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
             
             .option {
-                padding: 20px 10px;
+                padding: 15px 10px;
+                min-height: 120px;
             }
             
             .option-icon {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+            
+            .achievement {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+            
+            .combo-link {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+            
+            .music-control {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
             }
         }
     </style>
@@ -377,10 +468,15 @@
     <div class="light light-2"></div>
     <div class="light light-3"></div>
     
+    <!-- Controle de música -->
+    <div class="music-control" id="music-control">
+        <i class="fas fa-volume-up"></i>
+    </div>
+    
     <div class="container">
         <header>
-            <h1>Descubra Seu Combo de Partituras Ideal</h1>
-            <p class="subtitle">Responda algumas perguntas e encontre o combo perfeito para o seu instrumento e estilo musical</p>
+            <h1>Descubra Seu Combo de Partituras <span class="highlight">Ideal</span></h1>
+            <p class="subtitle">Responda algumas perguntas e encontre o combo <span class="highlight">perfeito</span> para o seu instrumento e estilo musical</p>
         </header>
         
         <div class="game-container">
@@ -406,11 +502,15 @@
                 </div>
             </div>
             
+            <div class="feedback-message" id="feedback-message">
+                <p><span class="highlight">Excelente escolha!</span> Você está cada vez mais perto do combo perfeito!</p>
+            </div>
+            
             <!-- Etapa 1: Instrumento -->
             <div class="step active" id="step-1">
                 <div class="question-container">
-                    <h2 class="question">Pra qual instrumento você quer a partitura?</h2>
-                    <p class="question-desc">Selecione o instrumento </p>
+                    <h2 class="question">Qual instrumento você toca?</h2>
+                    <p class="question-desc">Selecione o instrumento que você toca ou <span class="highlight">gostaria de aprender</span></p>
                 </div>
                 
                 <div class="options-grid">
@@ -468,8 +568,8 @@
             <!-- Etapa 2: Nível de Habilidade -->
             <div class="step" id="step-2">
                 <div class="question-container">
-                    <h2 class="question">Qual é o seu nível de habilidade?</h2>
-                    <p class="question-desc">Nos conte um pouco sobre sua experiência com o instrumento</p>
+                    <h2 class="question">Qual é o seu <span class="highlight">nível</span> de habilidade?</h2>
+                    <p class="question-desc">Nos conte um pouco sobre sua <span class="highlight">experiência</span> com o instrumento</p>
                 </div>
                 
                 <div class="options-grid">
@@ -499,8 +599,8 @@
             <!-- Etapa 3: Gênero Musical -->
             <div class="step" id="step-3">
                 <div class="question-container">
-                    <h2 class="question">Qual gênero musical você mais gosta de tocar?</h2>
-                    <p class="question-desc">Selecione seu estilo musical preferido</p>
+                    <h2 class="question">Qual <span class="highlight">gênero musical</span> você mais gosta?</h2>
+                    <p class="question-desc">Selecione seu <span class="highlight">estilo musical</span> preferido</p>
                 </div>
                 
                 <div class="options-grid">
@@ -534,8 +634,8 @@
             <!-- Etapa 4: Objetivo -->
             <div class="step" id="step-4">
                 <div class="question-container">
-                    <h2 class="question">Qual é o seu principal objetivo com as partituras?</h2>
-                    <p class="question-desc">O que você busca alcançar com as partituras?</p>
+                    <h2 class="question">Qual é o seu principal <span class="highlight">objetivo</span>?</h2>
+                    <p class="question-desc">O que você busca <span class="highlight">alcançar</span> com as partituras?</p>
                 </div>
                 
                 <div class="options-grid">
@@ -566,9 +666,9 @@
             <div class="step" id="step-5">
                 <div class="result">
                     <div class="instrument-display" id="result-instrument-icon">🎻</div>
-                    <h2>Parabéns! Combo Encontrado! 🎉</h2>
-                    <p>Você completou todas as etapas e descobriu o combo de partituras perfeito para você!</p>
-                    <p>Com base nas suas respostas, preparamos um combo especial para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
+                    <h2><span class="highlight">Parabéns!</span> Combo Encontrado! 🎉</h2>
+                    <p>Você completou todas as etapas e descobriu o combo de partituras <span class="highlight">perfeito</span> para você!</p>
+                    <p>Com base nas suas respostas, preparamos um combo <span class="highlight">especial</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
                     <p>Este combo foi cuidadosamente selecionado para ajudar você a <span id="goal-result" class="highlight">aprender novas músicas</span>.</p>
                     
                     <a href="#" class="combo-link" id="combo-link">
@@ -586,6 +686,8 @@
         const progressBar = document.getElementById('progress-bar');
         const achievements = document.querySelectorAll('.achievement');
         const comboLink = document.getElementById('combo-link');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const musicControl = document.getElementById('music-control');
         
         // Elementos de resultado
         const instrumentResult = document.getElementById('instrument-result');
@@ -602,120 +704,80 @@
             goal: ''
         };
         
-        // Links para combos (substitua pelos seus links reais)
-        const comboLinks = {
-            'violino': {
-                'classico': 'https://exemplo.com/combo-violino-classico',
-                'jazz': 'https://exemplo.com/combo-violino-jazz',
-                'pop-rock': 'https://exemplo.com/combo-violino-pop-rock',
-                'mpb': 'https://exemplo.com/combo-violino-mpb',
-                'sertanejo': 'https://exemplo.com/combo-violino-sertanejo',
-                'gospel': 'https://exemplo.com/combo-violino-gospel'
-            },
-            'viola': {
-                'classico': 'https://exemplo.com/combo-viola-classico',
-                'jazz': 'https://exemplo.com/combo-viola-jazz',
-                'pop-rock': 'https://exemplo.com/combo-viola-pop-rock',
-                'mpb': 'https://exemplo.com/combo-viola-mpb',
-                'sertanejo': 'https://exemplo.com/combo-viola-sertanejo',
-                'gospel': 'https://exemplo.com/combo-viola-gospel'
-            },
-            'violoncelo': {
-                'classico': 'https://exemplo.com/combo-violoncelo-classico',
-                'jazz': 'https://exemplo.com/combo-violoncelo-jazz',
-                'pop-rock': 'https://exemplo.com/combo-violoncelo-pop-rock',
-                'mpb': 'https://exemplo.com/combo-violoncelo-mpb',
-                'sertanejo': 'https://exemplo.com/combo-violoncelo-sertanejo',
-                'gospel': 'https://exemplo.com/combo-violoncelo-gospel'
-            },
-            'flauta': {
-                'classico': 'https://exemplo.com/combo-flauta-classico',
-                'jazz': 'https://exemplo.com/combo-flauta-jazz',
-                'pop-rock': 'https://exemplo.com/combo-flauta-pop-rock',
-                'mpb': 'https://exemplo.com/combo-flauta-mpb',
-                'sertanejo': 'https://exemplo.com/combo-flauta-sertanejo',
-                'gospel': 'https://exemplo.com/combo-flauta-gospel'
-            },
-            'clarinete': {
-                'classico': 'https://exemplo.com/combo-clarinete-classico',
-                'jazz': 'https://exemplo.com/combo-clarinete-jazz',
-                'pop-rock': 'https://exemplo.com/combo-clarinete-pop-rock',
-                'mpb': 'https://exemplo.com/combo-clarinete-mpb',
-                'sertanejo': 'https://exemplo.com/combo-clarinete-sertanejo',
-                'gospel': 'https://exemplo.com/combo-clarinete-gospel'
-            },
-            'sax-alto': {
-                'classico': 'https://exemplo.com/combo-sax-alto-classico',
-                'jazz': 'https://exemplo.com/combo-sax-alto-jazz',
-                'pop-rock': 'https://exemplo.com/combo-sax-alto-pop-rock',
-                'mpb': 'https://exemplo.com/combo-sax-alto-mpb',
-                'sertanejo': 'https://exemplo.com/combo-sax-alto-sertanejo',
-                'gospel': 'https://exemplo.com/combo-sax-alto-gospel'
-            },
-            'sax-tenor': {
-                'classico': 'https://exemplo.com/combo-sax-tenor-classico',
-                'jazz': 'https://exemplo.com/combo-sax-tenor-jazz',
-                'pop-rock': 'https://exemplo.com/combo-sax-tenor-pop-rock',
-                'mpb': 'https://exemplo.com/combo-sax-tenor-mpb',
-                'sertanejo': 'https://exemplo.com/combo-sax-tenor-sertanejo',
-                'gospel': 'https://exemplo.com/combo-sax-tenor-gospel'
-            },
-            'sax-soprano': {
-                'classico': 'https://exemplo.com/combo-sax-soprano-classico',
-                'jazz': 'https://exemplo.com/combo-sax-soprano-jazz',
-                'pop-rock': 'https://exemplo.com/combo-sax-soprano-pop-rock',
-                'mpb': 'https://exemplo.com/combo-sax-soprano-mpb',
-                'sertanejo': 'https://exemplo.com/combo-sax-soprano-sertanejo',
-                'gospel': 'https://exemplo.com/combo-sax-soprano-gospel'
-            },
-            'trompete': {
-                'classico': 'https://exemplo.com/combo-trompete-classico',
-                'jazz': 'https://exemplo.com/combo-trompete-jazz',
-                'pop-rock': 'https://exemplo.com/combo-trompete-pop-rock',
-                'mpb': 'https://exemplo.com/combo-trompete-mpb',
-                'sertanejo': 'https://exemplo.com/combo-trompete-sertanejo',
-                'gospel': 'https://exemplo.com/combo-trompete-gospel'
-            },
-            'trombone': {
-                'classico': 'https://exemplo.com/combo-trombone-classico',
-                'jazz': 'https://exemplo.com/combo-trombone-jazz',
-                'pop-rock': 'https://exemplo.com/combo-trombone-pop-rock',
-                'mpb': 'https://exemplo.com/combo-trombone-mpb',
-                'sertanejo': 'https://exemplo.com/combo-trombone-sertanejo',
-                'gospel': 'https://exemplo.com/combo-trombone-gospel'
-            },
-            'piano': {
-                'classico': 'https://exemplo.com/combo-piano-classico',
-                'jazz': 'https://exemplo.com/combo-piano-jazz',
-                'pop-rock': 'https://exemplo.com/combo-piano-pop-rock',
-                'mpb': 'https://exemplo.com/combo-piano-mpb',
-                'sertanejo': 'https://exemplo.com/combo-piano-sertanejo',
-                'gospel': 'https://exemplo.com/combo-piano-gospel'
-            },
-            'teclado': {
-                'classico': 'https://exemplo.com/combo-teclado-classico',
-                'jazz': 'https://exemplo.com/combo-teclado-jazz',
-                'pop-rock': 'https://exemplo.com/combo-teclado-pop-rock',
-                'mpb': 'https://exemplo.com/combo-teclado-mpb',
-                'sertanejo': 'https://exemplo.com/combo-teclado-sertanejo',
-                'gospel': 'https://exemplo.com/combo-teclado-gospel'
-            }
-        };
+        // Variáveis para controle de música
+        let audioContext;
+        let currentMusic = null;
+        let isPlaying = false;
+        let currentInstrument = null;
         
-        // Sons dos instrumentos (em uma implementação real, seriam arquivos de áudio)
+        // URLs de áudio para cada instrumento (sons reais)
         const instrumentSounds = {
-            'violino': () => playNote(440, 'sine', 0.5), // Lá
-            'viola': () => playNote(330, 'sine', 0.5), // Mi
-            'violoncelo': () => playNote(220, 'sine', 0.5), // Lá
-            'flauta': () => playNote(880, 'sine', 0.5), // Lá
-            'clarinete': () => playNote(554, 'sine', 0.5), // Dó#
-            'sax-alto': () => playNote(440, 'sawtooth', 0.5), // Lá
-            'sax-tenor': () => playNote(330, 'sawtooth', 0.5), // Mi
-            'sax-soprano': () => playNote(880, 'sawtooth', 0.5), // Lá
-            'trompete': () => playNote(440, 'square', 0.5), // Lá
-            'trombone': () => playNote(220, 'square', 0.5), // Lá
-            'piano': () => playNote(523, 'sine', 0.5), // Dó
-            'teclado': () => playNote(523, 'triangle', 0.5) // Dó
+            'violino': [
+                'https://assets.mixkit.co/music/preview/mixkit-violin-tone-2323.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-violin-tone-2324.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-violin-tone-2325.mp3'
+            ],
+            'viola': [
+                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2326.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2327.mp3'
+            ],
+            'violoncelo': [
+                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2328.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2329.mp3'
+            ],
+            'flauta': [
+                'https://assets.mixkit.co/music/preview/mixkit-flute-tone-2309.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-flute-tone-2310.mp3'
+            ],
+            'clarinete': [
+                'https://assets.mixkit.co/music/preview/mixkit-clarinet-tone-2311.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-clarinet-tone-2312.mp3'
+            ],
+            'sax-alto': [
+                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2305.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2306.mp3'
+            ],
+            'sax-tenor': [
+                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2307.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2308.mp3'
+            ],
+            'sax-soprano': [
+                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2303.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2304.mp3'
+            ],
+            'trompete': [
+                'https://assets.mixkit.co/music/preview/mixkit-trumpet-tone-2313.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-trumpet-tone-2314.mp3'
+            ],
+            'trombone': [
+                'https://assets.mixkit.co/music/preview/mixkit-trombone-tone-2315.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-trombone-tone-2316.mp3'
+            ],
+            'piano': [
+                'https://assets.mixkit.co/music/preview/mixkit-piano-tone-2281.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-piano-tone-2282.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-piano-tone-2283.mp3'
+            ],
+            'teclado': [
+                'https://assets.mixkit.co/music/preview/mixkit-synth-tone-2284.mp3',
+                'https://assets.mixkit.co/music/preview/mixkit-synth-tone-2285.mp3'
+            ]
+        };
+
+        // Fallback para sons sintetizados caso os URLs não funcionem
+        const fallbackSounds = {
+            'violino': { type: 'sine', notes: [392, 440, 494, 523], volume: 0.15 },
+            'viola': { type: 'sine', notes: [330, 370, 392, 440], volume: 0.18 },
+            'violoncelo': { type: 'sine', notes: [196, 220, 247, 262], volume: 0.2 },
+            'flauta': { type: 'sine', notes: [523, 587, 659, 698], volume: 0.12 },
+            'clarinete': { type: 'sine', notes: [349, 392, 440, 494], volume: 0.16 },
+            'sax-alto': { type: 'sawtooth', notes: [311, 349, 392, 440], volume: 0.22 },
+            'sax-tenor': { type: 'sawtooth', notes: [262, 294, 330, 349], volume: 0.24 },
+            'sax-soprano': { type: 'sawtooth', notes: [392, 440, 494, 523], volume: 0.18 },
+            'trompete': { type: 'square', notes: [392, 440, 494, 523], volume: 0.2 },
+            'trombone': { type: 'square', notes: [196, 220, 247, 262], volume: 0.25 },
+            'piano': { type: 'sine', notes: [261, 293, 329, 349], volume: 0.18 },
+            'teclado': { type: 'triangle', notes: [523, 587, 659, 698], volume: 0.15 }
         };
         
         // Ícones dos instrumentos para o resultado
@@ -734,9 +796,144 @@
             'teclado': '🎹'
         };
         
+        // Links para combos
+        const comboLinks = {
+            'violino': {
+                'classico': 'https://exemplo.com/combo-violino-classico',
+                'jazz': 'https://exemplo.com/combo-violino-jazz',
+                'pop-rock': 'https://exemplo.com/combo-violino-pop-rock',
+                'mpb': 'https://exemplo.com/combo-violino-mpb',
+                'sertanejo': 'https://exemplo.com/combo-violino-sertanejo',
+                'gospel': 'https://exemplo.com/combo-violino-gospel'
+            },
+            'piano': {
+                'classico': 'https://exemplo.com/combo-piano-classico',
+                'jazz': 'https://exemplo.com/combo-piano-jazz',
+                'pop-rock': 'https://exemplo.com/combo-piano-pop-rock',
+                'mpb': 'https://exemplo.com/combo-piano-mpb',
+                'sertanejo': 'https://exemplo.com/combo-piano-sertanejo',
+                'gospel': 'https://exemplo.com/combo-piano-gospel'
+            }
+        };
+        
+        // Mensagens de feedback para cada etapa
+        const feedbackMessages = [
+            "🎵 <span class='highlight'>Maravilha!</span> Um ótimo instrumento! Você vai adorar o combo que preparamos!",
+            "👏 <span class='highlight'>Perfeito!</span> Agora sabemos exatamente como personalizar suas partituras!",
+            "🎶 <span class='highlight'>Excelente escolha!</span> Esse estilo musical combina perfeitamente com você!",
+            "🚀 <span class='highlight'>Incrível!</span> Você está a um passo do melhor combo de partituras que já viu!"
+        ];
+        
         // Inicialização
         let currentStep = 0;
         updateProgress();
+        
+        // Event Listener para o controle de música
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                stopMusic();
+                musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else {
+                if (userData.instrument) {
+                    playInstrumentMusic(userData.instrument);
+                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+            }
+        });
+        
+        // Tocar música do instrumento
+        function playInstrumentMusic(instrument) {
+            stopMusic();
+            
+            isPlaying = true;
+            currentInstrument = instrument;
+            
+            // Tentar usar áudio real primeiro
+            const audioUrls = instrumentSounds[instrument];
+            if (audioUrls && audioUrls.length > 0) {
+                playRealAudio(instrument, audioUrls);
+            } else {
+                // Fallback para áudio sintetizado
+                playSyntheticAudio(instrument);
+            }
+        }
+        
+        // Tocar áudio real
+        function playRealAudio(instrument, audioUrls) {
+            let currentAudioIndex = 0;
+            
+            function playNextAudio() {
+                if (!isPlaying || currentInstrument !== instrument) return;
+                
+                const audio = new Audio(audioUrls[currentAudioIndex]);
+                audio.volume = 0.3;
+                audio.play();
+                
+                currentMusic = audio;
+                
+                audio.onended = function() {
+                    currentAudioIndex = (currentAudioIndex + 1) % audioUrls.length;
+                    setTimeout(playNextAudio, 1000);
+                };
+            }
+            
+            playNextAudio();
+        }
+        
+        // Tocar áudio sintetizado (fallback)
+        function playSyntheticAudio(instrument) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            const soundConfig = fallbackSounds[instrument];
+            if (!soundConfig) return;
+            
+            let noteIndex = 0;
+            
+            function playNextNote() {
+                if (!isPlaying || currentInstrument !== instrument) return;
+                
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = soundConfig.notes[noteIndex];
+                oscillator.type = soundConfig.type;
+                
+                const now = audioContext.currentTime;
+                gainNode.gain.setValueAtTime(0, now);
+                gainNode.gain.linearRampToValueAtTime(soundConfig.volume, now + 0.05);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+                
+                oscillator.start(now);
+                oscillator.stop(now + 0.8);
+                
+                noteIndex = (noteIndex + 1) % soundConfig.notes.length;
+                
+                currentMusic = setTimeout(playNextNote, 1000);
+            }
+            
+            playNextNote();
+        }
+        
+        // Parar música
+        function stopMusic() {
+            isPlaying = false;
+            currentInstrument = null;
+            
+            if (currentMusic) {
+                if (currentMusic instanceof Audio) {
+                    currentMusic.pause();
+                    currentMusic.currentTime = 0;
+                } else {
+                    clearTimeout(currentMusic);
+                }
+                currentMusic = null;
+            }
+        }
         
         // Event Listeners para opções
         options.forEach(option => {
@@ -755,10 +952,9 @@
                 
                 if (stepId === 'step-1') {
                     userData.instrument = value;
-                    // Tocar som do instrumento
-                    if (instrumentSounds[value]) {
-                        instrumentSounds[value]();
-                    }
+                    // Iniciar música do instrumento selecionado automaticamente
+                    playInstrumentMusic(value);
+                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
                 } else if (stepId === 'step-2') {
                     userData.level = value;
                 } else if (stepId === 'step-3') {
@@ -767,13 +963,16 @@
                     userData.goal = value;
                 }
                 
+                // Mostrar feedback
+                showFeedback(currentStep);
+                
                 // Atualizar conquista
                 updateAchievement(stepId);
                 
                 // Avançar automaticamente após um breve delay
                 setTimeout(() => {
                     nextStep();
-                }, 800);
+                }, 1500);
             });
         });
         
@@ -787,6 +986,12 @@
             }
             
             updateProgress();
+            
+            // Scroll para o topo do container
+            document.querySelector('.container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
         }
         
         // Atualizar barra de progresso
@@ -835,6 +1040,19 @@
             }
         }
         
+        // Mostrar mensagem de feedback
+        function showFeedback(stepIndex) {
+            if (stepIndex < feedbackMessages.length) {
+                feedbackMessage.innerHTML = `<p>${feedbackMessages[stepIndex]}</p>`;
+                feedbackMessage.classList.add('show');
+                
+                // Ocultar feedback após alguns segundos
+                setTimeout(() => {
+                    feedbackMessage.classList.remove('show');
+                }, 3000);
+            }
+        }
+        
         // Mostrar resultado final
         function showResult() {
             // Atualizar texto do resultado
@@ -861,22 +1079,6 @@
             
             // Efeito de confete
             createConfetti();
-        }
-        
-        // Função para tocar uma nota (simulação de som)
-        function playNote(frequency, type, duration) {
-            // Em uma implementação real, usaria a Web Audio API
-            // Esta é apenas uma simulação visual
-            console.log(`Tocando ${frequency}Hz com tipo ${type} por ${duration}s`);
-            
-            // Efeito visual para simular o som
-            const activeOption = document.querySelector('.option.selected');
-            if (activeOption) {
-                activeOption.style.animation = 'glow 0.5s';
-                setTimeout(() => {
-                    activeOption.style.animation = '';
-                }, 500);
-            }
         }
         
         // Criar efeito de confete
