@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partituras Personalizadas - Descubra Seu Combo Ideal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #00BFFF;
+            --accent: #FF00FF;
+            --dark: #0A0A1A;
+            --darker: #050510;
+            --light: #F0F8FF;
+            --success: #00FF7F;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Efeitos de luz de fundo */
+        .light {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .light-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -200px;
+            left: -200px;
+        }
+
+        .light-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: -150px;
+            right: -100px;
+        }
+
+        .light-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            top: 50%;
+            left: 30%;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #B0B0D0;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .game-container {
+            background: rgba(10, 10, 26, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .question-container {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .question {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .question::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+        }
+
+        .question-desc {
+            font-size: 1.1rem;
+            color: #B0B0D0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: rgba(20, 20, 40, 0.7);
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            border-radius: 15px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .option:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .option.selected {
+            background: rgba(30, 30, 60, 0.9);
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4);
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .option.selected .option-icon {
+            transform: scale(1.2);
+            color: var(--accent);
+        }
+
+        .option-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .achievements {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .achievement {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(30, 30, 60, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid rgba(100, 100, 150, 0.3);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .achievement.unlocked {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .achievement.unlocked::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.8s ease;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+        }
+
+        .result {
+            text-align: center;
+            padding: 30px;
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+
+        .result p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #D0D0F0;
+        }
+
+        .combo-link {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            transition: var(--transition);
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .combo-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .combo-link::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+        }
+
+        .combo-link:hover::after {
+            left: 120%;
+        }
+
+        .instrument-display {
+            font-size: 5rem;
+            margin: 30px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--primary), 0 0 30px var(--accent); }
+            100% { box-shadow: 0 0 5px var(--primary); }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .option {
+                padding: 20px 10px;
+            }
+            
+            .option-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeitos de luz de fundo -->
+    <div class="light light-1"></div>
+    <div class="light light-2"></div>
+    <div class="light light-3"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Descubra Seu Combo de Partituras Ideal</h1>
+            <p class="subtitle">Responda algumas perguntas e encontre o combo perfeito para o seu instrumento e estilo musical</p>
+        </header>
+        
+        <div class="game-container">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="achievements">
+                <div class="achievement" id="achievement-1">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="achievement" id="achievement-2">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <div class="achievement" id="achievement-3">
+                    <i class="fas fa-compact-disc"></i>
+                </div>
+                <div class="achievement" id="achievement-4">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="achievement" id="achievement-5">
+                    <i class="fas fa-trophy"></i>
+                </div>
+            </div>
+            
+            <!-- Etapa 1: Instrumento -->
+            <div class="step active" id="step-1">
+                <div class="question-container">
+                    <h2 class="question">Pra qual instrumento você quer a partitura?</h2>
+                    <p class="question-desc">Selecione o instrumento </p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option" data-value="violino">
+                        <div class="option-icon">🎻</div>
+                        <div class="option-text">Violino</div>
+                    </div>
+                    <div class="option" data-value="viola">
+                        <div class="option-icon">🎻</div>
+                        <div class="option-text">Viola</div>
+                    </div>
+                    <div class="option" data-value="violoncelo">
+                        <div class="option-icon">🎻</div>
+                        <div class="option-text">Violoncelo</div>
+                    </div>
+                    <div class="option" data-value="flauta">
+                        <div class="option-icon">🎵</div>
+                        <div class="option-text">Flauta</div>
+                    </div>
+                    <div class="option" data-value="clarinete">
+                        <div class="option-icon">🎵</div>
+                        <div class="option-text">Clarinete</div>
+                    </div>
+                    <div class="option" data-value="sax-alto">
+                        <div class="option-icon">🎷</div>
+                        <div class="option-text">Sax Alto</div>
+                    </div>
+                    <div class="option" data-value="sax-tenor">
+                        <div class="option-icon">🎷</div>
+                        <div class="option-text">Sax Tenor</div>
+                    </div>
+                    <div class="option" data-value="sax-soprano">
+                        <div class="option-icon">🎷</div>
+                        <div class="option-text">Sax Soprano</div>
+                    </div>
+                    <div class="option" data-value="trompete">
+                        <div class="option-icon">🎺</div>
+                        <div class="option-text">Trompete</div>
+                    </div>
+                    <div class="option" data-value="trombone">
+                        <div class="option-icon">🎺</div>
+                        <div class="option-text">Trombone</div>
+                    </div>
+                    <div class="option" data-value="piano">
+                        <div class="option-icon">🎹</div>
+                        <div class="option-text">Piano</div>
+                    </div>
+                    <div class="option" data-value="teclado">
+                        <div class="option-icon">🎹</div>
+                        <div class="option-text">Teclado</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Etapa 2: Nível de Habilidade -->
+            <div class="step" id="step-2">
+                <div class="question-container">
+                    <h2 class="question">Qual é o seu nível de habilidade?</h2>
+                    <p class="question-desc">Nos conte um pouco sobre sua experiência com o instrumento</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option" data-value="iniciante">
+                        <div class="option-icon"><i class="fas fa-seedling"></i></div>
+                        <div class="option-text">Iniciante</div>
+                        <p class="option-desc">Estou começando agora</p>
+                    </div>
+                    <div class="option" data-value="intermediario">
+                        <div class="option-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="option-text">Intermediário</div>
+                        <p class="option-desc">Já tenho alguma experiência</p>
+                    </div>
+                    <div class="option" data-value="avancado">
+                        <div class="option-icon"><i class="fas fa-tree"></i></div>
+                        <div class="option-text">Avançado</div>
+                        <p class="option-desc">Toco há alguns anos</p>
+                    </div>
+                    <div class="option" data-value="profissional">
+                        <div class="option-icon"><i class="fas fa-award"></i></div>
+                        <div class="option-text">Profissional</div>
+                        <p class="option-desc">Sou músico profissional</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Etapa 3: Gênero Musical -->
+            <div class="step" id="step-3">
+                <div class="question-container">
+                    <h2 class="question">Qual gênero musical você mais gosta de tocar?</h2>
+                    <p class="question-desc">Selecione seu estilo musical preferido</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option" data-value="classico">
+                        <div class="option-icon"><i class="fas fa-music"></i></div>
+                        <div class="option-text">Clássico</div>
+                    </div>
+                    <div class="option" data-value="jazz">
+                        <div class="option-icon"><i class="fas fa-music"></i></div>
+                        <div class="option-text">Jazz</div>
+                    </div>
+                    <div class="option" data-value="pop-rock">
+                        <div class="option-icon"><i class="fas fa-guitar"></i></div>
+                        <div class="option-text">Pop/Rock</div>
+                    </div>
+                    <div class="option" data-value="mpb">
+                        <div class="option-icon"><i class="fas fa-music"></i></div>
+                        <div class="option-text">MPB</div>
+                    </div>
+                    <div class="option" data-value="sertanejo">
+                        <div class="option-icon"><i class="fas fa-guitar"></i></div>
+                        <div class="option-text">Sertanejo</div>
+                    </div>
+                    <div class="option" data-value="gospel">
+                        <div class="option-icon"><i class="fas fa-church"></i></div>
+                        <div class="option-text">Gospel</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Etapa 4: Objetivo -->
+            <div class="step" id="step-4">
+                <div class="question-container">
+                    <h2 class="question">Qual é o seu principal objetivo com as partituras?</h2>
+                    <p class="question-desc">O que você busca alcançar com as partituras?</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option" data-value="aprender">
+                        <div class="option-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="option-text">Aprender</div>
+                        <p class="option-desc">Novas músicas</p>
+                    </div>
+                    <div class="option" data-value="aprimorar">
+                        <div class="option-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="option-text">Aprimorar</div>
+                        <p class="option-desc">Minha técnica</p>
+                    </div>
+                    <div class="option" data-value="apresentacao">
+                        <div class="option-icon"><i class="fas fa-theater-masks"></i></div>
+                        <div class="option-text">Apresentação</div>
+                        <p class="option-desc">Preparar para show</p>
+                    </div>
+                    <div class="option" data-value="ensinar">
+                        <div class="option-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="option-text">Ensinar</div>
+                        <p class="option-desc">Usar para aulas</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Etapa 5: Resultado -->
+            <div class="step" id="step-5">
+                <div class="result">
+                    <div class="instrument-display" id="result-instrument-icon">🎻</div>
+                    <h2>Parabéns! Combo Encontrado! 🎉</h2>
+                    <p>Você completou todas as etapas e descobriu o combo de partituras perfeito para você!</p>
+                    <p>Com base nas suas respostas, preparamos um combo especial para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
+                    <p>Este combo foi cuidadosamente selecionado para ajudar você a <span id="goal-result" class="highlight">aprender novas músicas</span>.</p>
+                    
+                    <a href="#" class="combo-link" id="combo-link">
+                        <i class="fas fa-download"></i> Acessar Meu Combo de Partituras
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elementos DOM
+        const steps = document.querySelectorAll('.step');
+        const options = document.querySelectorAll('.option');
+        const progressBar = document.getElementById('progress-bar');
+        const achievements = document.querySelectorAll('.achievement');
+        const comboLink = document.getElementById('combo-link');
+        
+        // Elementos de resultado
+        const instrumentResult = document.getElementById('instrument-result');
+        const levelResult = document.getElementById('level-result');
+        const genreResult = document.getElementById('genre-result');
+        const goalResult = document.getElementById('goal-result');
+        const resultInstrumentIcon = document.getElementById('result-instrument-icon');
+        
+        // Dados do usuário
+        const userData = {
+            instrument: '',
+            level: '',
+            genre: '',
+            goal: ''
+        };
+        
+        // Links para combos (substitua pelos seus links reais)
+        const comboLinks = {
+            'violino': {
+                'classico': 'https://exemplo.com/combo-violino-classico',
+                'jazz': 'https://exemplo.com/combo-violino-jazz',
+                'pop-rock': 'https://exemplo.com/combo-violino-pop-rock',
+                'mpb': 'https://exemplo.com/combo-violino-mpb',
+                'sertanejo': 'https://exemplo.com/combo-violino-sertanejo',
+                'gospel': 'https://exemplo.com/combo-violino-gospel'
+            },
+            'viola': {
+                'classico': 'https://exemplo.com/combo-viola-classico',
+                'jazz': 'https://exemplo.com/combo-viola-jazz',
+                'pop-rock': 'https://exemplo.com/combo-viola-pop-rock',
+                'mpb': 'https://exemplo.com/combo-viola-mpb',
+                'sertanejo': 'https://exemplo.com/combo-viola-sertanejo',
+                'gospel': 'https://exemplo.com/combo-viola-gospel'
+            },
+            'violoncelo': {
+                'classico': 'https://exemplo.com/combo-violoncelo-classico',
+                'jazz': 'https://exemplo.com/combo-violoncelo-jazz',
+                'pop-rock': 'https://exemplo.com/combo-violoncelo-pop-rock',
+                'mpb': 'https://exemplo.com/combo-violoncelo-mpb',
+                'sertanejo': 'https://exemplo.com/combo-violoncelo-sertanejo',
+                'gospel': 'https://exemplo.com/combo-violoncelo-gospel'
+            },
+            'flauta': {
+                'classico': 'https://exemplo.com/combo-flauta-classico',
+                'jazz': 'https://exemplo.com/combo-flauta-jazz',
+                'pop-rock': 'https://exemplo.com/combo-flauta-pop-rock',
+                'mpb': 'https://exemplo.com/combo-flauta-mpb',
+                'sertanejo': 'https://exemplo.com/combo-flauta-sertanejo',
+                'gospel': 'https://exemplo.com/combo-flauta-gospel'
+            },
+            'clarinete': {
+                'classico': 'https://exemplo.com/combo-clarinete-classico',
+                'jazz': 'https://exemplo.com/combo-clarinete-jazz',
+                'pop-rock': 'https://exemplo.com/combo-clarinete-pop-rock',
+                'mpb': 'https://exemplo.com/combo-clarinete-mpb',
+                'sertanejo': 'https://exemplo.com/combo-clarinete-sertanejo',
+                'gospel': 'https://exemplo.com/combo-clarinete-gospel'
+            },
+            'sax-alto': {
+                'classico': 'https://exemplo.com/combo-sax-alto-classico',
+                'jazz': 'https://exemplo.com/combo-sax-alto-jazz',
+                'pop-rock': 'https://exemplo.com/combo-sax-alto-pop-rock',
+                'mpb': 'https://exemplo.com/combo-sax-alto-mpb',
+                'sertanejo': 'https://exemplo.com/combo-sax-alto-sertanejo',
+                'gospel': 'https://exemplo.com/combo-sax-alto-gospel'
+            },
+            'sax-tenor': {
+                'classico': 'https://exemplo.com/combo-sax-tenor-classico',
+                'jazz': 'https://exemplo.com/combo-sax-tenor-jazz',
+                'pop-rock': 'https://exemplo.com/combo-sax-tenor-pop-rock',
+                'mpb': 'https://exemplo.com/combo-sax-tenor-mpb',
+                'sertanejo': 'https://exemplo.com/combo-sax-tenor-sertanejo',
+                'gospel': 'https://exemplo.com/combo-sax-tenor-gospel'
+            },
+            'sax-soprano': {
+                'classico': 'https://exemplo.com/combo-sax-soprano-classico',
+                'jazz': 'https://exemplo.com/combo-sax-soprano-jazz',
+                'pop-rock': 'https://exemplo.com/combo-sax-soprano-pop-rock',
+                'mpb': 'https://exemplo.com/combo-sax-soprano-mpb',
+                'sertanejo': 'https://exemplo.com/combo-sax-soprano-sertanejo',
+                'gospel': 'https://exemplo.com/combo-sax-soprano-gospel'
+            },
+            'trompete': {
+                'classico': 'https://exemplo.com/combo-trompete-classico',
+                'jazz': 'https://exemplo.com/combo-trompete-jazz',
+                'pop-rock': 'https://exemplo.com/combo-trompete-pop-rock',
+                'mpb': 'https://exemplo.com/combo-trompete-mpb',
+                'sertanejo': 'https://exemplo.com/combo-trompete-sertanejo',
+                'gospel': 'https://exemplo.com/combo-trompete-gospel'
+            },
+            'trombone': {
+                'classico': 'https://exemplo.com/combo-trombone-classico',
+                'jazz': 'https://exemplo.com/combo-trombone-jazz',
+                'pop-rock': 'https://exemplo.com/combo-trombone-pop-rock',
+                'mpb': 'https://exemplo.com/combo-trombone-mpb',
+                'sertanejo': 'https://exemplo.com/combo-trombone-sertanejo',
+                'gospel': 'https://exemplo.com/combo-trombone-gospel'
+            },
+            'piano': {
+                'classico': 'https://exemplo.com/combo-piano-classico',
+                'jazz': 'https://exemplo.com/combo-piano-jazz',
+                'pop-rock': 'https://exemplo.com/combo-piano-pop-rock',
+                'mpb': 'https://exemplo.com/combo-piano-mpb',
+                'sertanejo': 'https://exemplo.com/combo-piano-sertanejo',
+                'gospel': 'https://exemplo.com/combo-piano-gospel'
+            },
+            'teclado': {
+                'classico': 'https://exemplo.com/combo-teclado-classico',
+                'jazz': 'https://exemplo.com/combo-teclado-jazz',
+                'pop-rock': 'https://exemplo.com/combo-teclado-pop-rock',
+                'mpb': 'https://exemplo.com/combo-teclado-mpb',
+                'sertanejo': 'https://exemplo.com/combo-teclado-sertanejo',
+                'gospel': 'https://exemplo.com/combo-teclado-gospel'
+            }
+        };
+        
+        // Sons dos instrumentos (em uma implementação real, seriam arquivos de áudio)
+        const instrumentSounds = {
+            'violino': () => playNote(440, 'sine', 0.5), // Lá
+            'viola': () => playNote(330, 'sine', 0.5), // Mi
+            'violoncelo': () => playNote(220, 'sine', 0.5), // Lá
+            'flauta': () => playNote(880, 'sine', 0.5), // Lá
+            'clarinete': () => playNote(554, 'sine', 0.5), // Dó#
+            'sax-alto': () => playNote(440, 'sawtooth', 0.5), // Lá
+            'sax-tenor': () => playNote(330, 'sawtooth', 0.5), // Mi
+            'sax-soprano': () => playNote(880, 'sawtooth', 0.5), // Lá
+            'trompete': () => playNote(440, 'square', 0.5), // Lá
+            'trombone': () => playNote(220, 'square', 0.5), // Lá
+            'piano': () => playNote(523, 'sine', 0.5), // Dó
+            'teclado': () => playNote(523, 'triangle', 0.5) // Dó
+        };
+        
+        // Ícones dos instrumentos para o resultado
+        const instrumentIcons = {
+            'violino': '🎻',
+            'viola': '🎻',
+            'violoncelo': '🎻',
+            'flauta': '🎵',
+            'clarinete': '🎵',
+            'sax-alto': '🎷',
+            'sax-tenor': '🎷',
+            'sax-soprano': '🎷',
+            'trompete': '🎺',
+            'trombone': '🎺',
+            'piano': '🎹',
+            'teclado': '🎹'
+        };
+        
+        // Inicialização
+        let currentStep = 0;
+        updateProgress();
+        
+        // Event Listeners para opções
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remover seleção de outras opções no mesmo passo
+                const parentStep = this.closest('.step');
+                const optionsInStep = parentStep.querySelectorAll('.option');
+                optionsInStep.forEach(opt => opt.classList.remove('selected'));
+                
+                // Selecionar esta opção
+                this.classList.add('selected');
+                
+                // Atualizar dados do usuário
+                const stepId = parentStep.id;
+                const value = this.getAttribute('data-value');
+                
+                if (stepId === 'step-1') {
+                    userData.instrument = value;
+                    // Tocar som do instrumento
+                    if (instrumentSounds[value]) {
+                        instrumentSounds[value]();
+                    }
+                } else if (stepId === 'step-2') {
+                    userData.level = value;
+                } else if (stepId === 'step-3') {
+                    userData.genre = value;
+                } else if (stepId === 'step-4') {
+                    userData.goal = value;
+                }
+                
+                // Atualizar conquista
+                updateAchievement(stepId);
+                
+                // Avançar automaticamente após um breve delay
+                setTimeout(() => {
+                    nextStep();
+                }, 800);
+            });
+        });
+        
+        // Avançar para o próximo passo
+        function nextStep() {
+            currentStep++;
+            
+            // Se chegou ao final, mostrar resultado
+            if (currentStep >= steps.length - 1) {
+                showResult();
+            }
+            
+            updateProgress();
+        }
+        
+        // Atualizar barra de progresso
+        function updateProgress() {
+            const progress = (currentStep / (steps.length - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Mostrar/ocultar passos
+            steps.forEach((step, index) => {
+                if (index === currentStep) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+        }
+        
+        // Atualizar conquistas
+        function updateAchievement(stepId) {
+            let achievementIndex;
+            
+            switch(stepId) {
+                case 'step-1':
+                    achievementIndex = 0;
+                    break;
+                case 'step-2':
+                    achievementIndex = 1;
+                    break;
+                case 'step-3':
+                    achievementIndex = 2;
+                    break;
+                case 'step-4':
+                    achievementIndex = 3;
+                    break;
+            }
+            
+            if (achievementIndex !== undefined) {
+                achievements[achievementIndex].classList.add('unlocked');
+                
+                // Efeito visual para conquista
+                const achievement = achievements[achievementIndex];
+                achievement.style.animation = 'pulse 0.5s 3';
+                setTimeout(() => {
+                    achievement.style.animation = '';
+                }, 1500);
+            }
+        }
+        
+        // Mostrar resultado final
+        function showResult() {
+            // Atualizar texto do resultado
+            instrumentResult.textContent = getInstrumentName(userData.instrument);
+            levelResult.textContent = getLevelName(userData.level);
+            genreResult.textContent = getGenreName(userData.genre);
+            goalResult.textContent = getGoalName(userData.goal);
+            
+            // Atualizar ícone do instrumento
+            if (instrumentIcons[userData.instrument]) {
+                resultInstrumentIcon.textContent = instrumentIcons[userData.instrument];
+            }
+            
+            // Definir link do combo
+            if (comboLinks[userData.instrument] && comboLinks[userData.instrument][userData.genre]) {
+                comboLink.href = comboLinks[userData.instrument][userData.genre];
+            } else {
+                // Link padrão caso não haja combinação específica
+                comboLink.href = 'https://exemplo.com/combo-padrao';
+            }
+            
+            // Desbloquear conquista final
+            achievements[4].classList.add('unlocked');
+            
+            // Efeito de confete
+            createConfetti();
+        }
+        
+        // Função para tocar uma nota (simulação de som)
+        function playNote(frequency, type, duration) {
+            // Em uma implementação real, usaria a Web Audio API
+            // Esta é apenas uma simulação visual
+            console.log(`Tocando ${frequency}Hz com tipo ${type} por ${duration}s`);
+            
+            // Efeito visual para simular o som
+            const activeOption = document.querySelector('.option.selected');
+            if (activeOption) {
+                activeOption.style.animation = 'glow 0.5s';
+                setTimeout(() => {
+                    activeOption.style.animation = '';
+                }, 500);
+            }
+        }
+        
+        // Criar efeito de confete
+        function createConfetti() {
+            const colors = ['#8A2BE2', '#00BFFF', '#FF00FF', '#00FF7F', '#FFFF00'];
+            const container = document.querySelector('.game-container');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.opacity = '1';
+                
+                container.appendChild(confetti);
+                
+                // Animação do confete
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.2, 0.8, 0.9)'
+                });
+                
+                // Remover confete após animação
+                animation.onfinish = () => {
+                    confetti.remove();
+                };
+            }
+        }
+        
+        // Funções auxiliares para obter nomes amigáveis
+        function getInstrumentName(instrument) {
+            const names = {
+                'violino': 'violino',
+                'viola': 'viola',
+                'violoncelo': 'violoncelo',
+                'flauta': 'flauta',
+                'clarinete': 'clarinete',
+                'sax-alto': 'sax alto',
+                'sax-tenor': 'sax tenor',
+                'sax-soprano': 'sax soprano',
+                'trompete': 'trompete',
+                'trombone': 'trombone',
+                'piano': 'piano',
+                'teclado': 'teclado'
+            };
+            return names[instrument] || instrument;
+        }
+        
+        function getLevelName(level) {
+            const names = {
+                'iniciante': 'iniciante',
+                'intermediario': 'intermediário',
+                'avancado': 'avançado',
+                'profissional': 'profissional'
+            };
+            return names[level] || level;
+        }
+        
+        function getGenreName(genre) {
+            const names = {
+                'classico': 'música clássica',
+                'jazz': 'jazz',
+                'pop-rock': 'pop/rock',
+                'mpb': 'MPB',
+                'sertanejo': 'sertanejo',
+                'gospel': 'música gospel'
+            };
+            return names[genre] || genre;
+        }
+        
+        function getGoalName(goal) {
+            const names = {
+                'aprender': 'aprender novas músicas',
+                'aprimorar': 'aprimorar sua técnica',
+                'apresentacao': 'preparar-se para apresentações',
+                'ensinar': 'ensinar outros músicos',
+                'compor': 'compor novas músicas'
+            };
+            return names[goal] || goal;
+        }
+    </script>
+</body>
+</html>
