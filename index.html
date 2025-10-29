@@ -27,6 +27,15 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
 
  
     <style>
+        html {
+  overflow-y: scroll; /* força a barra sempre existir, mesmo sem necessidade */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
         /* CORREÇÃO IMEDIATA - ANTES DE QUALQUER OUTRO ESTILO */
         html, body {
             margin: 0;
