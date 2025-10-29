@@ -340,28 +340,35 @@
             line-height: 1.5;
         }
 
-        .combo-link {
-            display: inline-block;
+        /* Botão flutuante - APENAS na última etapa */
+        .floating-combo-link {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             background: linear-gradient(to right, var(--primary), var(--accent));
             color: white;
-            padding: 15px 30px;
+            padding: 18px 35px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
             transition: var(--transition);
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            animation: float 3s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        .combo-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.6);
+        .floating-combo-link:hover {
+            transform: translateX(-50%) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.8);
         }
 
-        .combo-link::after {
+        .floating-combo-link::after {
             content: '';
             position: absolute;
             top: -50%;
@@ -373,14 +380,127 @@
             transition: all 0.6s;
         }
 
-        .combo-link:hover::after {
+        .floating-combo-link:hover::after {
             left: 120%;
+        }
+
+        .floating-combo-link.show {
+            display: flex;
         }
 
         .instrument-display {
             font-size: clamp(3rem, 10vw, 5rem);
             margin: 25px 0;
             animation: bounce 2s infinite;
+        }
+
+        /* Estilos para a lista de músicas gospel */
+        .gospel-section {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .gospel-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .gospel-title i {
+            font-size: 1.8rem;
+        }
+
+        .gospel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gospel-card {
+            background: rgba(30, 30, 60, 0.6);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .gospel-card:hover {
+            transform: translateY(-3px);
+            background: rgba(40, 40, 80, 0.7);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .gospel-card i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .gospel-card-content {
+            flex: 1;
+        }
+
+        .gospel-card-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+
+        .gospel-card-artist {
+            font-size: 0.85rem;
+            color: #B0B0D0;
+        }
+
+        .bonus-section {
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .bonus-section h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .bonus-section h4 i {
+            font-size: 1.5rem;
+        }
+
+        .bonus-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .bonus-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .bonus-item i {
+            color: var(--success);
+            font-size: 1rem;
         }
 
         @keyframes fadeIn {
@@ -397,6 +517,11 @@
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
 
         @keyframes glow {
@@ -449,9 +574,13 @@
                 font-size: 1.1rem;
             }
             
-            .combo-link {
-                padding: 12px 25px;
+            .floating-combo-link {
+                padding: 15px 25px;
                 font-size: 1.1rem;
+                bottom: 20px;
+                width: 90%;
+                text-align: center;
+                justify-content: center;
             }
             
             .music-control {
@@ -459,6 +588,14 @@
                 right: 15px;
                 width: 45px;
                 height: 45px;
+            }
+            
+            .gospel-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bonus-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -473,6 +610,11 @@
     <div class="music-control" id="music-control">
         <i class="fas fa-volume-up"></i>
     </div>
+    
+    <!-- Botão flutuante (APENAS na última etapa) -->
+    <a href="#" class="floating-combo-link" id="floating-combo-link">
+        <i class="fas fa-download"></i> Acessar Meu Combo de Partituras
+    </a>
     
     <div class="container">
         <!-- Cabeçalho apenas na primeira etapa -->
@@ -685,9 +827,34 @@
                     <p>Com base nas suas respostas, preparamos um combo <span class="highlight">especial</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
                     <p>Este combo foi cuidadosamente selecionado para ajudar você a <span id="goal-result" class="highlight">aprender novas músicas</span>.</p>
                     
-                    <a href="#" class="combo-link" id="combo-link">
-                        <i class="fas fa-download"></i> Acessar Meu Combo de Partituras
-                    </a>
+                    <!-- Seção Gospel (aparece apenas se o gênero for gospel) -->
+                    <div class="gospel-section" id="gospel-section" style="display: none;">
+                        <h3 class="gospel-title"><i class="fas fa-cross"></i> Músicas Gospel Incluídas no Combo</h3>
+                        <p>Seu combo inclui estas <span class="highlight">30 músicas gospel</span> selecionadas especialmente para você:</p>
+                        
+                        <div class="gospel-grid" id="gospel-grid">
+                            <!-- As músicas serão inseridas aqui via JavaScript -->
+                        </div>
+                        
+                        <div class="bonus-section">
+                            <h4><i class="fas fa-gift"></i> Bônus Especial</h4>
+                            <p>Além das 30 músicas, você também recebe estas partituras bônus:</p>
+                            <div class="bonus-list">
+                                <div class="bonus-item">
+                                    <i class="fas fa-music"></i>
+                                    <span>PERTO QUERO ESTAR (TE LOUVAREI) - Trazendo a Arca</span>
+                                </div>
+                                <div class="bonus-item">
+                                    <i class="fas fa-music"></i>
+                                    <span>RARIDADE - Anderson Freire</span>
+                                </div>
+                                <div class="bonus-item">
+                                    <i class="fas fa-music"></i>
+                                    <span>ACLAME AO SENHOR - Diante do Trono</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -699,9 +866,11 @@
         const options = document.querySelectorAll('.option');
         const progressBar = document.getElementById('progress-bar');
         const achievements = document.querySelectorAll('.achievement');
-        const comboLink = document.getElementById('combo-link');
+        const floatingComboLink = document.getElementById('floating-combo-link');
         const musicControl = document.getElementById('music-control');
         const mainHeader = document.getElementById('main-header');
+        const gospelSection = document.getElementById('gospel-section');
+        const gospelGrid = document.getElementById('gospel-grid');
         
         // Elementos de resultado
         const instrumentResult = document.getElementById('instrument-result');
@@ -717,6 +886,40 @@
             genre: '',
             goal: ''
         };
+        
+        // Lista de músicas gospel
+        const gospelSongs = [
+            { title: "1000 GRAUS", artist: "Renascer Praise" },
+            { title: "A BENÇÃO", artist: "Gabriel Guedes e Nívea Soares" },
+            { title: "AGNUS DEI", artist: "Gabriela Rocha" },
+            { title: "ALÉM DO RIO AZUL", artist: "Voz da Verdade" },
+            { title: "BONDADE DE DEUS", artist: "Isaías Saad" },
+            { title: "CREIO QUE TU ÉS A CURA", artist: "Gabriela Rocha" },
+            { title: "DESERTO", artist: "Maria Marçal" },
+            { title: "É TUDO SOBRE VOCÊ", artist: "Morada" },
+            { title: "ESPÍRITO SANTO", artist: "Fernanda Brum" },
+            { title: "EU TE AGRADEÇO", artist: "Preto no Branco" },
+            { title: "I SPEAK JESUS", artist: "Charity Gayle" },
+            { title: "JEOVÁ JIREH", artist: "Aline Barros" },
+            { title: "LUGAR SECRETO", artist: "Gabriela Rocha" },
+            { title: "MARANATA", artist: "Avivah" },
+            { title: "ME ATRAIU", artist: "Gabriela Rocha" },
+            { title: "NINGUÉM EXPLICA DEUS", artist: "Preto no Branco" },
+            { title: "O ESCUDO", artist: "Voz da Verdade" },
+            { title: "OCEANOS", artist: "Ana Nóbrega" },
+            { title: "PODE MORAR AQUI", artist: "Theo Rubia" },
+            { title: "PRA SEMPRE", artist: "Avivah" },
+            { title: "QUERO CONHECER JESUS", artist: "Alessandro Vilas boas" },
+            { title: "RENOVA-ME", artist: "Aline Barros" },
+            { title: "ROMPENDO EM FÉ", artist: "Comunidade da zona Sul" },
+            { title: "SANTO ESPÍRITO", artist: "Renascer Praise" },
+            { title: "TODA TERRA", artist: "Gabriela Rocha" },
+            { title: "TODAVIA MINHA ALEGRAREI", artist: "Samuel Messias" },
+            { title: "TU ÉS ÁGUAS + PURIFICADORAS", artist: "Fhop Music" },
+            { title: "VITORIOSO ÉS", artist: "Gabriel Guedes" },
+            { title: "YESHUA", artist: "Fernandinho" },
+            { title: "YESHUA", artist: "Fernandinho e Heloísa Rosa" }
+        ];
         
         // Variáveis para controle de música
         let audioContext;
@@ -1077,19 +1280,50 @@
                 resultInstrumentIcon.textContent = instrumentIcons[userData.instrument];
             }
             
-            // Definir link do combo
+            // Definir link do combo flutuante
             if (comboLinks[userData.instrument] && comboLinks[userData.instrument][userData.genre]) {
-                comboLink.href = comboLinks[userData.instrument][userData.genre];
+                floatingComboLink.href = comboLinks[userData.instrument][userData.genre];
             } else {
                 // Link padrão caso não haja combinação específica
-                comboLink.href = 'https://exemplo.com/combo-padrao';
+                floatingComboLink.href = 'https://exemplo.com/combo-padrao';
             }
+            
+            // Mostrar seção gospel se o gênero for gospel
+            if (userData.genre === 'gospel') {
+                gospelSection.style.display = 'block';
+                populateGospelGrid();
+            } else {
+                gospelSection.style.display = 'none';
+            }
+            
+            // MOSTRAR BOTÃO FLUTUANTE APENAS NA ÚLTIMA ETAPA
+            floatingComboLink.classList.add('show');
             
             // Desbloquear conquista final
             achievements[4].classList.add('unlocked');
             
             // Efeito de confete
             createConfetti();
+        }
+        
+        // Preencher o grid de músicas gospel
+        function populateGospelGrid() {
+            gospelGrid.innerHTML = '';
+            
+            gospelSongs.forEach(song => {
+                const card = document.createElement('div');
+                card.className = 'gospel-card';
+                
+                card.innerHTML = `
+                    <i class="fas fa-music"></i>
+                    <div class="gospel-card-content">
+                        <div class="gospel-card-title">${song.title}</div>
+                        <div class="gospel-card-artist">${song.artist}</div>
+                    </div>
+                `;
+                
+                gospelGrid.appendChild(card);
+            });
         }
         
         // Criar efeito de confete
