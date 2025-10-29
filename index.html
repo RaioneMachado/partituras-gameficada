@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combo de Partituras Personalizadas - Selecione o Instrumento</title>
+    <title>Combo de Partituras Personalizadas - Para Músicos que Amam Tocar</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <style>
@@ -25,12 +25,12 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
-      html, body {
-  overflow-x: hidden;
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: auto; /* evita travamento em rolagem manual */
-}
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: auto;
+        }
 
         body {
             background: linear-gradient(135deg, var(--darker), var(--dark));
@@ -165,6 +165,16 @@
 
         .highlight {
             color: var(--accent);
+            font-weight: bold;
+        }
+
+        .pain-point {
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+
+        .benefit {
+            color: var(--success);
             font-weight: bold;
         }
 
@@ -375,19 +385,6 @@
             transition: all 0.6s;
         }
 
-        html, body {
-  overflow-x: hidden;
-  overflow-y: auto !important;
-  height: auto !important;
-  -webkit-overflow-scrolling: touch; /* rolagem suave no iOS */
-}
-.container, .wrapper, .content, main, section {
-  overflow: visible !important;
-  position: relative !important;
-  height: auto !important;
-}
-
-
         .floating-combo-link:hover::after {
             left: 120%;
         }
@@ -541,6 +538,75 @@
             box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
         }
 
+        .pain-points {
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #FF6B6B;
+        }
+
+        .pain-points h4 {
+            color: #FF6B6B;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pain-points ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .pain-points li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .pain-points li:before {
+            content: '•';
+            color: #FF6B6B;
+            position: absolute;
+            left: 10px;
+        }
+
+        .benefits-section {
+            background: rgba(0, 255, 127, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid var(--success);
+        }
+
+        .benefits-section h4 {
+            color: var(--success);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefits-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .benefits-section li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .benefits-section li:before {
+            content: '✓';
+            color: var(--success);
+            position: absolute;
+            left: 10px;
+            font-weight: bold;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -672,14 +738,24 @@
     
     <!-- Botão flutuante (APENAS na última etapa) -->
     <a href="#" class="floating-combo-link" id="floating-combo-link">
-        <i class="fas fa-download"></i> Acessar Meu Combo de Partituras
+        <i class="fas fa-download"></i> QUERO MINHAS PARTITURAS AGORA!
     </a>
     
     <div class="container">
         <!-- Cabeçalho apenas na primeira etapa -->
         <header id="main-header">
-            <h1>Descubra Seu Combo de Partituras <span class="highlight">Selecione o Instrumento</span></h1>
-            <p class="subtitle">Responda algumas perguntas e encontre o combo <span class="highlight">perfeito</span> para o seu instrumento e estilo musical</p>
+            <h1>Partituras que <span class="highlight">Realmente Funcionam</span> na Sua Mão</h1>
+            <p class="subtitle">Descubra o combo perfeito para <span class="highlight">tocar as músicas que você ama</span> - do iniciante ao profissional</p>
+            
+            <div class="benefits-section">
+                <h4><i class="fas fa-star"></i> Para músicos que querem TOCAR, não apenas estudar:</h4>
+                <ul>
+                    <li>Partituras revisadas e <span class="benefit">100% precisas</span></li>
+                    <li>Arranjos que <span class="benefit">soam incríveis</span> no seu instrumento</li>
+                    <li>Repertório para <span class="benefit">tocar hoje mesmo</span></li>
+                    <li>Do clássico ao contemporâneo - <span class="benefit">músicas que valem a pena tocar</span></li>
+                </ul>
+            </div>
         </header>
         
         <div class="game-container">
@@ -708,187 +784,215 @@
             <!-- Etapa 1: Instrumento -->
             <div class="step active" id="step-1">
                 <div class="question-container">
-                    <h2 class="question">Pra qual instrumento seria a partitura?</h2>
-                    <p class="question-desc">Selecione o instrumento que você quer a <span class="highlight">PARTITURA</span></p>
+                    <h2 class="question">Qual instrumento faz seu <span class="highlight">coração vibrar</span>?</h2>
+                    <p class="question-desc">Selecione o instrumento que você quer <span class="highlight">tocar com excelência</span></p>
                 </div>
                 
                 <div class="options-grid">
                     <div class="option" data-value="violino">
                         <div class="option-icon">🎻</div>
                         <div class="option-text">Violino</div>
+                        <p class="option-desc">Expressividade e técnica</p>
                     </div>
                     <div class="option" data-value="viola">
                         <div class="option-icon">🎻</div>
                         <div class="option-text">Viola</div>
+                        <p class="option-desc">Som aveludado e profundo</p>
                     </div>
                     <div class="option" data-value="violoncelo">
                         <div class="option-icon">🎻</div>
                         <div class="option-text">Violoncelo</div>
+                        <p class="option-desc">Emoção em cada nota</p>
                     </div>
                     <div class="option" data-value="flauta">
                         <div class="option-icon">🎵</div>
                         <div class="option-text">Flauta</div>
+                        <p class="option-desc">Doce e melodiosa</p>
                     </div>
                     <div class="option" data-value="clarinete">
                         <div class="option-icon">🎵</div>
                         <div class="option-text">Clarinete</div>
+                        <p class="option-desc">Versatilidade sonora</p>
                     </div>
                     <div class="option" data-value="sax-alto">
                         <div class="option-icon">🎷</div>
                         <div class="option-text">Sax Alto</div>
+                        <p class="option-desc">Expressão e personalidade</p>
                     </div>
                     <div class="option" data-value="sax-tenor">
                         <div class="option-icon">🎷</div>
                         <div class="option-text">Sax Tenor</div>
+                        <p class="option-desc">Timbre marcante</p>
                     </div>
                     <div class="option" data-value="sax-soprano">
                         <div class="option-icon">🎷</div>
                         <div class="option-text">Sax Soprano</div>
+                        <p class="option-desc">Agilidade e brilho</p>
                     </div>
                     <div class="option" data-value="trompete">
                         <div class="option-icon">🎺</div>
                         <div class="option-text">Trompete</div>
+                        <p class="option-desc">Força e presença</p>
                     </div>
                     <div class="option" data-value="trombone">
                         <div class="option-icon">🎺</div>
                         <div class="option-text">Trombone</div>
+                        <p class="option-desc">Potência e slide</p>
                     </div>
                     <div class="option" data-value="piano">
                         <div class="option-icon">🎹</div>
                         <div class="option-text">Piano</div>
+                        <p class="option-desc">Harmonia completa</p>
                     </div>
                     <div class="option" data-value="teclado">
                         <div class="option-icon">🎹</div>
                         <div class="option-text">Teclado</div>
+                        <p class="option-desc">Versatilidade moderna</p>
                     </div>
                 </div>
-                <button class="next-button" id="next-1">Avançar</button>
+                <button class="next-button" id="next-1">Escolher Repertório</button>
             </div>
             
             <!-- Etapa 2: Nível de Habilidade -->
             <div class="step" id="step-2">
                 <div class="feedback-message" id="feedback-1">
-                    <p><span class="highlight">Maravilha!</span> Um ótimo instrumento! Você vai adorar o combo que preparamos!</p>
+                    <p><span class="highlight">Excelente escolha!</span> Um instrumento que merece partituras à altura!</p>
                 </div>
                 
                 <div class="question-container">
-                    <h2 class="question">Qual é o seu <span class="highlight">nível</span> de habilidade?</h2>
-                    <p class="question-desc">Nos conte um pouco sobre sua <span class="highlight">experiência</span> com o instrumento</p>
+                    <h2 class="question">Qual é o seu <span class="highlight">momento musical</span>?</h2>
+                    <p class="question-desc">Selecione sua experiência para partituras que <span class="highlight">desafiam na medida certa</span></p>
                 </div>
                 
                 <div class="options-grid">
                     <div class="option" data-value="iniciante">
                         <div class="option-icon"><i class="fas fa-seedling"></i></div>
-                        <div class="option-text">Iniciante</div>
-                        <p class="option-desc">Estou começando agora</p>
+                        <div class="option-text">Descobrindo</div>
+                        <p class="option-desc">Começando minha jornada musical</p>
                     </div>
                     <div class="option" data-value="intermediario">
                         <div class="option-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="option-text">Intermediário</div>
-                        <p class="option-desc">Já tenho alguma experiência</p>
+                        <div class="option-text">Crescendo</div>
+                        <p class="option-desc">Já tenho base e quero evoluir</p>
                     </div>
                     <div class="option" data-value="avancado">
                         <div class="option-icon"><i class="fas fa-tree"></i></div>
-                        <div class="option-text">Avançado</div>
-                        <p class="option-desc">Toco há alguns anos</p>
+                        <div class="option-text">Dominando</div>
+                        <p class="option-desc">Busco repertório desafiador</p>
                     </div>
                     <div class="option" data-value="profissional">
                         <div class="option-icon"><i class="fas fa-award"></i></div>
-                        <div class="option-text">Profissional</div>
-                        <p class="option-desc">Sou músico profissional</p>
+                        <div class="option-text">Excelência</div>
+                        <p class="option-desc">Performance de alto nível</p>
                     </div>
                 </div>
-                <button class="next-button" id="next-2">Avançar</button>
+                <button class="next-button" id="next-2">Definir Estilo</button>
             </div>
             
             <!-- Etapa 3: Gênero Musical -->
             <div class="step" id="step-3">
                 <div class="feedback-message" id="feedback-2">
-                    <p><span class="highlight">Perfeito!</span> Agora sabemos exatamente como personalizar suas partituras!</p>
+                    <p><span class="highlight">Perfeito!</span> Partituras na dificuldade certa para você <span class="highlight">brilhar</span>!</p>
                 </div>
                 
                 <div class="question-container">
-                    <h2 class="question">Qual <span class="highlight">gênero musical</span> você mais gosta?</h2>
-                    <p class="question-desc">Selecione seu <span class="highlight">estilo musical</span> preferido</p>
+                    <h2 class="question">Que tipo de música faz você <span class="highlight">perder a noção do tempo</span>?</h2>
+                    <p class="question-desc">Escolha o estilo que vai fazer cada sessão de prática ser <span class="highlight">puro prazer</span></p>
                 </div>
                 
                 <div class="options-grid">
                     <div class="option" data-value="classico">
                         <div class="option-icon"><i class="fas fa-music"></i></div>
                         <div class="option-text">Clássico</div>
+                        <p class="option-desc">Obras atemporais e profundas</p>
                     </div>
                     <div class="option" data-value="jazz">
                         <div class="option-icon"><i class="fas fa-music"></i></div>
                         <div class="option-text">Jazz</div>
+                        <p class="option-desc">Improvisação e sofisticação</p>
                     </div>
                     <div class="option" data-value="pop-rock">
                         <div class="option-icon"><i class="fas fa-guitar"></i></div>
                         <div class="option-text">Pop/Rock</div>
+                        <p class="option-desc">Energia e familiaridade</p>
                     </div>
                     <div class="option" data-value="mpb">
                         <div class="option-icon"><i class="fas fa-music"></i></div>
                         <div class="option-text">MPB</div>
+                        <p class="option-desc">Alma brasileira em cada nota</p>
                     </div>
                     <div class="option" data-value="sertanejo">
                         <div class="option-icon"><i class="fas fa-guitar"></i></div>
                         <div class="option-text">Sertanejo</div>
+                        <p class="option-desc">Emoção e história</p>
                     </div>
                     <div class="option" data-value="gospel">
                         <div class="option-icon"><i class="fas fa-church"></i></div>
                         <div class="option-text">Gospel</div>
+                        <p class="option-desc">Fé e inspiração</p>
                     </div>
                 </div>
-                <button class="next-button" id="next-3">Avançar</button>
+                <button class="next-button" id="next-3">Finalizar Perfil</button>
             </div>
             
             <!-- Etapa 4: Objetivo -->
             <div class="step" id="step-4">
                 <div class="feedback-message" id="feedback-3">
-                    <p><span class="highlight">Excelente escolha!</span> Esse estilo musical combina perfeitamente com você!</p>
+                    <p><span class="highlight">Maravilha!</span> Música que fala com sua alma é música que vale a pena tocar!</p>
                 </div>
                 
                 <div class="question-container">
-                    <h2 class="question">Qual é o seu principal <span class="highlight">objetivo</span>?</h2>
-                    <p class="question-desc">O que você busca <span class="highlight">alcançar</span> com as partituras?</p>
+                    <h2 class="question">O que te motupa a <span class="highlight">pegar seu instrumento</span>?</h2>
+                    <p class="question-desc">Conte seu propósito para receber partituras que <span class="highlight">realizam seus objetivos</span></p>
                 </div>
                 
                 <div class="options-grid">
                     <div class="option" data-value="aprender">
                         <div class="option-icon"><i class="fas fa-book-open"></i></div>
-                        <div class="option-text">Aprender</div>
-                        <p class="option-desc">Novas músicas</p>
+                        <div class="option-text">Prazer Pessoal</div>
+                        <p class="option-desc">Tocar por amor à música</p>
                     </div>
                     <div class="option" data-value="aprimorar">
                         <div class="option-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="option-text">Aprimorar</div>
-                        <p class="option-desc">Minha técnica</p>
+                        <div class="option-text">Evolução Técnica</div>
+                        <p class="option-desc">Desafios que fazem crescer</p>
                     </div>
                     <div class="option" data-value="apresentacao">
                         <div class="option-icon"><i class="fas fa-theater-masks"></i></div>
-                        <div class="option-text">Apresentação</div>
-                        <p class="option-desc">Preparar para show</p>
+                        <div class="option-text">Apresentações</div>
+                        <p class="option-desc">Repertório para brilhar no palco</p>
                     </div>
                     <div class="option" data-value="ensinar">
                         <div class="option-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <div class="option-text">Ensinar</div>
-                        <p class="option-desc">Usar para aulas</p>
+                        <div class="option-text">Ensino</div>
+                        <p class="option-desc">Material para compartilhar conhecimento</p>
                     </div>
                 </div>
-                <button class="next-button" id="next-4">Ver Meu Combo</button>
+                <button class="next-button" id="next-4">Ver Meu Combo Ideal</button>
             </div>
             
             <!-- Etapa 5: Resultado -->
             <div class="step" id="step-5">
                 <div class="feedback-message" id="feedback-4">
-                    <p><span class="highlight">Incrível!</span> Você está a um passo do melhor combo de partituras que já viu!</p>
+                    <p><span class="highlight">Perfeito!</span> Seu perfil musical está completo e o combo ideal está pronto!</p>
                 </div>
                 
                 <div class="result">
                     <div class="instrument-display" id="result-instrument-icon">🎻</div>
-                    <h2><span class="highlight">Parabéns!</span> Combo Encontrado! 🎉</h2>
-                    <p>Você completou todas as etapas e descobriu o combo de partituras <span class="highlight">perfeito</span> para você!</p>
-                    <p>Com base nas suas respostas, preparamos um combo <span class="highlight">especial</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
-                    <p>Este combo foi cuidadosamente selecionado para ajudar você a <span id="goal-result" class="highlight">aprender novas músicas</span>.</p>
+                    <h2><span class="highlight">SEU COMBO PERFEITO ESTÁ PRONTO!</span> 🎉</h2>
+                    <p>Parabéns! Encontramos partituras que vão fazer você <span class="highlight">amar cada momento com seu instrumento</span>!</p>
+                    <p>Preparamos um combo <span class="highlight">especialmente selecionado</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
+                    <p>Este combo foi criado para músicos que buscam <span id="goal-result" class="highlight">prazer pessoal através da música</span>.</p>
+                    
+                    <div class="benefits-section">
+                        <h4><i class="fas fa-gift"></i> O que você vai receber:</h4>
+                        <ul>
+                            <li>Partituras <span class="benefit">revisadas e 100% precisas</span></li>
+                            <li>Arranjos que <span class="benefit">funcionam na prática</span></li>
+                            <li>Repertório para <span class="benefit">tocar imediatamente</span></li>
+                            <li>Músicas que <span class="benefit">valem cada minuto de prática</span></li>
+                        </ul>
+                    </div>
                     
                     <!-- Seção Gospel (aparece apenas se o gênero for gospel) -->
                     <div class="gospel-section" id="gospel-section" style="display: none;">
@@ -900,7 +1004,7 @@
                         </div>
                         
                         <div class="bonus-section">
-                            <h4><i class="fas fa-gift"></i> Bônus Especial</h4>
+                            <h4><i class="fas fa-gift"></i> Bônus Especial Incluso</h4>
                             <p>Além das 30 músicas, você também recebe estas partituras bônus:</p>
                             <div class="bonus-list">
                                 <div class="bonus-item">
@@ -1370,10 +1474,10 @@
         
         function getLevelName(level) {
             const names = {
-                'iniciante': 'iniciante',
-                'intermediario': 'intermediário',
-                'avancado': 'avançado',
-                'profissional': 'profissional'
+                'iniciante': 'descobrindo',
+                'intermediario': 'crescendo',
+                'avancado': 'dominando',
+                'profissional': 'excelência'
             };
             return names[level] || level;
         }
@@ -1392,40 +1496,13 @@
         
         function getGoalName(goal) {
             const names = {
-                'aprender': 'aprender novas músicas',
-                'aprimorar': 'aprimorar sua técnica',
-                'apresentacao': 'preparar-se para apresentações',
-                'ensinar': 'ensinar outros músicos',
-                'compor': 'compor novas músicas'
+                'aprender': 'prazer pessoal através da música',
+                'aprimorar': 'evolução técnica',
+                'apresentacao': 'apresentações',
+                'ensinar': 'ensino'
             };
             return names[goal] || goal;
         }
     </script>
-    <script>
-  // Libera o scroll normal no mobile, mesmo com scroll automático
-  document.addEventListener('touchmove', function (e) {
-    // se o usuário está tentando rolar a página, deixa rolar
-    if (e.cancelable) {
-      e.stopPropagation(); // evita conflito com outros eventos
-    }
-  }, { passive: true });
-
-  // Mantém o scroll automático suave
-  function smoothScrollTo(target) {
-    document.querySelector(target).scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-
-  // Exemplo: quando clicar em um botão, rola automaticamente
-  document.querySelectorAll('.btn-scroll').forEach(btn => {
-    btn.addEventListener('click', () => {
-      smoothScrollTo('#meu-botao-em-baixo'); // troca pelo ID real
-    });
-  });
-</script>
-
-
 </body>
 </html>
