@@ -375,6 +375,19 @@
             transition: all 0.6s;
         }
 
+        html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  -webkit-overflow-scrolling: touch; /* rolagem suave no iOS */
+}
+.container, .wrapper, .content, main, section {
+  overflow: visible !important;
+  position: relative !important;
+  height: auto !important;
+}
+
+
         .floating-combo-link:hover::after {
             left: 120%;
         }
@@ -1388,6 +1401,31 @@
             return names[goal] || goal;
         }
     </script>
+    <script>
+  // Libera o scroll normal no mobile, mesmo com scroll automático
+  document.addEventListener('touchmove', function (e) {
+    // se o usuário está tentando rolar a página, deixa rolar
+    if (e.cancelable) {
+      e.stopPropagation(); // evita conflito com outros eventos
+    }
+  }, { passive: true });
+
+  // Mantém o scroll automático suave
+  function smoothScrollTo(target) {
+    document.querySelector(target).scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+
+  // Exemplo: quando clicar em um botão, rola automaticamente
+  document.querySelectorAll('.btn-scroll').forEach(btn => {
+    btn.addEventListener('click', () => {
+      smoothScrollTo('#meu-botao-em-baixo'); // troca pelo ID real
+    });
+  });
+</script>
+
 
 </body>
 </html>
