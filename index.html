@@ -1388,48 +1388,31 @@
             return names[goal] || goal;
         }
     </script>
-    <script>
-  // Bloqueia cliques falsos durante o scroll automático
-  let isAutoScrolling = false;
+ <script>
+  // Libera o scroll normal no mobile, mesmo com scroll automático
+  document.addEventListener('touchmove', function (e) {
+    // se o usuário está tentando rolar a página, deixa rolar
+    if (e.cancelable) {
+      e.stopPropagation(); // evita conflito com outros eventos
+    }
+  }, { passive: true });
 
+  // Mantém o scroll automático suave
   function smoothScrollTo(target) {
-    if (isAutoScrolling) return; // evita cliques múltiplos
-    isAutoScrolling = true;
-
     document.querySelector(target).scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
-
-    // libera os cliques após o scroll terminar
-    setTimeout(() => {
-      isAutoScrolling = false;
-    }, 800);
   }
 
-  // Evita travamento por "clique falso" no mobile
-  let startY = 0;
-  document.addEventListener("touchstart", (e) => {
-    startY = e.touches[0].clientY;
-  });
-
-  document.addEventListener("touchmove", (e) => {
-    const currentY = e.touches[0].clientY;
-    const deltaY = Math.abs(currentY - startY);
-
-    // se o movimento for muito pequeno, ignora (evita clique falso)
-    if (deltaY < 5) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  // Exemplo de uso do scroll automático:
-  document.querySelectorAll(".btn-scroll").forEach(btn => {
-    btn.addEventListener("click", () => {
-      smoothScrollTo("#meu-botao-em-baixo"); // substitui pelo id do seu botão
+  // Exemplo: quando clicar em um botão, rola automaticamente
+  document.querySelectorAll('.btn-scroll').forEach(btn => {
+    btn.addEventListener('click', () => {
+      smoothScrollTo('#meu-botao-em-baixo'); // troca pelo ID real
     });
   });
 </script>
+
 
 </body>
 </html>

@@ -177,3 +177,15 @@ body{
   .card{ padding:18px }
   .step-root{ min-height:300px }
 }
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  -webkit-overflow-scrolling: touch; /* rolagem suave no iOS */
+}
+
+.container, .wrapper, .content, main, section {
+  overflow: visible !important;
+  position: relative !important;
+  height: auto !important;
+}
