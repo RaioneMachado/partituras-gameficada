@@ -1388,5 +1388,48 @@
             return names[goal] || goal;
         }
     </script>
+    <script>
+  // Bloqueia cliques falsos durante o scroll automático
+  let isAutoScrolling = false;
+
+  function smoothScrollTo(target) {
+    if (isAutoScrolling) return; // evita cliques múltiplos
+    isAutoScrolling = true;
+
+    document.querySelector(target).scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+    // libera os cliques após o scroll terminar
+    setTimeout(() => {
+      isAutoScrolling = false;
+    }, 800);
+  }
+
+  // Evita travamento por "clique falso" no mobile
+  let startY = 0;
+  document.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  });
+
+  document.addEventListener("touchmove", (e) => {
+    const currentY = e.touches[0].clientY;
+    const deltaY = Math.abs(currentY - startY);
+
+    // se o movimento for muito pequeno, ignora (evita clique falso)
+    if (deltaY < 5) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Exemplo de uso do scroll automático:
+  document.querySelectorAll(".btn-scroll").forEach(btn => {
+    btn.addEventListener("click", () => {
+      smoothScrollTo("#meu-botao-em-baixo"); // substitui pelo id do seu botão
+    });
+  });
+</script>
+
 </body>
 </html>
