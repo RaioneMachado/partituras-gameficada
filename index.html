@@ -58,6 +58,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            /* Prevenir scroll jump */
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Efeitos de luz de fundo otimizados */
@@ -138,6 +141,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             position: relative;
             overflow: hidden;
             width: 100%;
+            /* Prevenir flash e travamento */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         .step {
@@ -224,6 +230,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             touch-action: manipulation;
+            /* Otimização para performance */
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         .option:hover {
@@ -1073,9 +1082,12 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             goal: ''
         };
         
-        // Sistema simplificado - sem travas
+        // Sistema de prevenção de travamento
+        let isScrolling = false;
+        let scrollTimeout = null;
         let lastTapTime = 0;
-        const tapDelay = 300; // Delay para evitar duplo toque acidental
+        const tapDelay = 500; // Aumentado para prevenir duplo clique
+        let currentScrollPosition = 0;
         
         // Lista de músicas gospel
         const gospelSongs = [
@@ -1226,22 +1238,31 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         let currentStep = 0;
         updateProgress();
         
-        // Sistema simples de clique - sem travas
-        function setupSimpleClickSystem() {
+        // Sistema robusto de clique - prevenindo travamentos
+        function setupRobustClickSystem() {
             const options = document.querySelectorAll('.option');
             
             options.forEach(option => {
-                // Clique simples e direto
+                // Clique com prevenção de múltiplos cliques rápidos
                 option.addEventListener('click', function(e) {
                     const currentTime = new Date().getTime();
                     const tapLength = currentTime - lastTapTime;
                     
                     // Previne clique duplo rápido acidental
                     if (tapLength < tapDelay && tapLength > 0) {
+                        e.preventDefault();
+                        e.stopPropagation();
                         return;
                     }
                     
                     lastTapTime = currentTime;
+                    
+                    // Previne processamento se já estiver rolando
+                    if (isScrolling) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return;
+                    }
                     
                     // Processa a seleção normalmente
                     handleOptionSelection(this);
@@ -1264,13 +1285,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             const nextButton = parentStep.querySelector('.next-button');
             nextButton.classList.add('active');
             
-            // Rolar a tela até o botão de avançar (única coisa que mantemos)
-            setTimeout(() => {
-                nextButton.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center'
-                });
-            }, 300);
+            // Scroll suave para o botão (com proteção contra travamento)
+            smoothScrollToNextButton(nextButton);
             
             // Atualizar dados do usuário
             const stepId = parentStep.id;
@@ -1302,12 +1318,50 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             updateAchievement(stepId);
         }
         
-        // Inicializar sistema simples de clique
-        setupSimpleClickSystem();
+        // Scroll suave com proteção contra travamento
+        function smoothScrollToNextButton(nextButton) {
+            if (isScrolling) return;
+            
+            isScrolling = true;
+            
+            const buttonRect = nextButton.getBoundingClientRect();
+            const offset = window.pageYOffset + buttonRect.top - (window.innerHeight / 3);
+            
+            // Usando scrollTo com behavior smooth
+            window.scrollTo({
+                top: offset,
+                behavior: 'smooth'
+            });
+            
+            // Libera o scroll após um tempo
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 800); // Tempo suficiente para a animação de scroll
+        }
+        
+        // Prevenir múltiplos scrolls simultâneos
+        window.addEventListener('scroll', function() {
+            if (!isScrolling) return;
+            
+            // Se o usuário tentar scrollar manualmente durante scroll automático, cancela o scroll automático
+            clearTimeout(scrollTimeout);
+            isScrolling = false;
+        }, { passive: true });
+        
+        // Inicializar sistema robusto de clique
+        setupRobustClickSystem();
         
         // Event Listeners para os botões de avançar
         nextButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
+                // Prevenir múltiplos cliques rápidos
+                const currentTime = new Date().getTime();
+                if (currentTime - lastTapTime < tapDelay) {
+                    return;
+                }
+                lastTapTime = currentTime;
+                
                 nextStep();
             });
         });
@@ -1328,11 +1382,19 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             
             updateProgress();
             
-            // Scroll para o topo do container
-            document.querySelector('.container').scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
+            // Scroll para o topo do container (com proteção)
+            if (!isScrolling) {
+                isScrolling = true;
+                document.querySelector('.container').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+                
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    isScrolling = false;
+                }, 800);
+            }
         }
         
         // Atualizar barra de progresso
