@@ -27,6 +27,13 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
 
  
     <style>
+        /* reserve espaço pra elementos grandes que mudam depois */
+.light-1, .light-2, .light-3 {
+  min-width: 300px;
+  min-height: 300px;
+  /* evita mudança brusca no layout se a posição ou tamanho ajustar */
+}
+
         html {
   overflow-y: scroll; /* força a barra sempre existir, mesmo sem necessidade */
   scrollbar-width: none; /* Firefox */
