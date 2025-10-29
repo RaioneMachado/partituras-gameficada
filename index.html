@@ -10,7 +10,7 @@
     <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+{if(f.fbq)return;n=f.fq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
@@ -27,6 +27,22 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
 
  
     <style>
+        /* CORREÇÃO IMEDIATA - ANTES DE QUALQUER OUTRO ESTILO */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        body {
+            overflow-y: auto;
+            overflow-x: hidden !important;
+        }
+
         :root {
             --primary: #8A2BE2;
             --secondary: #00BFFF;
@@ -43,25 +59,22 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-
-        html, body {
-            overflow-x: hidden;
-            width: 100%;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: auto;
-            position: relative;
+            max-width: 100%;
         }
 
         body {
             background: linear-gradient(135deg, var(--darker), var(--dark));
             color: var(--light);
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow-x: hidden !important;
             position: relative;
-            /* Garantir que não tenha scroll horizontal */
-            width: 100vw;
-            max-width: 100%;
+        }
+
+        /* PREVENIR SCROLL HORIZONTAL GLOBALMENTE */
+        .no-horizontal-scroll {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100% !important;
         }
 
         /* Efeitos de luz de fundo otimizados */
@@ -105,8 +118,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 20px;
             position: relative;
             z-index: 1;
-            /* Garantir que o container não cause overflow */
-            box-sizing: border-box;
+            overflow-x: hidden !important;
         }
 
         header {
@@ -114,6 +126,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-bottom: 30px;
             position: relative;
             width: 100%;
+            overflow-x: hidden;
         }
 
         h1 {
@@ -127,6 +140,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             line-height: 1.2;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            padding: 0 10px;
         }
 
         .subtitle {
@@ -137,6 +151,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             line-height: 1.5;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            padding: 0 10px;
         }
 
         .game-container {
@@ -149,14 +164,14 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             position: relative;
             overflow: hidden;
             width: 100%;
-            /* Garantir que não cause overflow */
-            box-sizing: border-box;
+            overflow-x: hidden !important;
         }
 
         .step {
             display: none;
             animation: fadeIn 0.5s ease;
             width: 100%;
+            overflow-x: hidden;
         }
 
         .step.active {
@@ -167,6 +182,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-bottom: 30px;
             text-align: center;
             width: 100%;
+            overflow-x: hidden;
         }
 
         .question {
@@ -224,6 +240,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             gap: 15px;
             margin-bottom: 25px;
             width: 100%;
+            overflow-x: hidden;
         }
 
         .option {
@@ -245,9 +262,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             touch-action: manipulation;
-            /* Garantir que as opções não saiam do container */
             max-width: 100%;
-            box-sizing: border-box;
         }
 
         .option:hover {
@@ -279,7 +294,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             font-weight: 600;
             margin-bottom: 5px;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .option-desc {
@@ -287,7 +301,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             color: #B0B0D0;
             line-height: 1.3;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .achievements {
@@ -360,7 +373,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             display: none;
             position: relative;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .feedback-message.show {
@@ -375,7 +387,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-top: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             width: 100%;
-            box-sizing: border-box;
         }
 
         .result h2 {
@@ -384,7 +395,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             color: var(--success);
             line-height: 1.3;
             word-wrap: break-word;
-            overflow-wrap: break-word;
             padding: 0 10px;
         }
 
@@ -394,7 +404,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             color: #D0D0F0;
             line-height: 1.5;
             word-wrap: break-word;
-            overflow-wrap: break-word;
             padding: 0 10px;
         }
 
@@ -425,7 +434,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            box-sizing: border-box;
         }
 
         .floating-combo-link:hover {
@@ -475,7 +483,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             justify-content: center;
             gap: 10px;
             word-wrap: break-word;
-            overflow-wrap: break-word;
             padding: 0 10px;
         }
 
@@ -501,7 +508,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            box-sizing: border-box;
             max-width: 100%;
         }
 
@@ -520,7 +526,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
 
         .gospel-card-content {
             flex: 1;
-            min-width: 0; /* Permite que o texto quebre corretamente */
+            min-width: 0;
         }
 
         .gospel-card-title {
@@ -528,14 +534,12 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-bottom: 5px;
             color: var(--light);
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .gospel-card-artist {
             font-size: 0.85rem;
             color: #B0B0D0;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .bonus-section {
@@ -545,7 +549,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-top: 20px;
             border-left: 4px solid var(--accent);
             width: 100%;
-            box-sizing: border-box;
         }
 
         .bonus-section h4 {
@@ -557,7 +560,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             justify-content: center;
             gap: 10px;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .bonus-section h4 i {
@@ -578,7 +580,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 8px;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.05);
-            box-sizing: border-box;
             max-width: 100%;
         }
 
@@ -608,7 +609,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             touch-action: manipulation;
             width: auto;
             max-width: 100%;
-            box-sizing: border-box;
         }
 
         .next-button.active {
@@ -628,7 +628,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin: 20px 0;
             border-left: 4px solid #FF6B6B;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .pain-points h4 {
@@ -638,7 +637,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             align-items: center;
             gap: 10px;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .pain-points ul {
@@ -651,7 +649,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding-left: 25px;
             position: relative;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .pain-points li:before {
@@ -668,7 +665,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin: 20px 0;
             border-left: 4px solid var(--success);
             width: 100%;
-            box-sizing: border-box;
         }
 
         .benefits-section h4 {
@@ -678,7 +674,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             align-items: center;
             gap: 10px;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .benefits-section ul {
@@ -691,7 +686,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding-left: 25px;
             position: relative;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .benefits-section li:before {
@@ -791,7 +785,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             }
         }
 
-        /* Melhorias para telas muito pequenas */
         @media (max-width: 360px) {
             .container {
                 padding: 10px;
@@ -823,19 +816,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
                 font-size: 1.3rem;
             }
         }
-
-        /* Garantir que não haja overflow em nenhum elemento */
-        * {
-            max-width: 100%;
-        }
-
-        /* Prevenir scroll horizontal imediatamente */
-        body.prevent-scroll {
-            overflow: hidden;
-        }
     </style>
 </head>
-<body>
+<body class="no-horizontal-scroll">
     <!-- Efeitos de luz de fundo -->
     <div class="light light-1"></div>
     <div class="light light-2"></div>
@@ -1133,25 +1116,41 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
     </div>
 
     <script>
-        // CORREÇÃO IMEDIATA DO SCROLL - Executa antes de tudo
-        document.addEventListener('DOMContentLoaded', function() {
-            // Forçar o body a ter largura 100% da viewport
-            document.body.style.width = '100vw';
-            document.body.style.overflowX = 'hidden';
-            document.body.style.position = 'relative';
+        // SOLUÇÃO RADICAL PARA O SCROLL FLASH
+        // Executa IMEDIATAMENTE, antes de qualquer coisa
+        (function() {
+            'use strict';
             
-            // Garantir que o html também não tenha scroll horizontal
+            // Forçar viewport correta IMEDIATAMENTE
             document.documentElement.style.overflowX = 'hidden';
             document.documentElement.style.width = '100%';
-            
-            // Remover qualquer margem ou padding que possa causar overflow
             document.documentElement.style.margin = '0';
             document.documentElement.style.padding = '0';
             
-            console.log('Viewport corrigida - sem scroll horizontal');
-        });
+            document.body.style.overflowX = 'hidden';
+            document.body.style.width = '100vw';
+            document.body.style.margin = '0';
+            document.body.style.padding = '0';
+            document.body.style.position = 'relative';
+            
+            console.log('Viewport bloqueada contra scroll horizontal');
+            
+            // Prevenir scroll horizontal por qualquer meio
+            window.addEventListener('scroll', function() {
+                if (window.scrollX !== 0) {
+                    window.scrollTo(0, window.scrollY);
+                }
+            });
+            
+            // Prevenir touch events que possam causar scroll horizontal
+            document.addEventListener('touchmove', function(e) {
+                if (e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        })();
 
-        // Elementos DOM - cache de elementos para melhor performance
+        // Elementos DOM
         const steps = document.querySelectorAll('.step');
         const progressBar = document.getElementById('progress-bar');
         const achievements = document.querySelectorAll('.achievement');
@@ -1176,7 +1175,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             goal: ''
         };
         
-        // Sistema de prevenção de travamento - SIMPLIFICADO
+        // Sistema SIMPLES sem travas complexas
         let isProcessing = false;
         
         // Lista de músicas gospel
@@ -1328,7 +1327,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         let currentStep = 0;
         updateProgress();
         
-        // Sistema SIMPLES de clique - sem travas complexas
+        // Sistema SIMPLES de clique
         function setupSimpleClickSystem() {
             const options = document.querySelectorAll('.option');
             
@@ -1337,10 +1336,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
                     if (isProcessing) return;
                     isProcessing = true;
                     
-                    // Processa a seleção normalmente
                     handleOptionSelection(this);
                     
-                    // Libera após um tempo curto
                     setTimeout(() => {
                         isProcessing = false;
                     }, 300);
@@ -1352,18 +1349,14 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         function handleOptionSelection(option) {
             const parentStep = option.closest('.step');
             
-            // Remover seleção de outras opções no mesmo passo
             const optionsInStep = parentStep.querySelectorAll('.option');
             optionsInStep.forEach(opt => opt.classList.remove('selected'));
             
-            // Selecionar esta opção
             option.classList.add('selected');
             
-            // Ativar botão de avançar
             const nextButton = parentStep.querySelector('.next-button');
             nextButton.classList.add('active');
             
-            // Scroll suave SIMPLES para o botão
             setTimeout(() => {
                 nextButton.scrollIntoView({ 
                     behavior: 'smooth', 
@@ -1371,7 +1364,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
                 });
             }, 100);
             
-            // Atualizar dados do usuário
             const stepId = parentStep.id;
             const value = option.getAttribute('data-value');
             
@@ -1397,7 +1389,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
                 }, 100);
             }
             
-            // Atualizar conquista
             updateAchievement(stepId);
         }
         
@@ -1422,19 +1413,16 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         function nextStep() {
             currentStep++;
             
-            // Ocultar cabeçalho principal após a primeira etapa
             if (currentStep > 0) {
                 mainHeader.style.display = 'none';
             }
             
-            // Se chegou ao final, mostrar resultado
             if (currentStep >= steps.length - 1) {
                 showResult();
             }
             
             updateProgress();
             
-            // Scroll para o topo do container
             setTimeout(() => {
                 document.querySelector('.container').scrollIntoView({ 
                     behavior: 'smooth', 
@@ -1448,7 +1436,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             const progress = (currentStep / (steps.length - 1)) * 100;
             progressBar.style.width = `${progress}%`;
             
-            // Mostrar/ocultar passos
             steps.forEach((step, index) => {
                 if (index === currentStep) {
                     step.classList.add('active');
@@ -1480,7 +1467,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             if (achievementIndex !== undefined) {
                 achievements[achievementIndex].classList.add('unlocked');
                 
-                // Efeito visual para conquista
                 const achievement = achievements[achievementIndex];
                 achievement.style.animation = 'pulse 0.5s 3';
                 setTimeout(() => {
@@ -1491,26 +1477,21 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         
         // Mostrar resultado final
         function showResult() {
-            // Atualizar texto do resultado
             instrumentResult.textContent = getInstrumentName(userData.instrument);
             levelResult.textContent = getLevelName(userData.level);
             genreResult.textContent = getGenreName(userData.genre);
             goalResult.textContent = getGoalName(userData.goal);
             
-            // Atualizar ícone do instrumento
             if (instrumentIcons[userData.instrument]) {
                 resultInstrumentIcon.textContent = instrumentIcons[userData.instrument];
             }
             
-            // Definir link do combo flutuante
             if (comboLinks[userData.instrument] && comboLinks[userData.instrument][userData.genre]) {
                 floatingComboLink.href = comboLinks[userData.instrument][userData.genre];
             } else {
-                // Link padrão caso não haja combinação específica
                 floatingComboLink.href = 'https://exemplo.com/combo-padrao';
             }
             
-            // Mostrar seção gospel se o gênero for gospel
             if (userData.genre === 'gospel') {
                 gospelSection.style.display = 'block';
                 populateGospelGrid();
@@ -1518,13 +1499,10 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
                 gospelSection.style.display = 'none';
             }
             
-            // MOSTRAR BOTÃO FLUTUANTE APENAS NA ÚLTIMA ETAPA
             floatingComboLink.classList.add('show');
             
-            // Desbloquear conquista final
             achievements[4].classList.add('unlocked');
             
-            // Efeito de confete
             createConfetti();
         }
         
@@ -1565,7 +1543,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
                 
                 container.appendChild(confetti);
                 
-                // Animação do confete
                 const animation = confetti.animate([
                     { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
                     { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
@@ -1574,7 +1551,6 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
                     easing: 'cubic-bezier(0.1, 0.2, 0.8, 0.9)'
                 });
                 
-                // Remover confete após animação
                 animation.onfinish = () => {
                     confetti.remove();
                 };
@@ -1632,24 +1608,26 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             return names[goal] || goal;
         }
 
-        // CORREÇÃO FINAL - Garantir que não há scroll horizontal
+        // VERIFICAÇÃO FINAL - Garantir que não há scroll horizontal
         window.addEventListener('load', function() {
-            // Forçar correção do viewport
-            document.body.style.overflowX = 'hidden';
+            // Forçar novamente para garantir
             document.documentElement.style.overflowX = 'hidden';
+            document.body.style.overflowX = 'hidden';
             
-            // Verificar se há elementos causando overflow
-            const allElements = document.querySelectorAll('*');
-            allElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.right > window.innerWidth) {
-                    console.log('Elemento causando overflow:', el);
-                    el.style.maxWidth = '100%';
-                }
-            });
+            // Se por algum motivo ainda houver scroll horizontal, corrigir
+            if (window.scrollX !== 0) {
+                window.scrollTo(0, window.scrollY);
+            }
             
-            console.log('Página totalmente carregada - sem scroll horizontal');
+            console.log('Página totalmente carregada - scroll horizontal bloqueado');
         });
+
+        // Monitorar continuamente por scroll horizontal
+        setInterval(function() {
+            if (window.scrollX !== 0) {
+                window.scrollTo(0, window.scrollY);
+            }
+        }, 100);
     </script>
 </body>
 </html>
