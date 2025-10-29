@@ -29,6 +29,7 @@
             overflow-x: hidden;
             width: 100%;
             position: relative;
+            -webkit-overflow-scrolling: touch;
         }
 
         body {
@@ -192,6 +193,7 @@
             will-change: transform;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
+            touch-action: manipulation;
         }
 
         .option:hover {
@@ -512,6 +514,8 @@
             box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
             opacity: 0;
             pointer-events: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         .next-button.active {
@@ -832,7 +836,7 @@
                 
                 <div class="question-container">
                     <h2 class="question">Qual é o seu principal <span class="highlight">objetivo</span>?</h2>
-                    <p class="question-desc">O que você busca <span class="highlight">alcançar</span> with the scores?</p>
+                    <p class="question-desc">O que você busca <span class="highlight">alcançar</span> com as partituras?</p>
                 </div>
                 
                 <div class="options-grid">
@@ -932,9 +936,12 @@
             goal: ''
         };
         
-        // Variáveis para controle de toque
+        // Variáveis para controle de toque no iOS
         let touchStartY = 0;
+        let touchStartX = 0;
         let isScrolling = false;
+        let touchStartTime = 0;
+        let currentTouches = [];
         
         // Lista de músicas gospel
         const gospelSongs = [
@@ -1092,78 +1099,124 @@
             });
         });
         
-        // Detectar toque para diferenciar entre scroll e clique
-        document.addEventListener('touchstart', function(e) {
-            touchStartY = e.touches[0].clientY;
-            isScrolling = false;
-        }, { passive: true });
+        // Detecção de toque específica para iOS
+        function setupTouchDetection() {
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                // Touch start
+                option.addEventListener('touchstart', function(e) {
+                    touchStartY = e.touches[0].clientY;
+                    touchStartX = e.touches[0].clientX;
+                    touchStartTime = Date.now();
+                    isScrolling = false;
+                    currentTouches = Array.from(e.touches);
+                }, { passive: true });
+                
+                // Touch move - detecta se está rolando
+                option.addEventListener('touchmove', function(e) {
+                    if (e.touches.length > 1) {
+                        isScrolling = true;
+                        return;
+                    }
+                    
+                    const touchY = e.touches[0].clientY;
+                    const touchX = e.touches[0].clientX;
+                    const deltaY = Math.abs(touchY - touchStartY);
+                    const deltaX = Math.abs(touchX - touchStartX);
+                    
+                    // Se o movimento for principalmente vertical e maior que 5px, considera como scroll
+                    if (deltaY > 5 && deltaY > deltaX) {
+                        isScrolling = true;
+                    }
+                }, { passive: true });
+                
+                // Touch end - processa o clique apenas se não era scroll
+                option.addEventListener('touchend', function(e) {
+                    const touchDuration = Date.now() - touchStartTime;
+                    const isTap = touchDuration < 500; // Clique rápido
+                    
+                    // Só processa como clique se não estava rolando e foi um toque rápido
+                    if (!isScrolling && isTap && e.changedTouches.length === 1) {
+                        e.preventDefault();
+                        handleOptionSelection(this);
+                    }
+                    
+                    // Reset
+                    isScrolling = false;
+                    currentTouches = [];
+                });
+                
+                // Click fallback para desktop
+                option.addEventListener('click', function(e) {
+                    // No iOS, o click event pode ser disparado mesmo durante scroll
+                    // Então verificamos novamente se não estávamos rolando
+                    if (!isScrolling) {
+                        handleOptionSelection(this);
+                    }
+                });
+            });
+        }
         
-        document.addEventListener('touchmove', function(e) {
-            if (Math.abs(e.touches[0].clientY - touchStartY) > 5) {
-                isScrolling = true;
-            }
-        }, { passive: true });
-        
-        // Event delegation para opções - mais eficiente
-        document.addEventListener('click', function(e) {
-            // Verificar se é um clique intencional (não durante scroll)
-            if (e.target.closest('.option') && !isScrolling) {
-                const option = e.target.closest('.option');
-                const parentStep = option.closest('.step');
-                
-                // Remover seleção de outras opções no mesmo passo
-                const optionsInStep = parentStep.querySelectorAll('.option');
-                optionsInStep.forEach(opt => opt.classList.remove('selected'));
-                
-                // Selecionar esta opção
-                option.classList.add('selected');
-                
-                // Ativar botão de avançar
-                const nextButton = parentStep.querySelector('.next-button');
-                nextButton.classList.add('active');
-                
-                // Rolar a tela até o botão de avançar apenas se for uma seleção intencional
+        // Função para processar seleção de opção
+        function handleOptionSelection(option) {
+            const parentStep = option.closest('.step');
+            
+            // Remover seleção de outras opções no mesmo passo
+            const optionsInStep = parentStep.querySelectorAll('.option');
+            optionsInStep.forEach(opt => opt.classList.remove('selected'));
+            
+            // Selecionar esta opção
+            option.classList.add('selected');
+            
+            // Ativar botão de avançar
+            const nextButton = parentStep.querySelector('.next-button');
+            nextButton.classList.add('active');
+            
+            // Rolar a tela até o botão de avançar
+            setTimeout(() => {
+                nextButton.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center'
+                });
+            }, 300);
+            
+            // Atualizar dados do usuário
+            const stepId = parentStep.id;
+            const value = option.getAttribute('data-value');
+            
+            if (stepId === 'step-1') {
+                userData.instrument = value;
+                // Mostrar feedback na próxima etapa
                 setTimeout(() => {
-                    nextButton.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center'
-                    });
-                }, 300);
-                
-                // Atualizar dados do usuário
-                const stepId = parentStep.id;
-                const value = option.getAttribute('data-value');
-                
-                if (stepId === 'step-1') {
-                    userData.instrument = value;
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-1').classList.add('show');
-                    }, 100);
-                } else if (stepId === 'step-2') {
-                    userData.level = value;
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-2').classList.add('show');
-                    }, 100);
-                } else if (stepId === 'step-3') {
-                    userData.genre = value;
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-3').classList.add('show');
-                    }, 100);
-                } else if (stepId === 'step-4') {
-                    userData.goal = value;
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-4').classList.add('show');
-                    }, 100);
-                }
-                
-                // Atualizar conquista
-                updateAchievement(stepId);
+                    document.getElementById('feedback-1').classList.add('show');
+                }, 100);
+            } else if (stepId === 'step-2') {
+                userData.level = value;
+                // Mostrar feedback na próxima etapa
+                setTimeout(() => {
+                    document.getElementById('feedback-2').classList.add('show');
+                }, 100);
+            } else if (stepId === 'step-3') {
+                userData.genre = value;
+                // Mostrar feedback na próxima etapa
+                setTimeout(() => {
+                    document.getElementById('feedback-3').classList.add('show');
+                }, 100);
+            } else if (stepId === 'step-4') {
+                userData.goal = value;
+                // Mostrar feedback na próxima etapa
+                setTimeout(() => {
+                    document.getElementById('feedback-4').classList.add('show');
+                }, 100);
             }
-        });
+            
+            // Atualizar conquista
+            updateAchievement(stepId);
+        }
+        
+        // Inicializar detecção de toque
+        setupTouchDetection();
         
         // Avançar para o próximo passo
         function nextStep() {
