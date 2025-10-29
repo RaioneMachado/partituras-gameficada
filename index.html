@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combo de Partituras Personalizadas - Selecione o Instrumento</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <style>
         :root {
             --primary: #8A2BE2;
@@ -14,14 +15,14 @@
             --darker: #050510;
             --light: #F0F8FF;
             --success: #00FF7F;
-            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
@@ -32,13 +33,14 @@
             position: relative;
         }
 
-        /* Efeitos de luz de fundo */
+        /* Efeitos de luz de fundo otimizados */
         .light {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
             opacity: 0.15;
             z-index: 0;
+            will-change: transform;
         }
 
         .light-1 {
@@ -112,7 +114,7 @@
 
         .step {
             display: none;
-            animation: fadeIn 0.8s ease;
+            animation: fadeIn 0.5s ease;
         }
 
         .step.active {
@@ -178,6 +180,7 @@
             align-items: center;
             justify-content: center;
             min-height: 140px;
+            will-change: transform;
         }
 
         .option:hover {
@@ -270,7 +273,7 @@
             background: linear-gradient(to right, var(--primary), var(--accent));
             border-radius: 10px;
             width: 0%;
-            transition: width 0.8s ease;
+            transition: width 0.5s ease;
             box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
         }
 
@@ -281,7 +284,7 @@
             background: rgba(138, 43, 226, 0.2);
             border-radius: 10px;
             border-left: 4px solid var(--accent);
-            animation: slideIn 0.5s ease;
+            animation: slideIn 0.3s ease;
             display: none;
             position: relative;
         }
@@ -361,6 +364,7 @@
             gap: 12px;
             animation: float 3s ease-in-out infinite;
             border: 2px solid rgba(255, 255, 255, 0.2);
+            will-change: transform;
         }
 
         .floating-combo-link:hover {
@@ -503,8 +507,36 @@
             font-size: 1rem;
         }
 
+        /* Botão de avançar */
+        .next-button {
+            display: block;
+            margin: 20px auto 0;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .next-button.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .next-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -516,22 +548,16 @@
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes float {
             0%, 100% { transform: translateX(-50%) translateY(0px); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        @keyframes glow {
-            0% { box-shadow: 0 0 5px var(--primary); }
-            50% { box-shadow: 0 0 20px var(--primary), 0 0 30px var(--accent); }
-            100% { box-shadow: 0 0 5px var(--primary); }
+            50% { transform: translateX(-50%) translateY(-8px); }
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
+            from { opacity: 0; transform: translateX(-15px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
@@ -542,6 +568,7 @@
             background: var(--accent);
             border-radius: 50%;
             opacity: 0;
+            will-change: transform, opacity;
         }
 
         /* Responsividade para telas muito pequenas */
@@ -703,6 +730,7 @@
                         <div class="option-text">Teclado</div>
                     </div>
                 </div>
+                <button class="next-button" id="next-1">Avançar</button>
             </div>
             
             <!-- Etapa 2: Nível de Habilidade -->
@@ -738,6 +766,7 @@
                         <p class="option-desc">Sou músico profissional</p>
                     </div>
                 </div>
+                <button class="next-button" id="next-2">Avançar</button>
             </div>
             
             <!-- Etapa 3: Gênero Musical -->
@@ -777,6 +806,7 @@
                         <div class="option-text">Gospel</div>
                     </div>
                 </div>
+                <button class="next-button" id="next-3">Avançar</button>
             </div>
             
             <!-- Etapa 4: Objetivo -->
@@ -812,6 +842,7 @@
                         <p class="option-desc">Usar para aulas</p>
                     </div>
                 </div>
+                <button class="next-button" id="next-4">Ver Meu Combo</button>
             </div>
             
             <!-- Etapa 5: Resultado -->
@@ -861,7 +892,7 @@
     </div>
 
     <script>
-        // Elementos DOM
+        // Elementos DOM - cache de elementos para melhor performance
         const steps = document.querySelectorAll('.step');
         const options = document.querySelectorAll('.option');
         const progressBar = document.getElementById('progress-bar');
@@ -871,6 +902,7 @@
         const mainHeader = document.getElementById('main-header');
         const gospelSection = document.getElementById('gospel-section');
         const gospelGrid = document.getElementById('gospel-grid');
+        const nextButtons = document.querySelectorAll('.next-button');
         
         // Elementos de resultado
         const instrumentResult = document.getElementById('instrument-result');
@@ -1013,23 +1045,98 @@
             'teclado': '🎹'
         };
         
-        // Links para combos
+        // Links para combos - ATUALIZADO COM OS LINKS FORNECIDOS
         const comboLinks = {
             'violino': {
-                'classico': 'https://exemplo.com/combo-violino-classico',
-                'jazz': 'https://exemplo.com/combo-violino-jazz',
-                'pop-rock': 'https://exemplo.com/combo-violino-pop-rock',
-                'mpb': 'https://exemplo.com/combo-violino-mpb',
-                'sertanejo': 'https://exemplo.com/combo-violino-sertanejo',
-                'gospel': 'https://exemplo.com/combo-violino-gospel'
+                'classico': 'https://pay.cakto.com.br/5kzfsny_626775',
+                'jazz': 'https://pay.cakto.com.br/m7j25ek_627199',
+                'pop-rock': 'https://pay.cakto.com.br/5v2kh2c_627202',
+                'mpb': 'https://pay.cakto.com.br/kdhzdq3_627205',
+                'sertanejo': 'https://pay.cakto.com.br/3e7nhrd_627209',
+                'gospel': 'https://pay.cakto.com.br/3aewznk_589618'
+            },
+            'viola': {
+                'classico': 'https://pay.cakto.com.br/4ou5sfv_627233',
+                'jazz': 'https://pay.cakto.com.br/zaqsc6s_627235',
+                'pop-rock': 'https://pay.cakto.com.br/3b8ynwc_627236',
+                'mpb': 'https://pay.cakto.com.br/ixerak8_627240',
+                'sertanejo': 'https://pay.cakto.com.br/6g8q35d_627242',
+                'gospel': 'https://pay.cakto.com.br/qta2593_589611'
+            },
+            'violoncelo': {
+                'classico': 'https://pay.cakto.com.br/uonkrd8_627249',
+                'jazz': 'https://pay.cakto.com.br/zm8jn6c_627252',
+                'pop-rock': 'https://pay.cakto.com.br/c43jhvy_627254',
+                'mpb': 'https://pay.cakto.com.br/swnrtyd_627257',
+                'sertanejo': 'https://pay.cakto.com.br/398xdhs_627258',
+                'gospel': 'https://pay.cakto.com.br/gvupesr_589574'
+            },
+            'flauta': {
+                'classico': 'https://pay.cakto.com.br/deke6op_627282',
+                'jazz': 'https://pay.cakto.com.br/cw54n7q_627285',
+                'pop-rock': 'https://pay.cakto.com.br/64poskv_627289',
+                'mpb': 'https://pay.cakto.com.br/72fy6c2_627291',
+                'sertanejo': 'https://pay.cakto.com.br/icymtre_627293',
+                'gospel': 'https://pay.cakto.com.br/zhyf3uu_589551'
+            },
+            'clarinete': {
+                'classico': 'https://pay.cakto.com.br/pcpnj28_627299',
+                'jazz': 'https://pay.cakto.com.br/4v8nx3r_627301',
+                'pop-rock': 'https://pay.cakto.com.br/yhvv4h7_627306',
+                'mpb': 'https://pay.cakto.com.br/zainsqy_627314',
+                'sertanejo': 'https://pay.cakto.com.br/cjpce7s_627318',
+                'gospel': 'https://pay.cakto.com.br/89u4rh5_589556'
+            },
+            'sax-alto': {
+                'classico': 'https://pay.cakto.com.br/yt4zccn_627661',
+                'jazz': 'https://pay.cakto.com.br/namuk3s_627663',
+                'pop-rock': 'https://pay.cakto.com.br/3cx7xid_627666',
+                'mpb': 'https://pay.cakto.com.br/fkq66nj_627673',
+                'sertanejo': 'https://pay.cakto.com.br/3b5wzxn_627674',
+                'gospel': 'https://pay.cakto.com.br/f22fom7_589588'
+            },
+            'sax-tenor': {
+                'classico': 'https://pay.cakto.com.br/kzzqq38_627680',
+                'jazz': 'https://pay.cakto.com.br/j439wew_627682',
+                'pop-rock': 'https://pay.cakto.com.br/3be8eii_627686',
+                'mpb': 'https://pay.cakto.com.br/37gwgfd_627688',
+                'sertanejo': 'https://pay.cakto.com.br/irmp4w3_627692',
+                'gospel': 'https://pay.cakto.com.br/n5hzdct_589582'
+            },
+            'sax-soprano': {
+                'gospel': 'https://pay.cakto.com.br/w5df6x7_589587'
+            },
+            'trompete': {
+                'classico': 'https://pay.cakto.com.br/38kihsz_627693',
+                'jazz': 'https://pay.cakto.com.br/ki46iyn_627695',
+                'pop-rock': 'https://pay.cakto.com.br/9wwi8ie_627696',
+                'mpb': 'https://pay.cakto.com.br/oa7ewmo_627699',
+                'sertanejo': 'https://pay.cakto.com.br/33ivxc6_627701',
+                'gospel': 'https://pay.cakto.com.br/ioqs8av_589571'
+            },
+            'trombone': {
+                'classico': 'https://pay.cakto.com.br/fnxthnc_627704',
+                'jazz': 'https://pay.cakto.com.br/8cqxjm3_627708',
+                'pop-rock': 'https://pay.cakto.com.br/3939tf2_627711',
+                'mpb': 'https://pay.cakto.com.br/wqmipqz_627712',
+                'sertanejo': 'https://pay.cakto.com.br/wqmipqz_627712',
+                'gospel': 'https://pay.cakto.com.br/mkd3v4g_589528'
             },
             'piano': {
-                'classico': 'https://exemplo.com/combo-piano-classico',
-                'jazz': 'https://exemplo.com/combo-piano-jazz',
-                'pop-rock': 'https://exemplo.com/combo-piano-pop-rock',
-                'mpb': 'https://exemplo.com/combo-piano-mpb',
-                'sertanejo': 'https://exemplo.com/combo-piano-sertanejo',
-                'gospel': 'https://exemplo.com/combo-piano-gospel'
+                'classico': 'https://pay.cakto.com.br/3578tdz_627719',
+                'jazz': 'https://pay.cakto.com.br/6jmf6um_627720',
+                'pop-rock': 'https://pay.cakto.com.br/uf73ef7_627726',
+                'mpb': 'https://pay.cakto.com.br/39iwqm5_627732',
+                'sertanejo': 'https://pay.cakto.com.br/568rixb_627735',
+                'gospel': 'https://pay.cakto.com.br/9yaqtmn_589538'
+            },
+            'teclado': {
+                'classico': 'https://pay.cakto.com.br/3dwq8bu_627737',
+                'jazz': 'https://pay.cakto.com.br/6jmf6um_627720',
+                'pop-rock': 'https://pay.cakto.com.br/uf73ef7_627726',
+                'mpb': 'https://pay.cakto.com.br/39iwqm5_627732',
+                'sertanejo': 'https://pay.cakto.com.br/568rixb_627735',
+                'gospel': 'https://pay.cakto.com.br/9yaqtmn_589538'
             }
         };
         
@@ -1037,7 +1144,7 @@
         let currentStep = 0;
         updateProgress();
         
-        // Event Listener para o controle de música
+        // Event Listener para o controle de música - usando event delegation
         musicControl.addEventListener('click', function() {
             if (isPlaying) {
                 stopMusic();
@@ -1047,6 +1154,76 @@
                     playInstrumentMusic(userData.instrument);
                     musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
                 }
+            }
+        });
+        
+        // Event Listeners para os botões de avançar
+        nextButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                nextStep();
+            });
+        });
+        
+        // Event delegation para opções - mais eficiente
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.option')) {
+                const option = e.target.closest('.option');
+                const parentStep = option.closest('.step');
+                
+                // Remover seleção de outras opções no mesmo passo
+                const optionsInStep = parentStep.querySelectorAll('.option');
+                optionsInStep.forEach(opt => opt.classList.remove('selected'));
+                
+                // Selecionar esta opção
+                option.classList.add('selected');
+                
+                // Ativar botão de avançar
+                const nextButton = parentStep.querySelector('.next-button');
+                nextButton.classList.add('active');
+                
+                // Rolar a tela até o botão de avançar
+                setTimeout(() => {
+                    nextButton.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center'
+                    });
+                }, 300);
+                
+                // Atualizar dados do usuário
+                const stepId = parentStep.id;
+                const value = option.getAttribute('data-value');
+                
+                if (stepId === 'step-1') {
+                    userData.instrument = value;
+                    // Iniciar música do instrumento selecionado automaticamente
+                    playInstrumentMusic(value);
+                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-1').classList.add('show');
+                    }, 100);
+                } else if (stepId === 'step-2') {
+                    userData.level = value;
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-2').classList.add('show');
+                    }, 100);
+                } else if (stepId === 'step-3') {
+                    userData.genre = value;
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-3').classList.add('show');
+                    }, 100);
+                } else if (stepId === 'step-4') {
+                    userData.goal = value;
+                    // Mostrar feedback na próxima etapa
+                    setTimeout(() => {
+                        document.getElementById('feedback-4').classList.add('show');
+                    }, 100);
+                }
+                
+                // Atualizar conquista
+                updateAchievement(stepId);
             }
         });
         
@@ -1143,60 +1320,6 @@
                 currentMusic = null;
             }
         }
-        
-        // Event Listeners para opções
-        options.forEach(option => {
-            option.addEventListener('click', function() {
-                // Remover seleção de outras opções no mesmo passo
-                const parentStep = this.closest('.step');
-                const optionsInStep = parentStep.querySelectorAll('.option');
-                optionsInStep.forEach(opt => opt.classList.remove('selected'));
-                
-                // Selecionar esta opção
-                this.classList.add('selected');
-                
-                // Atualizar dados do usuário
-                const stepId = parentStep.id;
-                const value = this.getAttribute('data-value');
-                
-                if (stepId === 'step-1') {
-                    userData.instrument = value;
-                    // Iniciar música do instrumento selecionado automaticamente
-                    playInstrumentMusic(value);
-                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-1').classList.add('show');
-                    }, 100);
-                } else if (stepId === 'step-2') {
-                    userData.level = value;
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-2').classList.add('show');
-                    }, 100);
-                } else if (stepId === 'step-3') {
-                    userData.genre = value;
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-3').classList.add('show');
-                    }, 100);
-                } else if (stepId === 'step-4') {
-                    userData.goal = value;
-                    // Mostrar feedback na próxima etapa
-                    setTimeout(() => {
-                        document.getElementById('feedback-4').classList.add('show');
-                    }, 100);
-                }
-                
-                // Atualizar conquista
-                updateAchievement(stepId);
-                
-                // Avançar automaticamente após um breve delay
-                setTimeout(() => {
-                    nextStep();
-                }, 1500);
-            });
-        });
         
         // Avançar para o próximo passo
         function nextStep() {
