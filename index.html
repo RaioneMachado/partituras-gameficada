@@ -193,7 +193,7 @@
             will-change: transform;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
-            touch-action: manipulation;
+            touch-action: pan-y;
         }
 
         .option:hover {
@@ -936,12 +936,13 @@
             goal: ''
         };
         
-        // Variáveis para controle de toque no iOS
+        // Sistema de prevenção de cliques falsos
+        let touchStartTime = 0;
         let touchStartY = 0;
         let touchStartX = 0;
         let isScrolling = false;
-        let touchStartTime = 0;
-        let currentTouches = [];
+        let scrollTimer = null;
+        let isTouchDevice = 'ontouchstart' in window;
         
         // Lista de músicas gospel
         const gospelSongs = [
@@ -1092,67 +1093,72 @@
         let currentStep = 0;
         updateProgress();
         
-        // Event Listeners para os botões de avançar
-        nextButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                nextStep();
-            });
-        });
-        
-        // Detecção de toque específica para iOS
-        function setupTouchDetection() {
+        // Sistema de prevenção de cliques falsos
+        function setupScrollProtection() {
             const options = document.querySelectorAll('.option');
             
-            options.forEach(option => {
-                // Touch start
-                option.addEventListener('touchstart', function(e) {
+            // Para dispositivos touch
+            if (isTouchDevice) {
+                document.addEventListener('touchstart', function(e) {
+                    touchStartTime = Date.now();
                     touchStartY = e.touches[0].clientY;
                     touchStartX = e.touches[0].clientX;
-                    touchStartTime = Date.now();
                     isScrolling = false;
-                    currentTouches = Array.from(e.touches);
                 }, { passive: true });
                 
-                // Touch move - detecta se está rolando
-                option.addEventListener('touchmove', function(e) {
-                    if (e.touches.length > 1) {
-                        isScrolling = true;
-                        return;
-                    }
-                    
+                document.addEventListener('touchmove', function(e) {
                     const touchY = e.touches[0].clientY;
                     const touchX = e.touches[0].clientX;
                     const deltaY = Math.abs(touchY - touchStartY);
                     const deltaX = Math.abs(touchX - touchStartX);
                     
-                    // Se o movimento for principalmente vertical e maior que 5px, considera como scroll
-                    if (deltaY > 5 && deltaY > deltaX) {
+                    // Se movimento vertical for significativo, marca como scroll
+                    if (deltaY > 5 || deltaX > 5) {
                         isScrolling = true;
+                        
+                        // Reinicia o timer sempre que detectar movimento
+                        clearTimeout(scrollTimer);
+                        scrollTimer = setTimeout(() => {
+                            isScrolling = false;
+                        }, 150);
                     }
                 }, { passive: true });
                 
-                // Touch end - processa o clique apenas se não era scroll
-                option.addEventListener('touchend', function(e) {
-                    const touchDuration = Date.now() - touchStartTime;
-                    const isTap = touchDuration < 500; // Clique rápido
-                    
-                    // Só processa como clique se não estava rolando e foi um toque rápido
-                    if (!isScrolling && isTap && e.changedTouches.length === 1) {
+                document.addEventListener('touchend', function() {
+                    // Marca que não está mais rolando após um breve delay
+                    setTimeout(() => {
+                        isScrolling = false;
+                    }, 100);
+                }, { passive: true });
+            }
+            
+            // Event listener para as opções
+            options.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    // Previne clique se estiver rolando
+                    if (isScrolling) {
                         e.preventDefault();
-                        handleOptionSelection(this);
+                        e.stopPropagation();
+                        return false;
                     }
                     
-                    // Reset
-                    isScrolling = false;
-                    currentTouches = [];
+                    // Verifica se foi um clique muito rápido (pode ser scroll)
+                    const clickTime = Date.now();
+                    if (clickTime - touchStartTime < 100) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }
+                    
+                    // Processa a seleção
+                    handleOptionSelection(this);
                 });
                 
-                // Click fallback para desktop
-                option.addEventListener('click', function(e) {
-                    // No iOS, o click event pode ser disparado mesmo durante scroll
-                    // Então verificamos novamente se não estávamos rolando
-                    if (!isScrolling) {
-                        handleOptionSelection(this);
+                // Prevenir comportamento padrão de toque
+                option.addEventListener('touchend', function(e) {
+                    if (isScrolling) {
+                        e.preventDefault();
+                        e.stopPropagation();
                     }
                 });
             });
@@ -1187,25 +1193,21 @@
             
             if (stepId === 'step-1') {
                 userData.instrument = value;
-                // Mostrar feedback na próxima etapa
                 setTimeout(() => {
                     document.getElementById('feedback-1').classList.add('show');
                 }, 100);
             } else if (stepId === 'step-2') {
                 userData.level = value;
-                // Mostrar feedback na próxima etapa
                 setTimeout(() => {
                     document.getElementById('feedback-2').classList.add('show');
                 }, 100);
             } else if (stepId === 'step-3') {
                 userData.genre = value;
-                // Mostrar feedback na próxima etapa
                 setTimeout(() => {
                     document.getElementById('feedback-3').classList.add('show');
                 }, 100);
             } else if (stepId === 'step-4') {
                 userData.goal = value;
-                // Mostrar feedback na próxima etapa
                 setTimeout(() => {
                     document.getElementById('feedback-4').classList.add('show');
                 }, 100);
@@ -1215,8 +1217,15 @@
             updateAchievement(stepId);
         }
         
-        // Inicializar detecção de toque
-        setupTouchDetection();
+        // Inicializar proteção contra cliques falsos
+        setupScrollProtection();
+        
+        // Event Listeners para os botões de avançar
+        nextButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                nextStep();
+            });
+        });
         
         // Avançar para o próximo passo
         function nextStep() {
