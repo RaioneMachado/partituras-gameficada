@@ -25,6 +25,12 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         body {
             background: linear-gradient(135deg, var(--darker), var(--dark));
             color: var(--light);
@@ -110,6 +116,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .step {
@@ -133,6 +140,8 @@
             position: relative;
             display: inline-block;
             line-height: 1.3;
+            max-width: 100%;
+            word-wrap: break-word;
         }
 
         .question::after {
@@ -293,33 +302,6 @@
             display: block;
         }
 
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(30, 30, 60, 0.8);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            border: 2px solid var(--primary);
-            transition: var(--transition);
-        }
-
-        .music-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-        }
-
-        .music-control i {
-            font-size: 1.2rem;
-            color: var(--light);
-        }
-
         .result {
             text-align: center;
             padding: 25px 15px;
@@ -365,6 +347,11 @@
             animation: float 3s ease-in-out infinite;
             border: 2px solid rgba(255, 255, 255, 0.2);
             will-change: transform;
+            max-width: 90%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .floating-combo-link:hover {
@@ -608,13 +595,7 @@
                 width: 90%;
                 text-align: center;
                 justify-content: center;
-            }
-            
-            .music-control {
-                bottom: 15px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
+                white-space: normal;
             }
             
             .gospel-grid {
@@ -624,6 +605,43 @@
             .bonus-list {
                 grid-template-columns: 1fr;
             }
+            
+            .question {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Melhorias para telas muito pequenas */
+        @media (max-width: 360px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .game-container {
+                padding: 10px;
+            }
+            
+            .option {
+                padding: 12px 8px;
+                min-height: 110px;
+            }
+            
+            .option-icon {
+                font-size: 1.8rem;
+            }
+            
+            .option-text {
+                font-size: 1rem;
+            }
+            
+            .floating-combo-link {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+            
+            .question {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -632,11 +650,6 @@
     <div class="light light-1"></div>
     <div class="light light-2"></div>
     <div class="light light-3"></div>
-    
-    <!-- Controle de música -->
-    <div class="music-control" id="music-control">
-        <i class="fas fa-volume-up"></i>
-    </div>
     
     <!-- Botão flutuante (APENAS na última etapa) -->
     <a href="#" class="floating-combo-link" id="floating-combo-link">
@@ -894,11 +907,9 @@
     <script>
         // Elementos DOM - cache de elementos para melhor performance
         const steps = document.querySelectorAll('.step');
-        const options = document.querySelectorAll('.option');
         const progressBar = document.getElementById('progress-bar');
         const achievements = document.querySelectorAll('.achievement');
         const floatingComboLink = document.getElementById('floating-combo-link');
-        const musicControl = document.getElementById('music-control');
         const mainHeader = document.getElementById('main-header');
         const gospelSection = document.getElementById('gospel-section');
         const gospelGrid = document.getElementById('gospel-grid');
@@ -952,82 +963,6 @@
             { title: "YESHUA", artist: "Fernandinho" },
             { title: "YESHUA", artist: "Fernandinho e Heloísa Rosa" }
         ];
-        
-        // Variáveis para controle de música
-        let audioContext;
-        let currentMusic = null;
-        let isPlaying = false;
-        let currentInstrument = null;
-        
-        // URLs de áudio para cada instrumento (sons reais)
-        const instrumentSounds = {
-            'violino': [
-                'https://assets.mixkit.co/music/preview/mixkit-violin-tone-2323.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-violin-tone-2324.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-violin-tone-2325.mp3'
-            ],
-            'viola': [
-                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2326.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2327.mp3'
-            ],
-            'violoncelo': [
-                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2328.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-cello-tone-2329.mp3'
-            ],
-            'flauta': [
-                'https://assets.mixkit.co/music/preview/mixkit-flute-tone-2309.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-flute-tone-2310.mp3'
-            ],
-            'clarinete': [
-                'https://assets.mixkit.co/music/preview/mixkit-clarinet-tone-2311.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-clarinet-tone-2312.mp3'
-            ],
-            'sax-alto': [
-                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2305.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2306.mp3'
-            ],
-            'sax-tenor': [
-                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2307.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2308.mp3'
-            ],
-            'sax-soprano': [
-                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2303.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-saxophone-tone-2304.mp3'
-            ],
-            'trompete': [
-                'https://assets.mixkit.co/music/preview/mixkit-trumpet-tone-2313.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-trumpet-tone-2314.mp3'
-            ],
-            'trombone': [
-                'https://assets.mixkit.co/music/preview/mixkit-trombone-tone-2315.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-trombone-tone-2316.mp3'
-            ],
-            'piano': [
-                'https://assets.mixkit.co/music/preview/mixkit-piano-tone-2281.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-piano-tone-2282.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-piano-tone-2283.mp3'
-            ],
-            'teclado': [
-                'https://assets.mixkit.co/music/preview/mixkit-synth-tone-2284.mp3',
-                'https://assets.mixkit.co/music/preview/mixkit-synth-tone-2285.mp3'
-            ]
-        };
-
-        // Fallback para sons sintetizados caso os URLs não funcionem
-        const fallbackSounds = {
-            'violino': { type: 'sine', notes: [392, 440, 494, 523], volume: 0.15 },
-            'viola': { type: 'sine', notes: [330, 370, 392, 440], volume: 0.18 },
-            'violoncelo': { type: 'sine', notes: [196, 220, 247, 262], volume: 0.2 },
-            'flauta': { type: 'sine', notes: [523, 587, 659, 698], volume: 0.12 },
-            'clarinete': { type: 'sine', notes: [349, 392, 440, 494], volume: 0.16 },
-            'sax-alto': { type: 'sawtooth', notes: [311, 349, 392, 440], volume: 0.22 },
-            'sax-tenor': { type: 'sawtooth', notes: [262, 294, 330, 349], volume: 0.24 },
-            'sax-soprano': { type: 'sawtooth', notes: [392, 440, 494, 523], volume: 0.18 },
-            'trompete': { type: 'square', notes: [392, 440, 494, 523], volume: 0.2 },
-            'trombone': { type: 'square', notes: [196, 220, 247, 262], volume: 0.25 },
-            'piano': { type: 'sine', notes: [261, 293, 329, 349], volume: 0.18 },
-            'teclado': { type: 'triangle', notes: [523, 587, 659, 698], volume: 0.15 }
-        };
         
         // Ícones dos instrumentos para o resultado
         const instrumentIcons = {
@@ -1144,19 +1079,6 @@
         let currentStep = 0;
         updateProgress();
         
-        // Event Listener para o controle de música - usando event delegation
-        musicControl.addEventListener('click', function() {
-            if (isPlaying) {
-                stopMusic();
-                musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else {
-                if (userData.instrument) {
-                    playInstrumentMusic(userData.instrument);
-                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-                }
-            }
-        });
-        
         // Event Listeners para os botões de avançar
         nextButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
@@ -1195,9 +1117,6 @@
                 
                 if (stepId === 'step-1') {
                     userData.instrument = value;
-                    // Iniciar música do instrumento selecionado automaticamente
-                    playInstrumentMusic(value);
-                    musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
                     // Mostrar feedback na próxima etapa
                     setTimeout(() => {
                         document.getElementById('feedback-1').classList.add('show');
@@ -1226,100 +1145,6 @@
                 updateAchievement(stepId);
             }
         });
-        
-        // Tocar música do instrumento
-        function playInstrumentMusic(instrument) {
-            stopMusic();
-            
-            isPlaying = true;
-            currentInstrument = instrument;
-            
-            // Tentar usar áudio real primeiro
-            const audioUrls = instrumentSounds[instrument];
-            if (audioUrls && audioUrls.length > 0) {
-                playRealAudio(instrument, audioUrls);
-            } else {
-                // Fallback para áudio sintetizado
-                playSyntheticAudio(instrument);
-            }
-        }
-        
-        // Tocar áudio real
-        function playRealAudio(instrument, audioUrls) {
-            let currentAudioIndex = 0;
-            
-            function playNextAudio() {
-                if (!isPlaying || currentInstrument !== instrument) return;
-                
-                const audio = new Audio(audioUrls[currentAudioIndex]);
-                audio.volume = 0.3;
-                audio.play();
-                
-                currentMusic = audio;
-                
-                audio.onended = function() {
-                    currentAudioIndex = (currentAudioIndex + 1) % audioUrls.length;
-                    setTimeout(playNextAudio, 1000);
-                };
-            }
-            
-            playNextAudio();
-        }
-        
-        // Tocar áudio sintetizado (fallback)
-        function playSyntheticAudio(instrument) {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            
-            const soundConfig = fallbackSounds[instrument];
-            if (!soundConfig) return;
-            
-            let noteIndex = 0;
-            
-            function playNextNote() {
-                if (!isPlaying || currentInstrument !== instrument) return;
-                
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.value = soundConfig.notes[noteIndex];
-                oscillator.type = soundConfig.type;
-                
-                const now = audioContext.currentTime;
-                gainNode.gain.setValueAtTime(0, now);
-                gainNode.gain.linearRampToValueAtTime(soundConfig.volume, now + 0.05);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
-                
-                oscillator.start(now);
-                oscillator.stop(now + 0.8);
-                
-                noteIndex = (noteIndex + 1) % soundConfig.notes.length;
-                
-                currentMusic = setTimeout(playNextNote, 1000);
-            }
-            
-            playNextNote();
-        }
-        
-        // Parar música
-        function stopMusic() {
-            isPlaying = false;
-            currentInstrument = null;
-            
-            if (currentMusic) {
-                if (currentMusic instanceof Audio) {
-                    currentMusic.pause();
-                    currentMusic.currentTime = 0;
-                } else {
-                    clearTimeout(currentMusic);
-                }
-                currentMusic = null;
-            }
-        }
         
         // Avançar para o próximo passo
         function nextStep() {
@@ -1454,7 +1279,7 @@
             const colors = ['#8A2BE2', '#00BFFF', '#FF00FF', '#00FF7F', '#FFFF00'];
             const container = document.querySelector('.game-container');
             
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 30; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = Math.random() * 100 + '%';
