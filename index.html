@@ -29,7 +29,6 @@
             overflow-x: hidden;
             width: 100%;
             position: relative;
-            height: 100%;
         }
 
         body {
@@ -81,9 +80,6 @@
             padding: 20px;
             position: relative;
             z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         header {
@@ -121,27 +117,20 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
         }
 
         .step {
             display: none;
             animation: fadeIn 0.5s ease;
-            flex: 1;
-            overflow-y: auto;
         }
 
         .step.active {
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
 
         .question-container {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
-            flex-shrink: 0;
         }
 
         .question {
@@ -176,12 +165,6 @@
         .highlight {
             color: var(--accent);
             font-weight: bold;
-        }
-
-        .options-container {
-            flex: 1;
-            overflow-y: auto;
-            margin-bottom: 15px;
         }
 
         .options-grid {
@@ -249,9 +232,8 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin: 20px 0;
+            margin: 30px 0;
             flex-wrap: wrap;
-            flex-shrink: 0;
         }
 
         .achievement {
@@ -291,9 +273,8 @@
             height: 8px;
             background: rgba(30, 30, 60, 0.7);
             border-radius: 10px;
-            margin: 15px 0;
+            margin: 25px 0;
             overflow: hidden;
-            flex-shrink: 0;
         }
 
         .progress-bar {
@@ -307,7 +288,7 @@
 
         .feedback-message {
             text-align: center;
-            margin: 15px 0;
+            margin: 20px 0;
             padding: 15px;
             background: rgba(138, 43, 226, 0.2);
             border-radius: 10px;
@@ -315,7 +296,6 @@
             animation: slideIn 0.3s ease;
             display: none;
             position: relative;
-            flex-shrink: 0;
         }
 
         .feedback-message.show {
@@ -517,7 +497,7 @@
         /* Botão de avançar */
         .next-button {
             display: block;
-            margin: 15px auto 0;
+            margin: 20px auto 0;
             background: linear-gradient(to right, var(--primary), var(--accent));
             color: white;
             border: none;
@@ -530,7 +510,6 @@
             box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
             opacity: 0;
             pointer-events: none;
-            flex-shrink: 0;
         }
 
         .next-button.active {
@@ -580,35 +559,17 @@
         }
 
         /* Responsividade para telas muito pequenas */
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .container {
                 padding: 15px;
-                height: 100vh;
-                overflow: hidden;
             }
             
             .game-container {
                 padding: 15px;
-                height: 100%;
-                overflow: hidden;
-            }
-            
-            .step.active {
-                height: 100%;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .options-container {
-                flex: 1;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 10px;
             }
             
             .options-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                grid-template-columns: 1fr;
                 gap: 10px;
             }
             
@@ -648,26 +609,16 @@
             .question {
                 font-size: 1.4rem;
             }
-            
-            .next-button {
-                margin-top: 10px;
-                position: relative;
-                z-index: 10;
-            }
         }
 
         /* Melhorias para telas muito pequenas */
-        @media (max-width: 480px) {
+        @media (max-width: 360px) {
             .container {
                 padding: 10px;
             }
             
             .game-container {
                 padding: 10px;
-            }
-            
-            .options-grid {
-                grid-template-columns: 1fr;
             }
             
             .option {
@@ -690,13 +641,6 @@
             
             .question {
                 font-size: 1.3rem;
-            }
-        }
-
-        /* Prevenir zoom em inputs no iOS */
-        @media screen and (max-width: 768px) {
-            input, select, textarea {
-                font-size: 16px;
             }
         }
     </style>
@@ -749,56 +693,54 @@
                     <p class="question-desc">Selecione o instrumento que você quer a <span class="highlight">PARTITURA</span></p>
                 </div>
                 
-                <div class="options-container">
-                    <div class="options-grid">
-                        <div class="option" data-value="violino">
-                            <div class="option-icon">🎻</div>
-                            <div class="option-text">Violino</div>
-                        </div>
-                        <div class="option" data-value="viola">
-                            <div class="option-icon">🎻</div>
-                            <div class="option-text">Viola</div>
-                        </div>
-                        <div class="option" data-value="violoncelo">
-                            <div class="option-icon">🎻</div>
-                            <div class="option-text">Violoncelo</div>
-                        </div>
-                        <div class="option" data-value="flauta">
-                            <div class="option-icon">🎵</div>
-                            <div class="option-text">Flauta</div>
-                        </div>
-                        <div class="option" data-value="clarinete">
-                            <div class="option-icon">🎵</div>
-                            <div class="option-text">Clarinete</div>
-                        </div>
-                        <div class="option" data-value="sax-alto">
-                            <div class="option-icon">🎷</div>
-                            <div class="option-text">Sax Alto</div>
-                        </div>
-                        <div class="option" data-value="sax-tenor">
-                            <div class="option-icon">🎷</div>
-                            <div class="option-text">Sax Tenor</div>
-                        </div>
-                        <div class="option" data-value="sax-soprano">
-                            <div class="option-icon">🎷</div>
-                            <div class="option-text">Sax Soprano</div>
-                        </div>
-                        <div class="option" data-value="trompete">
-                            <div class="option-icon">🎺</div>
-                            <div class="option-text">Trompete</div>
-                        </div>
-                        <div class="option" data-value="trombone">
-                            <div class="option-icon">🎺</div>
-                            <div class="option-text">Trombone</div>
-                        </div>
-                        <div class="option" data-value="piano">
-                            <div class="option-icon">🎹</div>
-                            <div class="option-text">Piano</div>
-                        </div>
-                        <div class="option" data-value="teclado">
-                            <div class="option-icon">🎹</div>
-                            <div class="option-text">Teclado</div>
-                        </div>
+                <div class="options-grid">
+                    <div class="option" data-value="violino">
+                        <div class="option-icon">🎻</div>
+                        <div class="option-text">Violino</div>
+                    </div>
+                    <div class="option" data-value="viola">
+                        <div class="option-icon">🎻</div>
+                        <div class="option-text">Viola</div>
+                    </div>
+                    <div class="option" data-value="violoncelo">
+                        <div class="option-icon">🎻</div>
+                        <div class="option-text">Violoncelo</div>
+                    </div>
+                    <div class="option" data-value="flauta">
+                        <div class="option-icon">🎵</div>
+                        <div class="option-text">Flauta</div>
+                    </div>
+                    <div class="option" data-value="clarinete">
+                        <div class="option-icon">🎵</div>
+                        <div class="option-text">Clarinete</div>
+                    </div>
+                    <div class="option" data-value="sax-alto">
+                        <div class="option-icon">🎷</div>
+                        <div class="option-text">Sax Alto</div>
+                    </div>
+                    <div class="option" data-value="sax-tenor">
+                        <div class="option-icon">🎷</div>
+                        <div class="option-text">Sax Tenor</div>
+                    </div>
+                    <div class="option" data-value="sax-soprano">
+                        <div class="option-icon">🎷</div>
+                        <div class="option-text">Sax Soprano</div>
+                    </div>
+                    <div class="option" data-value="trompete">
+                        <div class="option-icon">🎺</div>
+                        <div class="option-text">Trompete</div>
+                    </div>
+                    <div class="option" data-value="trombone">
+                        <div class="option-icon">🎺</div>
+                        <div class="option-text">Trombone</div>
+                    </div>
+                    <div class="option" data-value="piano">
+                        <div class="option-icon">🎹</div>
+                        <div class="option-text">Piano</div>
+                    </div>
+                    <div class="option" data-value="teclado">
+                        <div class="option-icon">🎹</div>
+                        <div class="option-text">Teclado</div>
                     </div>
                 </div>
                 <button class="next-button" id="next-1">Avançar</button>
@@ -815,28 +757,26 @@
                     <p class="question-desc">Nos conte um pouco sobre sua <span class="highlight">experiência</span> com o instrumento</p>
                 </div>
                 
-                <div class="options-container">
-                    <div class="options-grid">
-                        <div class="option" data-value="iniciante">
-                            <div class="option-icon"><i class="fas fa-seedling"></i></div>
-                            <div class="option-text">Iniciante</div>
-                            <p class="option-desc">Estou começando agora</p>
-                        </div>
-                        <div class="option" data-value="intermediario">
-                            <div class="option-icon"><i class="fas fa-leaf"></i></div>
-                            <div class="option-text">Intermediário</div>
-                            <p class="option-desc">Já tenho alguma experiência</p>
-                        </div>
-                        <div class="option" data-value="avancado">
-                            <div class="option-icon"><i class="fas fa-tree"></i></div>
-                            <div class="option-text">Avançado</div>
-                            <p class="option-desc">Toco há alguns anos</p>
-                        </div>
-                        <div class="option" data-value="profissional">
-                            <div class="option-icon"><i class="fas fa-award"></i></div>
-                            <div class="option-text">Profissional</div>
-                            <p class="option-desc">Sou músico profissional</p>
-                        </div>
+                <div class="options-grid">
+                    <div class="option" data-value="iniciante">
+                        <div class="option-icon"><i class="fas fa-seedling"></i></div>
+                        <div class="option-text">Iniciante</div>
+                        <p class="option-desc">Estou começando agora</p>
+                    </div>
+                    <div class="option" data-value="intermediario">
+                        <div class="option-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="option-text">Intermediário</div>
+                        <p class="option-desc">Já tenho alguma experiência</p>
+                    </div>
+                    <div class="option" data-value="avancado">
+                        <div class="option-icon"><i class="fas fa-tree"></i></div>
+                        <div class="option-text">Avançado</div>
+                        <p class="option-desc">Toco há alguns anos</p>
+                    </div>
+                    <div class="option" data-value="profissional">
+                        <div class="option-icon"><i class="fas fa-award"></i></div>
+                        <div class="option-text">Profissional</div>
+                        <p class="option-desc">Sou músico profissional</p>
                     </div>
                 </div>
                 <button class="next-button" id="next-2">Avançar</button>
@@ -853,32 +793,30 @@
                     <p class="question-desc">Selecione seu <span class="highlight">estilo musical</span> preferido</p>
                 </div>
                 
-                <div class="options-container">
-                    <div class="options-grid">
-                        <div class="option" data-value="classico">
-                            <div class="option-icon"><i class="fas fa-music"></i></div>
-                            <div class="option-text">Clássico</div>
-                        </div>
-                        <div class="option" data-value="jazz">
-                            <div class="option-icon"><i class="fas fa-music"></i></div>
-                            <div class="option-text">Jazz</div>
-                        </div>
-                        <div class="option" data-value="pop-rock">
-                            <div class="option-icon"><i class="fas fa-guitar"></i></div>
-                            <div class="option-text">Pop/Rock</div>
-                        </div>
-                        <div class="option" data-value="mpb">
-                            <div class="option-icon"><i class="fas fa-music"></i></div>
-                            <div class="option-text">MPB</div>
-                        </div>
-                        <div class="option" data-value="sertanejo">
-                            <div class="option-icon"><i class="fas fa-guitar"></i></div>
-                            <div class="option-text">Sertanejo</div>
-                        </div>
-                        <div class="option" data-value="gospel">
-                            <div class="option-icon"><i class="fas fa-church"></i></div>
-                            <div class="option-text">Gospel</div>
-                        </div>
+                <div class="options-grid">
+                    <div class="option" data-value="classico">
+                        <div class="option-icon"><i class="fas fa-music"></i></div>
+                        <div class="option-text">Clássico</div>
+                    </div>
+                    <div class="option" data-value="jazz">
+                        <div class="option-icon"><i class="fas fa-music"></i></div>
+                        <div class="option-text">Jazz</div>
+                    </div>
+                    <div class="option" data-value="pop-rock">
+                        <div class="option-icon"><i class="fas fa-guitar"></i></div>
+                        <div class="option-text">Pop/Rock</div>
+                    </div>
+                    <div class="option" data-value="mpb">
+                        <div class="option-icon"><i class="fas fa-music"></i></div>
+                        <div class="option-text">MPB</div>
+                    </div>
+                    <div class="option" data-value="sertanejo">
+                        <div class="option-icon"><i class="fas fa-guitar"></i></div>
+                        <div class="option-text">Sertanejo</div>
+                    </div>
+                    <div class="option" data-value="gospel">
+                        <div class="option-icon"><i class="fas fa-church"></i></div>
+                        <div class="option-text">Gospel</div>
                     </div>
                 </div>
                 <button class="next-button" id="next-3">Avançar</button>
@@ -895,28 +833,26 @@
                     <p class="question-desc">O que você busca <span class="highlight">alcançar</span> com as partituras?</p>
                 </div>
                 
-                <div class="options-container">
-                    <div class="options-grid">
-                        <div class="option" data-value="aprender">
-                            <div class="option-icon"><i class="fas fa-book-open"></i></div>
-                            <div class="option-text">Aprender</div>
-                            <p class="option-desc">Novas músicas</p>
-                        </div>
-                        <div class="option" data-value="aprimorar">
-                            <div class="option-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="option-text">Aprimorar</div>
-                            <p class="option-desc">Minha técnica</p>
-                        </div>
-                        <div class="option" data-value="apresentacao">
-                            <div class="option-icon"><i class="fas fa-theater-masks"></i></div>
-                            <div class="option-text">Apresentação</div>
-                            <p class="option-desc">Preparar para show</p>
-                        </div>
-                        <div class="option" data-value="ensinar">
-                            <div class="option-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                            <div class="option-text">Ensinar</div>
-                            <p class="option-desc">Usar para aulas</p>
-                        </div>
+                <div class="options-grid">
+                    <div class="option" data-value="aprender">
+                        <div class="option-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="option-text">Aprender</div>
+                        <p class="option-desc">Novas músicas</p>
+                    </div>
+                    <div class="option" data-value="aprimorar">
+                        <div class="option-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="option-text">Aprimorar</div>
+                        <p class="option-desc">Minha técnica</p>
+                    </div>
+                    <div class="option" data-value="apresentacao">
+                        <div class="option-icon"><i class="fas fa-theater-masks"></i></div>
+                        <div class="option-text">Apresentação</div>
+                        <p class="option-desc">Preparar para show</p>
+                    </div>
+                    <div class="option" data-value="ensinar">
+                        <div class="option-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="option-text">Ensinar</div>
+                        <p class="option-desc">Usar para aulas</p>
                     </div>
                 </div>
                 <button class="next-button" id="next-4">Ver Meu Combo</button>
@@ -1166,6 +1102,14 @@
                 // Ativar botão de avançar
                 const nextButton = parentStep.querySelector('.next-button');
                 nextButton.classList.add('active');
+                
+                // Rolar a tela até o botão de avançar
+                setTimeout(() => {
+                    nextButton.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center'
+                    });
+                }, 300);
                 
                 // Atualizar dados do usuário
                 const stepId = parentStep.id;
