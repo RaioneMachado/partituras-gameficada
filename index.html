@@ -193,7 +193,7 @@
             will-change: transform;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
-            touch-action: pan-y;
+            touch-action: manipulation;
         }
 
         .option:hover {
@@ -936,13 +936,9 @@
             goal: ''
         };
         
-        // Sistema de prevenção de cliques falsos
-        let touchStartTime = 0;
-        let touchStartY = 0;
-        let touchStartX = 0;
-        let isScrolling = false;
-        let scrollTimer = null;
-        let isTouchDevice = 'ontouchstart' in window;
+        // Sistema simplificado - sem travas
+        let lastTapTime = 0;
+        const tapDelay = 300; // Delay para evitar duplo toque acidental
         
         // Lista de músicas gospel
         const gospelSongs = [
@@ -1093,73 +1089,25 @@
         let currentStep = 0;
         updateProgress();
         
-        // Sistema de prevenção de cliques falsos
-        function setupScrollProtection() {
+        // Sistema simples de clique - sem travas
+        function setupSimpleClickSystem() {
             const options = document.querySelectorAll('.option');
             
-            // Para dispositivos touch
-            if (isTouchDevice) {
-                document.addEventListener('touchstart', function(e) {
-                    touchStartTime = Date.now();
-                    touchStartY = e.touches[0].clientY;
-                    touchStartX = e.touches[0].clientX;
-                    isScrolling = false;
-                }, { passive: true });
-                
-                document.addEventListener('touchmove', function(e) {
-                    const touchY = e.touches[0].clientY;
-                    const touchX = e.touches[0].clientX;
-                    const deltaY = Math.abs(touchY - touchStartY);
-                    const deltaX = Math.abs(touchX - touchStartX);
-                    
-                    // Se movimento vertical for significativo, marca como scroll
-                    if (deltaY > 5 || deltaX > 5) {
-                        isScrolling = true;
-                        
-                        // Reinicia o timer sempre que detectar movimento
-                        clearTimeout(scrollTimer);
-                        scrollTimer = setTimeout(() => {
-                            isScrolling = false;
-                        }, 150);
-                    }
-                }, { passive: true });
-                
-                document.addEventListener('touchend', function() {
-                    // Marca que não está mais rolando após um breve delay
-                    setTimeout(() => {
-                        isScrolling = false;
-                    }, 100);
-                }, { passive: true });
-            }
-            
-            // Event listener para as opções
             options.forEach(option => {
+                // Clique simples e direto
                 option.addEventListener('click', function(e) {
-                    // Previne clique se estiver rolando
-                    if (isScrolling) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return false;
+                    const currentTime = new Date().getTime();
+                    const tapLength = currentTime - lastTapTime;
+                    
+                    // Previne clique duplo rápido acidental
+                    if (tapLength < tapDelay && tapLength > 0) {
+                        return;
                     }
                     
-                    // Verifica se foi um clique muito rápido (pode ser scroll)
-                    const clickTime = Date.now();
-                    if (clickTime - touchStartTime < 100) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return false;
-                    }
+                    lastTapTime = currentTime;
                     
-                    // Processa a seleção
+                    // Processa a seleção normalmente
                     handleOptionSelection(this);
-                });
-                
-                // Prevenir comportamento padrão de toque
-                option.addEventListener('touchend', function(e) {
-                    if (isScrolling) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                    }
                 });
             });
         }
@@ -1179,7 +1127,7 @@
             const nextButton = parentStep.querySelector('.next-button');
             nextButton.classList.add('active');
             
-            // Rolar a tela até o botão de avançar
+            // Rolar a tela até o botão de avançar (única coisa que mantemos)
             setTimeout(() => {
                 nextButton.scrollIntoView({ 
                     behavior: 'smooth', 
@@ -1217,8 +1165,8 @@
             updateAchievement(stepId);
         }
         
-        // Inicializar proteção contra cliques falsos
-        setupScrollProtection();
+        // Inicializar sistema simples de clique
+        setupSimpleClickSystem();
         
         // Event Listeners para os botões de avançar
         nextButtons.forEach((button, index) => {
