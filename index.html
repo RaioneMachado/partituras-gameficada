@@ -190,6 +190,8 @@
             justify-content: center;
             min-height: 140px;
             will-change: transform;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
 
         .option:hover {
@@ -830,7 +832,7 @@
                 
                 <div class="question-container">
                     <h2 class="question">Qual é o seu principal <span class="highlight">objetivo</span>?</h2>
-                    <p class="question-desc">O que você busca <span class="highlight">alcançar</span> com as partituras?</p>
+                    <p class="question-desc">O que você busca <span class="highlight">alcançar</span> with the scores?</p>
                 </div>
                 
                 <div class="options-grid">
@@ -929,6 +931,10 @@
             genre: '',
             goal: ''
         };
+        
+        // Variáveis para controle de toque
+        let touchStartY = 0;
+        let isScrolling = false;
         
         // Lista de músicas gospel
         const gospelSongs = [
@@ -1086,9 +1092,22 @@
             });
         });
         
+        // Detectar toque para diferenciar entre scroll e clique
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+            isScrolling = false;
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', function(e) {
+            if (Math.abs(e.touches[0].clientY - touchStartY) > 5) {
+                isScrolling = true;
+            }
+        }, { passive: true });
+        
         // Event delegation para opções - mais eficiente
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.option')) {
+            // Verificar se é um clique intencional (não durante scroll)
+            if (e.target.closest('.option') && !isScrolling) {
                 const option = e.target.closest('.option');
                 const parentStep = option.closest('.step');
                 
@@ -1103,7 +1122,7 @@
                 const nextButton = parentStep.querySelector('.next-button');
                 nextButton.classList.add('active');
                 
-                // Rolar a tela até o botão de avançar
+                // Rolar a tela até o botão de avançar apenas se for uma seleção intencional
                 setTimeout(() => {
                     nextButton.scrollIntoView({ 
                         behavior: 'smooth', 
