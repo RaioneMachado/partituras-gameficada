@@ -50,6 +50,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             width: 100%;
             -webkit-overflow-scrolling: touch;
             scroll-behavior: auto;
+            position: relative;
         }
 
         body {
@@ -58,9 +59,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            /* Prevenir scroll jump */
-            overflow-y: scroll;
-            -webkit-overflow-scrolling: touch;
+            /* Garantir que não tenha scroll horizontal */
+            width: 100vw;
+            max-width: 100%;
         }
 
         /* Efeitos de luz de fundo otimizados */
@@ -104,12 +105,15 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 20px;
             position: relative;
             z-index: 1;
+            /* Garantir que o container não cause overflow */
+            box-sizing: border-box;
         }
 
         header {
             text-align: center;
             margin-bottom: 30px;
             position: relative;
+            width: 100%;
         }
 
         h1 {
@@ -121,6 +125,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             color: transparent;
             text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
             line-height: 1.2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .subtitle {
@@ -129,6 +135,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             max-width: 600px;
             margin: 0 auto 20px;
             line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .game-container {
@@ -141,14 +149,14 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             position: relative;
             overflow: hidden;
             width: 100%;
-            /* Prevenir flash e travamento */
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
+            /* Garantir que não cause overflow */
+            box-sizing: border-box;
         }
 
         .step {
             display: none;
             animation: fadeIn 0.5s ease;
+            width: 100%;
         }
 
         .step.active {
@@ -158,6 +166,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         .question-container {
             margin-bottom: 30px;
             text-align: center;
+            width: 100%;
         }
 
         .question {
@@ -169,6 +178,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             line-height: 1.3;
             max-width: 100%;
             word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0 10px;
         }
 
         .question::after {
@@ -187,6 +198,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0 10px;
         }
 
         .highlight {
@@ -209,6 +223,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 15px;
             margin-bottom: 25px;
+            width: 100%;
         }
 
         .option {
@@ -230,9 +245,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             touch-action: manipulation;
-            /* Otimização para performance */
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
+            /* Garantir que as opções não saiam do container */
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .option:hover {
@@ -263,12 +278,16 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 5px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .option-desc {
             font-size: 0.85rem;
             color: #B0B0D0;
             line-height: 1.3;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .achievements {
@@ -277,6 +296,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             gap: 10px;
             margin: 30px 0;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .achievement {
@@ -339,6 +359,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             animation: slideIn 0.3s ease;
             display: none;
             position: relative;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .feedback-message.show {
@@ -352,6 +374,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             border-radius: 15px;
             margin-top: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .result h2 {
@@ -359,6 +383,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-bottom: 20px;
             color: var(--success);
             line-height: 1.3;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0 10px;
         }
 
         .result p {
@@ -366,6 +393,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-bottom: 15px;
             color: #D0D0F0;
             line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0 10px;
         }
 
         /* Botão flutuante - APENAS na última etapa */
@@ -395,6 +425,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            box-sizing: border-box;
         }
 
         .floating-combo-link:hover {
@@ -432,6 +463,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         .gospel-section {
             margin: 25px 0;
             text-align: center;
+            width: 100%;
         }
 
         .gospel-title {
@@ -442,6 +474,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             align-items: center;
             justify-content: center;
             gap: 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0 10px;
         }
 
         .gospel-title i {
@@ -453,6 +488,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 15px;
             margin: 20px 0;
+            width: 100%;
         }
 
         .gospel-card {
@@ -465,6 +501,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             display: flex;
             align-items: flex-start;
             gap: 10px;
+            box-sizing: border-box;
+            max-width: 100%;
         }
 
         .gospel-card:hover {
@@ -482,17 +520,22 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
 
         .gospel-card-content {
             flex: 1;
+            min-width: 0; /* Permite que o texto quebre corretamente */
         }
 
         .gospel-card-title {
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--light);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .gospel-card-artist {
             font-size: 0.85rem;
             color: #B0B0D0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .bonus-section {
@@ -501,6 +544,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 15px;
             margin-top: 20px;
             border-left: 4px solid var(--accent);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .bonus-section h4 {
@@ -511,6 +556,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             align-items: center;
             justify-content: center;
             gap: 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .bonus-section h4 i {
@@ -521,6 +568,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 10px;
+            width: 100%;
         }
 
         .bonus-item {
@@ -530,11 +578,14 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 8px;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.05);
+            box-sizing: border-box;
+            max-width: 100%;
         }
 
         .bonus-item i {
             color: var(--success);
             font-size: 1rem;
+            flex-shrink: 0;
         }
 
         /* Botão de avançar */
@@ -555,6 +606,9 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             pointer-events: none;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+            width: auto;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .next-button.active {
@@ -573,6 +627,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 15px;
             margin: 20px 0;
             border-left: 4px solid #FF6B6B;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .pain-points h4 {
@@ -581,6 +637,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             display: flex;
             align-items: center;
             gap: 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .pain-points ul {
@@ -592,6 +650,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-bottom: 8px;
             padding-left: 25px;
             position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .pain-points li:before {
@@ -607,6 +667,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             padding: 15px;
             margin: 20px 0;
             border-left: 4px solid var(--success);
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .benefits-section h4 {
@@ -615,6 +677,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             display: flex;
             align-items: center;
             gap: 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .benefits-section ul {
@@ -626,6 +690,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             margin-bottom: 8px;
             padding-left: 25px;
             position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .benefits-section li:before {
@@ -756,6 +822,16 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             .question {
                 font-size: 1.3rem;
             }
+        }
+
+        /* Garantir que não haja overflow em nenhum elemento */
+        * {
+            max-width: 100%;
+        }
+
+        /* Prevenir scroll horizontal imediatamente */
+        body.prevent-scroll {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -1057,6 +1133,24 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
     </div>
 
     <script>
+        // CORREÇÃO IMEDIATA DO SCROLL - Executa antes de tudo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Forçar o body a ter largura 100% da viewport
+            document.body.style.width = '100vw';
+            document.body.style.overflowX = 'hidden';
+            document.body.style.position = 'relative';
+            
+            // Garantir que o html também não tenha scroll horizontal
+            document.documentElement.style.overflowX = 'hidden';
+            document.documentElement.style.width = '100%';
+            
+            // Remover qualquer margem ou padding que possa causar overflow
+            document.documentElement.style.margin = '0';
+            document.documentElement.style.padding = '0';
+            
+            console.log('Viewport corrigida - sem scroll horizontal');
+        });
+
         // Elementos DOM - cache de elementos para melhor performance
         const steps = document.querySelectorAll('.step');
         const progressBar = document.getElementById('progress-bar');
@@ -1082,12 +1176,8 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             goal: ''
         };
         
-        // Sistema de prevenção de travamento
-        let isScrolling = false;
-        let scrollTimeout = null;
-        let lastTapTime = 0;
-        const tapDelay = 500; // Aumentado para prevenir duplo clique
-        let currentScrollPosition = 0;
+        // Sistema de prevenção de travamento - SIMPLIFICADO
+        let isProcessing = false;
         
         // Lista de músicas gospel
         const gospelSongs = [
@@ -1139,7 +1229,7 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             'teclado': '🎹'
         };
         
-        // Links para combos - ATUALIZADO COM OS LINKS FORNECIDOS
+        // Links para combos
         const comboLinks = {
             'violino': {
                 'classico': 'https://pay.cakto.com.br/5kzfsny_626775',
@@ -1238,34 +1328,22 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         let currentStep = 0;
         updateProgress();
         
-        // Sistema robusto de clique - prevenindo travamentos
-        function setupRobustClickSystem() {
+        // Sistema SIMPLES de clique - sem travas complexas
+        function setupSimpleClickSystem() {
             const options = document.querySelectorAll('.option');
             
             options.forEach(option => {
-                // Clique com prevenção de múltiplos cliques rápidos
                 option.addEventListener('click', function(e) {
-                    const currentTime = new Date().getTime();
-                    const tapLength = currentTime - lastTapTime;
-                    
-                    // Previne clique duplo rápido acidental
-                    if (tapLength < tapDelay && tapLength > 0) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return;
-                    }
-                    
-                    lastTapTime = currentTime;
-                    
-                    // Previne processamento se já estiver rolando
-                    if (isScrolling) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return;
-                    }
+                    if (isProcessing) return;
+                    isProcessing = true;
                     
                     // Processa a seleção normalmente
                     handleOptionSelection(this);
+                    
+                    // Libera após um tempo curto
+                    setTimeout(() => {
+                        isProcessing = false;
+                    }, 300);
                 });
             });
         }
@@ -1285,8 +1363,13 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             const nextButton = parentStep.querySelector('.next-button');
             nextButton.classList.add('active');
             
-            // Scroll suave para o botão (com proteção contra travamento)
-            smoothScrollToNextButton(nextButton);
+            // Scroll suave SIMPLES para o botão
+            setTimeout(() => {
+                nextButton.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center'
+                });
+            }, 100);
             
             // Atualizar dados do usuário
             const stepId = parentStep.id;
@@ -1318,51 +1401,20 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             updateAchievement(stepId);
         }
         
-        // Scroll suave com proteção contra travamento
-        function smoothScrollToNextButton(nextButton) {
-            if (isScrolling) return;
-            
-            isScrolling = true;
-            
-            const buttonRect = nextButton.getBoundingClientRect();
-            const offset = window.pageYOffset + buttonRect.top - (window.innerHeight / 3);
-            
-            // Usando scrollTo com behavior smooth
-            window.scrollTo({
-                top: offset,
-                behavior: 'smooth'
-            });
-            
-            // Libera o scroll após um tempo
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                isScrolling = false;
-            }, 800); // Tempo suficiente para a animação de scroll
-        }
-        
-        // Prevenir múltiplos scrolls simultâneos
-        window.addEventListener('scroll', function() {
-            if (!isScrolling) return;
-            
-            // Se o usuário tentar scrollar manualmente durante scroll automático, cancela o scroll automático
-            clearTimeout(scrollTimeout);
-            isScrolling = false;
-        }, { passive: true });
-        
-        // Inicializar sistema robusto de clique
-        setupRobustClickSystem();
+        // Inicializar sistema simples de clique
+        setupSimpleClickSystem();
         
         // Event Listeners para os botões de avançar
         nextButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
-                // Prevenir múltiplos cliques rápidos
-                const currentTime = new Date().getTime();
-                if (currentTime - lastTapTime < tapDelay) {
-                    return;
-                }
-                lastTapTime = currentTime;
+                if (isProcessing) return;
+                isProcessing = true;
                 
                 nextStep();
+                
+                setTimeout(() => {
+                    isProcessing = false;
+                }, 500);
             });
         });
         
@@ -1382,19 +1434,13 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             
             updateProgress();
             
-            // Scroll para o topo do container (com proteção)
-            if (!isScrolling) {
-                isScrolling = true;
+            // Scroll para o topo do container
+            setTimeout(() => {
                 document.querySelector('.container').scrollIntoView({ 
                     behavior: 'smooth', 
                     block: 'start' 
                 });
-                
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    isScrolling = false;
-                }, 800);
-            }
+            }, 100);
         }
         
         // Atualizar barra de progresso
@@ -1585,6 +1631,25 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
             };
             return names[goal] || goal;
         }
+
+        // CORREÇÃO FINAL - Garantir que não há scroll horizontal
+        window.addEventListener('load', function() {
+            // Forçar correção do viewport
+            document.body.style.overflowX = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
+            
+            // Verificar se há elementos causando overflow
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.right > window.innerWidth) {
+                    console.log('Elemento causando overflow:', el);
+                    el.style.maxWidth = '100%';
+                }
+            });
+            
+            console.log('Página totalmente carregada - sem scroll horizontal');
+        });
     </script>
 </body>
 </html>
