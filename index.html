@@ -7,21 +7,21 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
 
-    <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fq=function(){n.callMethod?
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1178969987383927');
+fbq('init', '1430390114852950');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=1430390114852950&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
@@ -116,1412 +116,1632 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
     right: -100px;
   }
 
-        .light-3 {
-            width: 300px;
-            height: 300px;
-            background: var(--accent);
-            top: 50%;
-            left: 30%;
-        }
-
-        .container {
-            max-width: 900px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-            overflow-x: hidden !important;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            margin-bottom: 15px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-            line-height: 1.2;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            padding: 0 10px;
-        }
-
-        .subtitle {
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            color: #B0B0D0;
-            max-width: 600px;
-            margin: 0 auto 20px;
-            line-height: 1.5;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            padding: 0 10px;
-        }
-
-        .game-container {
-            background: rgba(10, 10, 26, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            overflow-x: hidden !important;
-        }
-
-        .step {
-            display: none;
-            animation: fadeIn 0.5s ease;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .step.active {
-            display: block;
-        }
-
-        .question-container {
-            margin-bottom: 30px;
-            text-align: center;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .question {
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
-            margin-bottom: 15px;
-            color: var(--light);
-            position: relative;
-            display: inline-block;
-            line-height: 1.3;
-            max-width: 100%;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            padding: 0 10px;
-        }
-
-        .question::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 10%;
-            width: 80%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--primary), transparent);
-        }
-
-        .question-desc {
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-            color: #B0B0D0;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            padding: 0 10px;
-        }
-
-        .highlight {
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .pain-point {
-            color: #FF6B6B;
-            font-weight: bold;
-        }
-
-        .benefit {
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .option {
-            background: rgba(20, 20, 40, 0.7);
-            border: 2px solid rgba(100, 100, 150, 0.3);
-            border-radius: 15px;
-            padding: 20px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 140px;
-            will-change: transform;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-            touch-action: manipulation;
-            max-width: 100%;
-        }
-
-        .option:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
-        }
-
-        .option.selected {
-            background: rgba(30, 30, 60, 0.9);
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4);
-        }
-
-        .option-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            transition: var(--transition);
-        }
-
-        .option.selected .option-icon {
-            transform: scale(1.2);
-            color: var(--accent);
-        }
-
-        .option-text {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            word-wrap: break-word;
-        }
-
-        .option-desc {
-            font-size: 0.85rem;
-            color: #B0B0D0;
-            line-height: 1.3;
-            word-wrap: break-word;
-        }
-
-        .achievements {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .achievement {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(30, 30, 60, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            border: 2px solid rgba(100, 100, 150, 0.3);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .achievement.unlocked {
-            background: rgba(138, 43, 226, 0.2);
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-        }
-
-        .achievement.unlocked::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            animation: pulse 2s infinite;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(30, 30, 60, 0.7);
-            border-radius: 10px;
-            margin: 25px 0;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 10px;
-            width: 0%;
-            transition: width 0.5s ease;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
-        }
-
-        .feedback-message {
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(138, 43, 226, 0.2);
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            animation: slideIn 0.3s ease;
-            display: none;
-            position: relative;
-            width: 100%;
-        }
-
-        .feedback-message.show {
-            display: block;
-        }
-
-        .result {
-            text-align: center;
-            padding: 25px 15px;
-            background: rgba(20, 20, 40, 0.7);
-            border-radius: 15px;
-            margin-top: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-        }
-
-        .result h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 20px;
-            color: var(--success);
-            line-height: 1.3;
-            word-wrap: break-word;
-            padding: 0 10px;
-        }
-
-        .result p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin-bottom: 15px;
-            color: #D0D0F0;
-            line-height: 1.5;
-            word-wrap: break-word;
-            padding: 0 10px;
-        }
-
-        /* Botão flutuante - APENAS na última etapa */
-        .floating-combo-link {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            color: white;
-            padding: 18px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: bold;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            animation: float 3s ease-in-out infinite;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            will-change: transform;
-            max-width: 90%;
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .floating-combo-link:hover {
-            transform: translateX(-50%) translateY(-5px);
-            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.8);
-        }
-
-        .floating-combo-link::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20px;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(30deg);
-            transition: all 0.6s;
-        }
-
-        .floating-combo-link:hover::after {
-            left: 120%;
-        }
-
-        .floating-combo-link.show {
-            display: flex;
-        }
-
-        .instrument-display {
-            font-size: clamp(3rem, 10vw, 5rem);
-            margin: 25px 0;
-            animation: bounce 2s infinite;
-        }
-
-        /* Estilos para a lista de músicas gospel */
-        .gospel-section {
-            margin: 25px 0;
-            text-align: center;
-            width: 100%;
-        }
-
-        .gospel-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            word-wrap: break-word;
-            padding: 0 10px;
-        }
-
-        .gospel-title i {
-            font-size: 1.8rem;
-        }
-
-        .gospel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-            width: 100%;
-        }
-
-        .gospel-card {
-            background: rgba(30, 30, 60, 0.6);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: left;
-            border-left: 4px solid var(--primary);
-            transition: var(--transition);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            max-width: 100%;
-        }
-
-        .gospel-card:hover {
-            transform: translateY(-3px);
-            background: rgba(40, 40, 80, 0.7);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
-        }
-
-        .gospel-card i {
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .gospel-card-content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .gospel-card-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--light);
-            word-wrap: break-word;
-        }
-
-        .gospel-card-artist {
-            font-size: 0.85rem;
-            color: #B0B0D0;
-            word-wrap: break-word;
-        }
-
-        .bonus-section {
-            background: rgba(138, 43, 226, 0.2);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;
-            border-left: 4px solid var(--accent);
-            width: 100%;
-        }
-
-        .bonus-section h4 {
-            color: var(--accent);
-            margin-bottom: 10px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            word-wrap: break-word;
-        }
-
-        .bonus-section h4 i {
-            font-size: 1.5rem;
-        }
-
-        .bonus-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 10px;
-            width: 100%;
-        }
-
-        .bonus-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            max-width: 100%;
-        }
-
-        .bonus-item i {
-            color: var(--success);
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        /* Botão de avançar */
-        .next-button {
-            display: block;
-            margin: 20px auto 0;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-            opacity: 0;
-            pointer-events: none;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-            width: auto;
-            max-width: 100%;
-        }
-
-        .next-button.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .next-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
-        }
-
-        .pain-points {
-            background: rgba(255, 107, 107, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #FF6B6B;
-            width: 100%;
-        }
-
-        .pain-points h4 {
-            color: #FF6B6B;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            word-wrap: break-word;
-        }
-
-        .pain-points ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .pain-points li {
-            margin-bottom: 8px;
-            padding-left: 25px;
-            position: relative;
-            word-wrap: break-word;
-        }
-
-        .pain-points li:before {
-            content: '•';
-            color: #FF6B6B;
-            position: absolute;
-            left: 10px;
-        }
-
-        .benefits-section {
-            background: rgba(0, 255, 127, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid var(--success);
-            width: 100%;
-        }
-
-        .benefits-section h4 {
-            color: var(--success);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            word-wrap: break-word;
-        }
-
-        .benefits-section ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .benefits-section li {
-            margin-bottom: 8px;
-            padding-left: 25px;
-            position: relative;
-            word-wrap: break-word;
-        }
-
-        .benefits-section li:before {
-            content: '✓';
-            color: var(--success);
-            position: absolute;
-            left: 10px;
-            font-weight: bold;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0px); }
-            50% { transform: translateX(-50%) translateY(-8px); }
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-15px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0;
-            will-change: transform, opacity;
-        }
-
-        /* Responsividade para telas muito pequenas */
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .game-container {
-                padding: 15px;
-            }
-            
-            .options-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .option {
-                padding: 15px 10px;
-                min-height: 120px;
-            }
-            
-            .option-icon {
-                font-size: 2rem;
-            }
-            
-            .achievement {
-                width: 50px;
-                height: 50px;
-                font-size: 1.1rem;
-            }
-            
-            .floating-combo-link {
-                padding: 15px 25px;
-                font-size: 1.1rem;
-                bottom: 20px;
-                width: 90%;
-                text-align: center;
-                justify-content: center;
-                white-space: normal;
-            }
-            
-            .gospel-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .bonus-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .question {
-                font-size: 1.4rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .game-container {
-                padding: 10px;
-            }
-            
-            .option {
-                padding: 12px 8px;
-                min-height: 110px;
-            }
-            
-            .option-icon {
-                font-size: 1.8rem;
-            }
-            
-            .option-text {
-                font-size: 1rem;
-            }
-            
-            .floating-combo-link {
-                font-size: 1rem;
-                padding: 12px 20px;
-            }
-            
-            .question {
-                font-size: 1.3rem;
-            }
-        }
-        
-    </style>
+  .light-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent);
+    top: 50%;
+    left: 30%;
+  }
+
+  .container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden !important;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 15px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  .subtitle {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: #B0B0D0;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  .game-container {
+    background: rgba(10, 10, 26, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  .step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .step.active {
+    display: block;
+  }
+
+  .question-container {
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .question {
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
+    margin-bottom: 15px;
+    color: var(--light);
+    position: relative;
+    display: inline-block;
+    line-height: 1.3;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  .question::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--primary), transparent);
+  }
+
+  .question-desc {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    color: #B0B0D0;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  .highlight {
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  .pain-point {
+    color: #FF6B6B;
+    font-weight: bold;
+  }
+
+  .benefit {
+    color: var(--success);
+    font-weight: bold;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .option {
+    background: rgba(20, 20, 40, 0.7);
+    border: 2px solid rgba(100, 100, 150, 0.3);
+    border-radius: 15px;
+    padding: 20px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    will-change: transform;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
+    max-width: 100%;
+  }
+
+  .option:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+  }
+
+  .option.selected {
+    background: rgba(30, 30, 60, 0.9);
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4);
+  }
+
+  .option-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    transition: var(--transition);
+  }
+
+  .option.selected .option-icon {
+    transform: scale(1.2);
+    color: var(--accent);
+  }
+
+  .option-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+  }
+
+  .option-desc {
+    font-size: 0.85rem;
+    color: #B0B0D0;
+    line-height: 1.3;
+    word-wrap: break-word;
+  }
+
+  .achievements {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .achievement {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(30, 30, 60, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    border: 2px solid rgba(100, 100, 150, 0.3);
+    transition: var(--transition);
+    position: relative;
+  }
+
+  .achievement.unlocked {
+    background: rgba(138, 43, 226, 0.2);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+  }
+
+  .achievement.unlocked::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    animation: pulse 2s infinite;
+  }
+
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(30, 30, 60, 0.7);
+    border-radius: 10px;
+    margin: 25px 0;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+  }
+
+  .feedback-message {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(138, 43, 226, 0.2);
+    border-radius: 10px;
+    border-left: 4px solid var(--accent);
+    animation: slideIn 0.3s ease;
+    display: none;
+    position: relative;
+    width: 100%;
+  }
+
+  .feedback-message.show {
+    display: block;
+  }
+
+  .result {
+    text-align: center;
+    padding: 25px 15px;
+    background: rgba(20, 20, 40, 0.7);
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+
+  .result h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 20px;
+    color: var(--success);
+    line-height: 1.3;
+    word-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  .result p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 15px;
+    color: #D0D0F0;
+    line-height: 1.5;
+    word-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  /* Botão flutuante - APENAS na última etapa */
+  .floating-combo-link {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: white;
+    padding: 18px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    gap: 12px;
+    animation: float 3s ease-in-out infinite;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    will-change: transform;
+    max-width: 90%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .floating-combo-link:hover {
+    transform: translateX(-50%) translateY(-5px);
+    box-shadow: 0 15px 40px rgba(138, 43, 226, 0.8);
+  }
+
+  .floating-combo-link::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(30deg);
+    transition: all 0.6s;
+  }
+
+  .floating-combo-link:hover::after {
+    left: 120%;
+  }
+
+  .floating-combo-link.show {
+    display: flex;
+  }
+
+  .instrument-display {
+    font-size: clamp(3rem, 10vw, 5rem);
+    margin: 25px 0;
+    animation: bounce 2s infinite;
+  }
+
+  /* Estilos para a lista de músicas gospel */
+  .gospel-section {
+    margin: 25px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .gospel-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    word-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  .gospel-title i {
+    font-size: 1.8rem;
+  }
+
+  .gospel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  .gospel-card {
+    background: rgba(30, 30, 60, 0.6);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: left;
+    border-left: 4px solid var(--primary);
+    transition: var(--transition);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .gospel-card:hover {
+    transform: translateY(-3px);
+    background: rgba(40, 40, 80, 0.7);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+  }
+
+  .gospel-card i {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .gospel-card-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .gospel-card-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--light);
+    word-wrap: break-word;
+  }
+
+  .gospel-card-artist {
+    font-size: 0.85rem;
+    color: #B0B0D0;
+    word-wrap: break-word;
+  }
+
+  .bonus-section {
+    background: rgba(138, 43, 226, 0.2);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    border-left: 4px solid var(--accent);
+    width: 100%;
+  }
+
+  .bonus-section h4 {
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    word-wrap: break-word;
+  }
+
+  .bonus-section h4 i {
+    font-size: 1.5rem;
+  }
+
+  .bonus-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    width: 100%;
+  }
+
+  .bonus-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    max-width: 100%;
+  }
+
+  .bonus-item i {
+    color: var(--success);
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Botão de avançar */
+  .next-button {
+    display: block;
+    margin: 20px auto 0;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .next-button.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .next-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+  }
+
+  .pain-points {
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    border-left: 4px solid #FF6B6B;
+    width: 100%;
+  }
+
+  .pain-points h4 {
+    color: #FF6B6B;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    word-wrap: break-word;
+  }
+
+  .pain-points ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .pain-points li {
+    margin-bottom: 8px;
+    padding-left: 25px;
+    position: relative;
+    word-wrap: break-word;
+  }
+
+  .pain-points li:before {
+    content: '•';
+    color: #FF6B6B;
+    position: absolute;
+    left: 10px;
+  }
+
+  .benefits-section {
+    background: rgba(0, 255, 127, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    border-left: 4px solid var(--success);
+    width: 100%;
+  }
+
+  .benefits-section h4 {
+    color: var(--success);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    word-wrap: break-word;
+  }
+
+  .benefits-section ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .benefits-section li {
+    margin-bottom: 8px;
+    padding-left: 25px;
+    position: relative;
+    word-wrap: break-word;
+  }
+
+  .benefits-section li:before {
+    content: '✓';
+    color: var(--success);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-15px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  /* Responsividade para telas muito pequenas */
+  @media (max-width: 480px) {
+    .container {
+      padding: 15px;
+    }
+    
+    .game-container {
+      padding: 15px;
+    }
+    
+    .options-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    
+    .option {
+      padding: 15px 10px;
+      min-height: 120px;
+    }
+    
+    .option-icon {
+      font-size: 2rem;
+    }
+    
+    .achievement {
+      width: 50px;
+      height: 50px;
+      font-size: 1.1rem;
+    }
+    
+    .floating-combo-link {
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      bottom: 20px;
+      width: 90%;
+      text-align: center;
+      justify-content: center;
+      white-space: normal;
+    }
+    
+    .gospel-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .bonus-list {
+      grid-template-columns: 1fr;
+    }
+    
+    .question {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .container {
+      padding: 10px;
+    }
+    
+    .game-container {
+      padding: 10px;
+    }
+    
+    .option {
+      padding: 12px 8px;
+      min-height: 110px;
+    }
+    
+    .option-icon {
+      font-size: 1.8rem;
+    }
+    
+    .option-text {
+      font-size: 1rem;
+    }
+    
+    .floating-combo-link {
+      font-size: 1rem;
+      padding: 12px 20px;
+    }
+    
+    .question {
+      font-size: 1.3rem;
+    }
+  }
+  
+</style>
 </head>
 <body class="no-horizontal-scroll">
-    <!-- Efeitos de luz de fundo -->
-    <div class="light light-1"></div>
-    <div class="light light-2"></div>
-    <div class="light light-3"></div>
+  <!-- Efeitos de luz de fundo -->
+  <div class="light light-1"></div>
+  <div class="light light-2"></div>
+  <div class="light light-3"></div>
+  
+  <!-- Botão flutuante (APENAS na última etapa) -->
+  <a href="#" class="floating-combo-link" id="floating-combo-link">
+    <i class="fas fa-download"></i> QUERO MINHAS PARTITURAS AGORA!
+  </a>
+  
+  <div class="container">
+    <!-- Cabeçalho apenas na primeira etapa -->
+    <header id="main-header">
+      <h1>Partituras que <span class="highlight">Realmente Funcionam</span> na Sua Mão</h1>
+      <p class="subtitle">Descubra o combo perfeito para <span class="highlight">tocar as músicas que você ama</span> - do iniciante ao profissional</p>
+      
+      <div class="benefits-section">
+        <h4><i class="fas fa-star"></i> Para músicos que querem TOCAR, não apenas estudar:</h4>
+        <ul>
+          <li>Partituras revisadas e <span class="benefit">100% precisas</span></li>
+          <li>Arranjos que <span class="benefit">soam incríveis</span> no seu instrumento</li>
+          <li>Repertório para <span class="benefit">tocar hoje mesmo</span></li>
+          <li>Do clássico ao contemporâneo - <span class="benefit">músicas que valem a pena tocar</span></li>
+        </ul>
+      </div>
+    </header>
     
-    <!-- Botão flutuante (APENAS na última etapa) -->
-    <a href="#" class="floating-combo-link" id="floating-combo-link">
-        <i class="fas fa-download"></i> QUERO MINHAS PARTITURAS AGORA!
-    </a>
-    
-    <div class="container">
-        <!-- Cabeçalho apenas na primeira etapa -->
-        <header id="main-header">
-            <h1>Partituras que <span class="highlight">Realmente Funcionam</span> na Sua Mão</h1>
-            <p class="subtitle">Descubra o combo perfeito para <span class="highlight">tocar as músicas que você ama</span> - do iniciante ao profissional</p>
-            
-            <div class="benefits-section">
-                <h4><i class="fas fa-star"></i> Para músicos que querem TOCAR, não apenas estudar:</h4>
-                <ul>
-                    <li>Partituras revisadas e <span class="benefit">100% precisas</span></li>
-                    <li>Arranjos que <span class="benefit">soam incríveis</span> no seu instrumento</li>
-                    <li>Repertório para <span class="benefit">tocar hoje mesmo</span></li>
-                    <li>Do clássico ao contemporâneo - <span class="benefit">músicas que valem a pena tocar</span></li>
-                </ul>
-            </div>
-        </header>
-        
-        <div class="game-container">
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            
-            <div class="achievements">
-                <div class="achievement" id="achievement-1">
-                    <i class="fas fa-music"></i>
-                </div>
-                <div class="achievement" id="achievement-2">
-                    <i class="fas fa-sliders-h"></i>
-                </div>
-                <div class="achievement" id="achievement-3">
-                    <i class="fas fa-compact-disc"></i>
-                </div>
-                <div class="achievement" id="achievement-4">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <div class="achievement" id="achievement-5">
-                    <i class="fas fa-trophy"></i>
-                </div>
-            </div>
-            
-            <!-- Etapa 1: Instrumento -->
-            <div class="step active" id="step-1">
-                <div class="question-container">
-                    <h2 class="question">Qual instrumento faz seu <span class="highlight">coração vibrar</span>?</h2>
-                    <p class="question-desc">Selecione o instrumento que você quer <span class="highlight">tocar com excelência</span></p>
-                </div>
-                
-                <div class="options-grid">
-                    <div class="option" data-value="violino">
-                        <div class="option-icon">🎻</div>
-                        <div class="option-text">Violino</div>
-                        <p class="option-desc">Expressividade e técnica</p>
-                    </div>
-                    <div class="option" data-value="viola">
-                        <div class="option-icon">🎻</div>
-                        <div class="option-text">Viola</div>
-                        <p class="option-desc">Som aveludado e profundo</p>
-                    </div>
-                    <div class="option" data-value="violoncelo">
-                        <div class="option-icon">🎻</div>
-                        <div class="option-text">Violoncelo</div>
-                        <p class="option-desc">Emoção em cada nota</p>
-                    </div>
-                    <div class="option" data-value="flauta">
-                        <div class="option-icon">🎵</div>
-                        <div class="option-text">Flauta</div>
-                        <p class="option-desc">Doce e melodiosa</p>
-                    </div>
-                    <div class="option" data-value="clarinete">
-                        <div class="option-icon">🎵</div>
-                        <div class="option-text">Clarinete</div>
-                        <p class="option-desc">Versatilidade sonora</p>
-                    </div>
-                    <div class="option" data-value="sax-alto">
-                        <div class="option-icon">🎷</div>
-                        <div class="option-text">Sax Alto</div>
-                        <p class="option-desc">Expressão e personalidade</p>
-                    </div>
-                    <div class="option" data-value="sax-tenor">
-                        <div class="option-icon">🎷</div>
-                        <div class="option-text">Sax Tenor</div>
-                        <p class="option-desc">Timbre marcante</p>
-                    </div>
-                    <div class="option" data-value="sax-soprano">
-                        <div class="option-icon">🎷</div>
-                        <div class="option-text">Sax Soprano</div>
-                        <p class="option-desc">Agilidade e brilho</p>
-                    </div>
-                    <div class="option" data-value="trompete">
-                        <div class="option-icon">🎺</div>
-                        <div class="option-text">Trompete</div>
-                        <p class="option-desc">Força e presença</p>
-                    </div>
-                    <div class="option" data-value="trombone">
-                        <div class="option-icon">🎺</div>
-                        <div class="option-text">Trombone</div>
-                        <p class="option-desc">Potência e slide</p>
-                    </div>
-                    <div class="option" data-value="piano">
-                        <div class="option-icon">🎹</div>
-                        <div class="option-text">Piano</div>
-                        <p class="option-desc">Harmonia completa</p>
-                    </div>
-                    <div class="option" data-value="teclado">
-                        <div class="option-icon">🎹</div>
-                        <div class="option-text">Teclado</div>
-                        <p class="option-desc">Versatilidade moderna</p>
-                    </div>
-                </div>
-                <button class="next-button" id="next-1">Escolher Repertório</button>
-            </div>
-            
-            <!-- Etapa 2: Nível de Habilidade -->
-            <div class="step" id="step-2">
-                <div class="feedback-message" id="feedback-1">
-                    <p><span class="highlight">Excelente escolha!</span> Um instrumento que merece partituras à altura!</p>
-                </div>
-                
-                <div class="question-container">
-                    <h2 class="question">Qual é o seu <span class="highlight">momento musical</span>?</h2>
-                    <p class="question-desc">Selecione sua experiência para partituras que <span class="highlight">desafiam na medida certa</span></p>
-                </div>
-                
-                <div class="options-grid">
-                    <div class="option" data-value="iniciante">
-                        <div class="option-icon"><i class="fas fa-seedling"></i></div>
-                        <div class="option-text">Descobrindo</div>
-                        <p class="option-desc">Começando minha jornada musical</p>
-                    </div>
-                    <div class="option" data-value="intermediario">
-                        <div class="option-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="option-text">Crescendo</div>
-                        <p class="option-desc">Já tenho base e quero evoluir</p>
-                    </div>
-                    <div class="option" data-value="avancado">
-                        <div class="option-icon"><i class="fas fa-tree"></i></div>
-                        <div class="option-text">Dominando</div>
-                        <p class="option-desc">Busco repertório desafiador</p>
-                    </div>
-                    <div class="option" data-value="profissional">
-                        <div class="option-icon"><i class="fas fa-award"></i></div>
-                        <div class="option-text">Excelência</div>
-                        <p class="option-desc">Performance de alto nível</p>
-                    </div>
-                </div>
-                <button class="next-button" id="next-2">Definir Estilo</button>
-            </div>
-            
-            <!-- Etapa 3: Gênero Musical -->
-            <div class="step" id="step-3">
-                <div class="feedback-message" id="feedback-2">
-                    <p><span class="highlight">Perfeito!</span> Partituras na dificuldade certa para você <span class="highlight">brilhar</span>!</p>
-                </div>
-                
-                <div class="question-container">
-                    <h2 class="question">Que tipo de música faz você <span class="highlight">perder a noção do tempo</span>?</h2>
-                    <p class="question-desc">Escolha o estilo que vai fazer cada sessão de prática ser <span class="highlight">puro prazer</span></p>
-                </div>
-                
-                <div class="options-grid">
-                    <div class="option" data-value="classico">
-                        <div class="option-icon"><i class="fas fa-music"></i></div>
-                        <div class="option-text">Clássico</div>
-                        <p class="option-desc">Obras atemporais e profundas</p>
-                    </div>
-                    <div class="option" data-value="jazz">
-                        <div class="option-icon"><i class="fas fa-music"></i></div>
-                        <div class="option-text">Jazz</div>
-                        <p class="option-desc">Improvisação e sofisticação</p>
-                    </div>
-                    <div class="option" data-value="pop-rock">
-                        <div class="option-icon"><i class="fas fa-guitar"></i></div>
-                        <div class="option-text">Pop/Rock</div>
-                        <p class="option-desc">Energia e familiaridade</p>
-                    </div>
-                    <div class="option" data-value="mpb">
-                        <div class="option-icon"><i class="fas fa-music"></i></div>
-                        <div class="option-text">MPB</div>
-                        <p class="option-desc">Alma brasileira em cada nota</p>
-                    </div>
-                    <div class="option" data-value="sertanejo">
-                        <div class="option-icon"><i class="fas fa-guitar"></i></div>
-                        <div class="option-text">Sertanejo</div>
-                        <p class="option-desc">Emoção e história</p>
-                    </div>
-                    <div class="option" data-value="gospel">
-                        <div class="option-icon"><i class="fas fa-church"></i></div>
-                        <div class="option-text">Gospel</div>
-                        <p class="option-desc">Fé e inspiração</p>
-                    </div>
-                </div>
-                <button class="next-button" id="next-3">Finalizar Perfil</button>
-            </div>
-            
-            <!-- Etapa 4: Objetivo -->
-            <div class="step" id="step-4">
-                <div class="feedback-message" id="feedback-3">
-                    <p><span class="highlight">Maravilha!</span> Música que fala com sua alma é música que vale a pena tocar!</p>
-                </div>
-                
-                <div class="question-container">
-                    <h2 class="question">O que te motupa a <span class="highlight">pegar seu instrumento</span>?</h2>
-                    <p class="question-desc">Conte seu propósito para receber partituras que <span class="highlight">realizam seus objetivos</span></p>
-                </div>
-                
-                <div class="options-grid">
-                    <div class="option" data-value="aprender">
-                        <div class="option-icon"><i class="fas fa-book-open"></i></div>
-                        <div class="option-text">Prazer Pessoal</div>
-                        <p class="option-desc">Tocar por amor à música</p>
-                    </div>
-                    <div class="option" data-value="aprimorar">
-                        <div class="option-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="option-text">Evolução Técnica</div>
-                        <p class="option-desc">Desafios que fazem crescer</p>
-                    </div>
-                    <div class="option" data-value="apresentacao">
-                        <div class="option-icon"><i class="fas fa-theater-masks"></i></div>
-                        <div class="option-text">Apresentações</div>
-                        <p class="option-desc">Repertório para brilhar no palco</p>
-                    </div>
-                    <div class="option" data-value="ensinar">
-                        <div class="option-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <div class="option-text">Ensino</div>
-                        <p class="option-desc">Material para compartilhar conhecimento</p>
-                    </div>
-                </div>
-                <button class="next-button" id="next-4">Ver Meu Combo Ideal</button>
-            </div>
-            
-            <!-- Etapa 5: Resultado -->
-            <div class="step" id="step-5">
-                <div class="feedback-message" id="feedback-4">
-                    <p><span class="highlight">Perfeito!</span> Seu perfil musical está completo e o combo ideal está pronto!</p>
-                </div>
-                
-                <div class="result">
-                    <div class="instrument-display" id="result-instrument-icon">🎻</div>
-                    <h2><span class="highlight">SEU COMBO PERFEITO ESTÁ PRONTO!</span> 🎉</h2>
-                    <p>Parabéns! Encontramos partituras que vão fazer você <span class="highlight">amar cada momento com seu instrumento</span>!</p>
-                    <p>Preparamos um combo <span class="highlight">especialmente selecionado</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
-                    <p>Este combo foi criado para músicos que buscam <span id="goal-result" class="highlight">prazer pessoal através da música</span>.</p>
-                    
-                    <div class="benefits-section">
-                        <h4><i class="fas fa-gift"></i> O que você vai receber:</h4>
-                        <ul>
-                            <li>Partituras <span class="benefit">revisadas e 100% precisas</span></li>
-                            <li>Arranjos que <span class="benefit">funcionam na prática</span></li>
-                            <li>Repertório para <span class="benefit">tocar imediatamente</span></li>
-                            <li>Músicas que <span class="benefit">valem cada minuto de prática</span></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Seção Gospel (aparece apenas se o gênero for gospel) -->
-                    <div class="gospel-section" id="gospel-section" style="display: none;">
-                        <h3 class="gospel-title"><i class="fas fa-cross"></i> Músicas Gospel Incluídas no Combo</h3>
-                        <p>Seu combo inclui estas <span class="highlight">30 músicas gospel</span> selecionadas especialmente para você:</p>
-                        
-                        <div class="gospel-grid" id="gospel-grid">
-                            <!-- As músicas serão inseridas aqui via JavaScript -->
-                        </div>
-                        
-                        <div class="bonus-section">
-                            <h4><i class="fas fa-gift"></i> Bônus Especial Incluso</h4>
-                            <p>Além das 30 músicas, você também recebe estas partituras bônus:</p>
-                            <div class="bonus-list">
-                                <div class="bonus-item">
-                                    <i class="fas fa-music"></i>
-                                    <span>PERTO QUERO ESTAR (TE LOUVAREI) - Trazendo a Arca</span>
-                                </div>
-                                <div class="bonus-item">
-                                    <i class="fas fa-music"></i>
-                                    <span>RARIDADE - Anderson Freire</span>
-                                </div>
-                                <div class="bonus-item">
-                                    <i class="fas fa-music"></i>
-                                    <span>ACLAME AO SENHOR - Diante do Trono</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="game-container">
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      
+      <div class="achievements">
+        <div class="achievement" id="achievement-1">
+          <i class="fas fa-music"></i>
         </div>
-    </div>
-
- <script>
-    // ==========================
-    // SOLUÇÃO RADICAL PARA O SCROLL FLASH
-    // Executa IMEDIATAMENTE, antes de qualquer coisa
-    // ==========================
-    (function() {
-        'use strict';
+        <div class="achievement" id="achievement-2">
+          <i class="fas fa-sliders-h"></i>
+        </div>
+        <div class="achievement" id="achievement-3">
+          <i class="fas fa-compact-disc"></i>
+        </div>
+        <div class="achievement" id="achievement-4">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="achievement" id="achievement-5">
+          <i class="fas fa-trophy"></i>
+        </div>
+      </div>
+      
+      <!-- Etapa 1: Instrumento -->
+      <div class="step active" id="step-1">
+        <div class="question-container">
+          <h2 class="question">Qual instrumento faz seu <span class="highlight">coração vibrar</span>?</h2>
+          <p class="question-desc">Selecione o instrumento que você quer <span class="highlight">tocar com excelência</span></p>
+        </div>
         
-        // Forçar viewport correta IMEDIATAMENTE
-        document.documentElement.style.overflowX = 'hidden';
-        document.documentElement.style.width = '100%';
-        document.documentElement.style.margin = '0';
-        document.documentElement.style.padding = '0';
+        <div class="options-grid">
+          <div class="option" data-value="violino">
+            <div class="option-icon">🎻</div>
+            <div class="option-text">Violino</div>
+            <p class="option-desc">Expressividade e técnica</p>
+          </div>
+          <div class="option" data-value="viola">
+            <div class="option-icon">🎻</div>
+            <div class="option-text">Viola</div>
+            <p class="option-desc">Som aveludado e profundo</p>
+          </div>
+          <div class="option" data-value="violoncelo">
+            <div class="option-icon">🎻</div>
+            <div class="option-text">Violoncelo</div>
+            <p class="option-desc">Emoção em cada nota</p>
+          </div>
+          <div class="option" data-value="flauta">
+            <div class="option-icon">🎵</div>
+            <div class="option-text">Flauta</div>
+            <p class="option-desc">Doce e melodiosa</p>
+          </div>
+          <div class="option" data-value="clarinete">
+            <div class="option-icon">🎵</div>
+            <div class="option-text">Clarinete</div>
+            <p class="option-desc">Versatilidade sonora</p>
+          </div>
+          <div class="option" data-value="sax-alto">
+            <div class="option-icon">🎷</div>
+            <div class="option-text">Sax Alto</div>
+            <p class="option-desc">Expressão e personalidade</p>
+          </div>
+          <div class="option" data-value="sax-tenor">
+            <div class="option-icon">🎷</div>
+            <div class="option-text">Sax Tenor</div>
+            <p class="option-desc">Timbre marcante</p>
+          </div>
+          <div class="option" data-value="sax-soprano">
+            <div class="option-icon">🎷</div>
+            <div class="option-text">Sax Soprano</div>
+            <p class="option-desc">Agilidade e brilho</p>
+          </div>
+          <div class="option" data-value="trompete">
+            <div class="option-icon">🎺</div>
+            <div class="option-text">Trompete</div>
+            <p class="option-desc">Força e presença</p>
+          </div>
+          <div class="option" data-value="trombone">
+            <div class="option-icon">🎺</div>
+            <div class="option-text">Trombone</div>
+            <p class="option-desc">Potência e slide</p>
+          </div>
+          <div class="option" data-value="piano">
+            <div class="option-icon">🎹</div>
+            <div class="option-text">Piano</div>
+            <p class="option-desc">Harmonia completa</p>
+          </div>
+          <div class="option" data-value="teclado">
+            <div class="option-icon">🎹</div>
+            <div class="option-text">Teclado</div>
+            <p class="option-desc">Versatilidade moderna</p>
+          </div>
+        </div>
+        <button class="next-button" id="next-1">Escolher Repertório</button>
+      </div>
+      
+      <!-- Etapa 2: Nível de Habilidade -->
+      <div class="step" id="step-2">
+        <div class="feedback-message" id="feedback-1">
+          <p><span class="highlight">Excelente escolha!</span> Um instrumento que merece partituras à altura!</p>
+        </div>
         
-        document.body.style.overflowX = 'hidden';
-        document.body.style.width = '100vw';
-        document.body.style.margin = '0';
-        document.body.style.padding = '0';
-        document.body.style.position = 'relative';
+        <div class="question-container">
+          <h2 class="question">Qual é o seu <span class="highlight">momento musical</span>?</h2>
+          <p class="question-desc">Selecione sua experiência para partituras que <span class="highlight">desafiam na medida certa</span></p>
+        </div>
         
-        console.log('Viewport bloqueada contra scroll horizontal');
+        <div class="options-grid">
+          <div class="option" data-value="iniciante">
+            <div class="option-icon"><i class="fas fa-seedling"></i></div>
+            <div class="option-text">Descobrindo</div>
+            <p class="option-desc">Começando minha jornada musical</p>
+          </div>
+          <div class="option" data-value="intermediario">
+            <div class="option-icon"><i class="fas fa-leaf"></i></div>
+            <div class="option-text">Crescendo</div>
+            <p class="option-desc">Já tenho base e quero evoluir</p>
+          </div>
+          <div class="option" data-value="avancado">
+            <div class="option-icon"><i class="fas fa-tree"></i></div>
+            <div class="option-text">Dominando</div>
+            <p class="option-desc">Busco repertório desafiador</p>
+          </div>
+          <div class="option" data-value="profissional">
+            <div class="option-icon"><i class="fas fa-award"></i></div>
+            <div class="option-text">Excelência</div>
+            <p class="option-desc">Performance de alto nível</p>
+          </div>
+        </div>
+        <button class="next-button" id="next-2">Definir Estilo</button>
+      </div>
+      
+      <!-- Etapa 3: Gênero Musical -->
+      <div class="step" id="step-3">
+        <div class="feedback-message" id="feedback-2">
+          <p><span class="highlight">Perfeito!</span> Partituras na dificuldade certa para você <span class="highlight">brilhar</span>!</p>
+        </div>
         
-        // Prevenir scroll horizontal por qualquer meio
-        window.addEventListener('scroll', function() {
-            if (window.scrollX !== 0) {
-                window.scrollTo(0, window.scrollY);
-            }
-        });
+        <div class="question-container">
+          <h2 class="question">Que tipo de música faz você <span class="highlight">perder a noção do tempo</span>?</h2>
+          <p class="question-desc">Escolha o estilo que vai fazer cada sessão de prática ser <span class="highlight">puro prazer</span></p>
+        </div>
         
-        // Prevenir touch events que possam causar scroll horizontal
-        document.addEventListener('touchmove', function(e) {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    })();
-
-    // ==========================
-    // ELEMENTOS DOM
-    // ==========================
-    const steps = document.querySelectorAll('.step');
-    const progressBar = document.getElementById('progress-bar');
-    const achievements = document.querySelectorAll('.achievement');
-    const floatingComboLink = document.getElementById('floating-combo-link');
-    const mainHeader = document.getElementById('main-header');
-    const gospelSection = document.getElementById('gospel-section');
-    const gospelGrid = document.getElementById('gospel-grid');
-    const nextButtons = document.querySelectorAll('.next-button');
-    
-    // Elementos de resultado
-    const instrumentResult = document.getElementById('instrument-result');
-    const levelResult = document.getElementById('level-result');
-    const genreResult = document.getElementById('genre-result');
-    const goalResult = document.getElementById('goal-result');
-    const resultInstrumentIcon = document.getElementById('result-instrument-icon');
-    
-    // Dados do usuário
-    const userData = {
-        instrument: '',
-        level: '',
-        genre: '',
-        goal: ''
-    };
-    
-    // Sistema SIMPLES sem travas complexas
-    let isProcessing = false;
-    
-    // ==========================
-    // LISTA DE MÚSICAS GOSPEL
-    // ==========================
-    const gospelSongs = [
-        { title: "1000 GRAUS", artist: "Renascer Praise" },
-        { title: "A BENÇÃO", artist: "Gabriel Guedes e Nívea Soares" },
-        { title: "AGNUS DEI", artist: "Gabriela Rocha" },
-        { title: "ALÉM DO RIO AZUL", artist: "Voz da Verdade" },
-        { title: "BONDADE DE DEUS", artist: "Isaías Saad" },
-        { title: "CREIO QUE TU ÉS A CURA", artist: "Gabriela Rocha" },
-        { title: "DESERTO", artist: "Maria Marçal" },
-        { title: "É TUDO SOBRE VOCÊ", artist: "Morada" },
-        { title: "ESPÍRITO SANTO", artist: "Fernanda Brum" },
-        { title: "EU TE AGRADEÇO", artist: "Preto no Branco" },
-        { title: "I SPEAK JESUS", artist: "Charity Gayle" },
-        { title: "JEOVÁ JIREH", artist: "Aline Barros" },
-        { title: "LUGAR SECRETO", artist: "Gabriela Rocha" },
-        { title: "MARANATA", artist: "Avivah" },
-        { title: "ME ATRAIU", artist: "Gabriela Rocha" },
-        { title: "NINGUÉM EXPLICA DEUS", artist: "Preto no Branco" },
-        { title: "O ESCUDO", artist: "Voz da Verdade" },
-        { title: "OCEANOS", artist: "Ana Nóbrega" },
-        { title: "PODE MORAR AQUI", artist: "Theo Rubia" },
-        { title: "PRA SEMPRE", artist: "Avivah" },
-        { title: "QUERO CONHECER JESUS", artist: "Alessandro Vilas boas" },
-        { title: "RENOVA-ME", artist: "Aline Barros" },
-        { title: "ROMPENDO EM FÉ", artist: "Comunidade da zona Sul" },
-        { title: "SANTO ESPÍRITO", artist: "Renascer Praise" },
-        { title: "TODA TERRA", artist: "Gabriela Rocha" },
-        { title: "TODAVIA MINHA ALEGRAREI", artist: "Samuel Messias" },
-        { title: "TU ÉS ÁGUAS + PURIFICADORAS", artist: "Fhop Music" },
-        { title: "VITORIOSO ÉS", artist: "Gabriel Guedes" },
-        { title: "YESHUA", artist: "Fernandinho" },
-        { title: "YESHUA", artist: "Fernandinho e Heloísa Rosa" }
-    ];
-    
-    // ==========================
-    // ÍCONES DOS INSTRUMENTOS
-    // ==========================
-    const instrumentIcons = {
-        'violino': '🎻',
-        'viola': '🎻',
-        'violoncelo': '🎻',
-        'flauta': '🎵',
-        'clarinete': '🎵',
-        'sax-alto': '🎷',
-        'sax-tenor': '🎷',
-        'sax-soprano': '🎷',
-        'trompete': '🎺',
-        'trombone': '🎺',
-        'piano': '🎹',
-        'teclado': '🎹'
-    };
-    
-    // ==========================
-    // LINKS DE COMBOS
-    // ==========================
-    const comboLinks = { /* seu objeto comboLinks completo aqui */ };
-
-    // ==========================
-    // INICIALIZAÇÃO DE STEP
-    // ==========================
-    let currentStep = 0;
-    updateProgress();
-
-    // ==========================
-    // SISTEMA SIMPLES DE CLIQUE
-    // ==========================
-    function setupSimpleClickSystem() {
-        const options = document.querySelectorAll('.option');
+        <div class="options-grid" id="genre-options">
+          <!-- As opções serão carregadas dinamicamente via JavaScript -->
+        </div>
+        <button class="next-button" id="next-3">Finalizar Perfil</button>
+      </div>
+      
+      <!-- Etapa 4: Objetivo -->
+      <div class="step" id="step-4">
+        <div class="feedback-message" id="feedback-3">
+          <p><span class="highlight">Maravilha!</span> Música que fala com sua alma é música que vale a pena tocar!</p>
+        </div>
         
-        options.forEach(option => {
-            option.addEventListener('click', function(e) {
-                if (isProcessing) return;
-                isProcessing = true;
-                
-                handleOptionSelection(this);
-                
-                setTimeout(() => {
-                    isProcessing = false;
-                }, 300);
-            });
-        });
-    }
-
-    function handleOptionSelection(option) {
-        const parentStep = option.closest('.step');
-        const optionsInStep = parentStep.querySelectorAll('.option');
-        optionsInStep.forEach(opt => opt.classList.remove('selected'));
-        option.classList.add('selected');
+        <div class="question-container">
+          <h2 class="question">O que te motupa a <span class="highlight">pegar seu instrumento</span>?</h2>
+          <p class="question-desc">Conte seu propósito para receber partituras que <span class="highlight">realizam seus objetivos</span></p>
+        </div>
         
-        const nextButton = parentStep.querySelector('.next-button');
-        nextButton.classList.add('active');
+        <div class="options-grid">
+          <div class="option" data-value="aprender">
+            <div class="option-icon"><i class="fas fa-book-open"></i></div>
+            <div class="option-text">Prazer Pessoal</div>
+            <p class="option-desc">Tocar por amor à música</p>
+          </div>
+          <div class="option" data-value="aprimorar">
+            <div class="option-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="option-text">Evolução Técnica</div>
+            <p class="option-desc">Desafios que fazem crescer</p>
+          </div>
+          <div class="option" data-value="apresentacao">
+            <div class="option-icon"><i class="fas fa-theater-masks"></i></div>
+            <div class="option-text">Apresentações</div>
+            <p class="option-desc">Repertório para brilhar no palco</p>
+          </div>
+          <div class="option" data-value="ensinar">
+            <div class="option-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="option-text">Ensino</div>
+            <p class="option-desc">Material para compartilhar conhecimento</p>
+          </div>
+        </div>
+        <button class="next-button" id="next-4">Ver Meu Combo Ideal</button>
+      </div>
+      
+      <!-- Etapa 5: Resultado -->
+      <div class="step" id="step-5">
+        <div class="feedback-message" id="feedback-4">
+          <p><span class="highlight">Perfeito!</span> Seu perfil musical está completo e o combo ideal está pronto!</p>
+        </div>
         
-        setTimeout(() => {
-            nextButton.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'center'
-            });
-        }, 100);
-        
-        const stepId = parentStep.id;
-        const value = option.getAttribute('data-value');
-        
-        if (stepId === 'step-1') { userData.instrument = value; setTimeout(() => { document.getElementById('feedback-1').classList.add('show'); }, 100); }
-        else if (stepId === 'step-2') { userData.level = value; setTimeout(() => { document.getElementById('feedback-2').classList.add('show'); }, 100); }
-        else if (stepId === 'step-3') { userData.genre = value; setTimeout(() => { document.getElementById('feedback-3').classList.add('show'); }, 100); }
-        else if (stepId === 'step-4') { userData.goal = value; setTimeout(() => { document.getElementById('feedback-4').classList.add('show'); }, 100); }
-        
-        updateAchievement(stepId);
-    }
-    
-    setupSimpleClickSystem();
-
-    // ==========================
-    // BOTÕES DE AVANÇAR
-    // ==========================
-    nextButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            if (isProcessing) return;
-            isProcessing = true;
+        <div class="result">
+          <div class="instrument-display" id="result-instrument-icon">🎻</div>
+          <h2><span class="highlight">SEU COMBO PERFEITO ESTÁ PRONTO!</span> 🎉</h2>
+          <p>Parabéns! Encontramos partituras que vão fazer você <span class="highlight">amar cada momento com seu instrumento</span>!</p>
+          <p>Preparamos um combo <span class="highlight">especialmente selecionado</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
+          <p>Este combo foi criado para músicos que buscam <span id="goal-result" class="highlight">prazer pessoal através da música</span>.</p>
+          
+          <div class="benefits-section">
+            <h4><i class="fas fa-gift"></i> O que você vai receber:</h4>
+            <ul>
+              <li>Partituras <span class="benefit">revisadas e 100% precisas</span></li>
+              <li>Arranjos que <span class="benefit">funcionam na prática</span></li>
+              <li>Repertório para <span class="benefit">tocar imediatamente</span></li>
+              <li>Músicas que <span class="benefit">valem cada minuto de prática</span></li>
+              <li><span class="benefit">Nossa equipe entrará em contato com você em até 10 minutos após a compra</span> para montar as músicas de seu gosto</li>
+            </ul>
+          </div>
+          
+          <!-- Seção Gospel (aparece apenas se o gênero for gospel) -->
+          <div class="gospel-section" id="gospel-section" style="display: none;">
+            <h3 class="gospel-title"><i class="fas fa-cross"></i> Músicas Gospel Incluídas no Combo</h3>
+            <p>Seu combo inclui estas <span class="highlight">30 músicas gospel</span> selecionadas especialmente para você:</p>
             
-            nextStep();
+            <div class="gospel-grid" id="gospel-grid">
+              <!-- As músicas serão inseridas aqui via JavaScript -->
+            </div>
             
-            setTimeout(() => {
-                isProcessing = false;
-            }, 500);
-        });
-    });
-
-    function nextStep() {
-        currentStep++;
-        
-        if (currentStep > 0) { mainHeader.style.display = 'none'; }
-        if (currentStep >= steps.length - 1) { showResult(); }
-        
-        updateProgress();
-        
-        setTimeout(() => {
-            document.querySelector('.container').scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'start' 
-            });
-        }, 100);
-    }
-
-    // ==========================
-    // BARRA DE PROGRESSO
-    // ==========================
-    function updateProgress() {
-        const progress = (currentStep / (steps.length - 1)) * 100;
-        if (progressBar) progressBar.style.width = `${progress}%`;
-        
-        steps.forEach((step, index) => {
-            if (index === currentStep) step.classList.add('active');
-            else step.classList.remove('active');
-        });
-    }
-
-    // ==========================
-    // ATUALIZAR CONQUISTAS
-    // ==========================
-    function updateAchievement(stepId) {
-        let achievementIndex;
-        switch(stepId) {
-            case 'step-1': achievementIndex = 0; break;
-            case 'step-2': achievementIndex = 1; break;
-            case 'step-3': achievementIndex = 2; break;
-            case 'step-4': achievementIndex = 3; break;
-        }
-        
-        if (achievementIndex !== undefined) {
-            achievements[achievementIndex].classList.add('unlocked');
-            const achievement = achievements[achievementIndex];
-            achievement.style.animation = 'pulse 0.5s 3';
-            setTimeout(() => { achievement.style.animation = ''; }, 1500);
-        }
-    }
-
-    // ==========================
-    // RESULTADO FINAL
-    // ==========================
-    function showResult() {
-        instrumentResult.textContent = getInstrumentName(userData.instrument);
-        levelResult.textContent = getLevelName(userData.level);
-        genreResult.textContent = getGenreName(userData.genre);
-        goalResult.textContent = getGoalName(userData.goal);
-        
-        if (instrumentIcons[userData.instrument]) resultInstrumentIcon.textContent = instrumentIcons[userData.instrument];
-        
-        if (comboLinks[userData.instrument] && comboLinks[userData.instrument][userData.genre])
-            floatingComboLink.href = comboLinks[userData.instrument][userData.genre];
-        else floatingComboLink.href = 'https://exemplo.com/combo-padrao';
-        
-        if (userData.genre === 'gospel') {
-            gospelSection.style.display = 'block';
-            populateGospelGrid();
-        } else gospelSection.style.display = 'none';
-        
-        floatingComboLink.classList.add('show');
-        achievements[4].classList.add('unlocked');
-        createConfetti();
-    }
-
-    function populateGospelGrid() {
-        gospelGrid.innerHTML = '';
-        gospelSongs.forEach(song => {
-            const card = document.createElement('div');
-            card.className = 'gospel-card';
-            card.innerHTML = `
-                <i class="fas fa-music"></i>
-                <div class="gospel-card-content">
-                    <div class="gospel-card-title">${song.title}</div>
-                    <div class="gospel-card-artist">${song.artist}</div>
+            <div class="bonus-section">
+              <h4><i class="fas fa-gift"></i> Bônus Especial Incluso</h4>
+              <p>Além das 30 músicas, você também recebe estas partituras bônus:</p>
+              <div class="bonus-list">
+                <div class="bonus-item">
+                  <i class="fas fa-music"></i>
+                  <span>PERTO QUERO ESTAR (TE LOUVAREI) - Trazendo a Arca</span>
                 </div>
-            `;
-            gospelGrid.appendChild(card);
-        });
-    }
+                <div class="bonus-item">
+                  <i class="fas fa-music"></i>
+                  <span>RARIDADE - Anderson Freire</span>
+                </div>
+                <div class="bonus-item">
+                  <i class="fas fa-music"></i>
+                  <span>ACLAME AO SENHOR - Diante do Trono</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    function createConfetti() {
-        const colors = ['#8A2BE2', '#00BFFF', '#FF00FF', '#00FF7F', '#FFFF00'];
-        const container = document.querySelector('.game-container');
-        
-        for (let i = 0; i < 30; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + '%';
-            confetti.style.top = '-10px';
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.width = Math.random() * 10 + 5 + 'px';
-            confetti.style.height = Math.random() * 10 + 5 + 'px';
-            confetti.style.opacity = '1';
-            
-            container.appendChild(confetti);
-            
-            const animation = confetti.animate([
-                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-            ], {
-                duration: Math.random() * 3000 + 2000,
-                easing: 'cubic-bezier(0.1, 0.2, 0.8, 0.9)'
-            });
-            
-            animation.onfinish = () => { confetti.remove(); };
-        }
-    }
-
-    // ==========================
-    // FUNÇÕES AUXILIARES
-    // ==========================
-    function getInstrumentName(instrument) {
-        const names = {
-            'violino': 'violino',
-            'viola': 'viola',
-            'violoncelo': 'violoncelo',
-            'flauta': 'flauta',
-            'clarinete': 'clarinete',
-            'sax-alto': 'sax alto',
-            'sax-tenor': 'sax tenor',
-            'sax-soprano': 'sax soprano',
-            'trompete': 'trompete',
-            'trombone': 'trombone',
-            'piano': 'piano',
-            'teclado': 'teclado'
-        };
-        return names[instrument] || instrument;
-    }
+<script>
+  // ==========================
+  // SOLUÇÃO RADICAL PARA O SCROLL FLASH
+  // Executa IMEDIATAMENTE, antes de qualquer coisa
+  // ==========================
+  (function() {
+    'use strict';
     
-    function getLevelName(level) {
-        const names = {
-            'iniciante': 'descobrindo',
-            'intermediario': 'crescendo',
-            'avancado': 'dominando',
-            'profissional': 'excelência'
-        };
-        return names[level] || level;
-    }
+    // Forçar viewport correta IMEDIATAMENTE
+    document.documentElement.style.overflowX = 'hidden';
+    document.documentElement.style.width = '100%';
+    document.documentElement.style.margin = '0';
+    document.documentElement.style.padding = '0';
     
-    function getGenreName(genre) {
-        const names = {
-            'classico': 'música clássica',
-            'jazz': 'jazz',
-            'pop-rock': 'pop/rock',
-            'mpb': 'MPB',
-            'sertanejo': 'sertanejo',
-            'gospel': 'música gospel'
-        };
-        return names[genre] || genre;
-    }
+    document.body.style.overflowX = 'hidden';
+    document.body.style.width = '100vw';
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.body.style.position = 'relative';
     
-    function getGoalName(goal) {
-        const names = {
-            'aprender': 'prazer pessoal através da música',
-            'aprimorar': 'evolução técnica',
-            'apresentacao': 'apresentações',
-            'ensinar': 'ensino'
-        };
-        return names[goal] || goal;
-    }
-
-    // ==========================
-    // GARANTIR QUE NÃO HÁ SCROLL HORIZONTAL
-    // ==========================
-    window.addEventListener('load', function() {
-        document.documentElement.style.overflowX = 'hidden';
-        document.body.style.overflowX = 'hidden';
-        
-        if (window.scrollX !== 0) {
-            window.scrollTo(0, window.scrollY);
-        }
-
-        // Se existir barra de progresso, esconde no final do carregamento
-        const progressContainer = document.querySelector('.progress-container');
-        if (progressContainer) {
-            progressContainer.style.display = 'none';
-        }
-        
-        console.log('Página totalmente carregada - scroll horizontal bloqueado e barra de progresso escondida');
+    console.log('Viewport bloqueada contra scroll horizontal');
+    
+    // Prevenir scroll horizontal por qualquer meio
+    window.addEventListener('scroll', function() {
+      if (window.scrollX !== 0) {
+        window.scrollTo(0, window.scrollY);
+      }
     });
+    
+    // Prevenir touch events que possam causar scroll horizontal
+    document.addEventListener('touchmove', function(e) {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  })();
 
-    setInterval(function() {
-        if (window.scrollX !== 0) {
-            window.scrollTo(0, window.scrollY);
-        }
+  // ==========================
+  // ELEMENTOS DOM
+  // ==========================
+  const steps = document.querySelectorAll('.step');
+  const progressBar = document.getElementById('progress-bar');
+  const achievements = document.querySelectorAll('.achievement');
+  const floatingComboLink = document.getElementById('floating-combo-link');
+  const mainHeader = document.getElementById('main-header');
+  const gospelSection = document.getElementById('gospel-section');
+  const gospelGrid = document.getElementById('gospel-grid');
+  const nextButtons = document.querySelectorAll('.next-button');
+  const genreOptions = document.getElementById('genre-options');
+  
+  // Elementos de resultado
+  const instrumentResult = document.getElementById('instrument-result');
+  const levelResult = document.getElementById('level-result');
+  const genreResult = document.getElementById('genre-result');
+  const goalResult = document.getElementById('goal-result');
+  const resultInstrumentIcon = document.getElementById('result-instrument-icon');
+  
+  // Dados do usuário
+  const userData = {
+    instrument: '',
+    level: '',
+    genre: '',
+    goal: ''
+  };
+  
+  // Sistema SIMPLES sem travas complexas
+  let isProcessing = false;
+  
+  // ==========================
+  // LISTA DE MÚSICAS GOSPEL
+  // ==========================
+  const gospelSongs = [
+    { title: "1000 GRAUS", artist: "Renascer Praise" },
+    { title: "A BENÇÃO", artist: "Gabriel Guedes e Nívea Soares" },
+    { title: "AGNUS DEI", artist: "Gabriela Rocha" },
+    { title: "ALÉM DO RIO AZUL", artist: "Voz da Verdade" },
+    { title: "BONDADE DE DEUS", artist: "Isaías Saad" },
+    { title: "CREIO QUE TU ÉS A CURA", artist: "Gabriela Rocha" },
+    { title: "DESERTO", artist: "Maria Marçal" },
+    { title: "É TUDO SOBRE VOCÊ", artist: "Morada" },
+    { title: "ESPÍRITO SANTO", artist: "Fernanda Brum" },
+    { title: "EU TE AGRADEÇO", artist: "Preto no Branco" },
+    { title: "I SPEAK JESUS", artist: "Charity Gayle" },
+    { title: "JEOVÁ JIREH", artist: "Aline Barros" },
+    { title: "LUGAR SECRETO", artist: "Gabriela Rocha" },
+    { title: "MARANATA", artist: "Avivah" },
+    { title: "ME ATRAIU", artist: "Gabriela Rocha" },
+    { title: "NINGUÉM EXPLICA DEUS", artist: "Preto no Branco" },
+    { title: "O ESCUDO", artist: "Voz da Verdade" },
+    { title: "OCEANOS", artist: "Ana Nóbrega" },
+    { title: "PODE MORAR AQUI", artist: "Theo Rubia" },
+    { title: "PRA SEMPRE", artist: "Avivah" },
+    { title: "QUERO CONHECER JESUS", artist: "Alessandro Vilas boas" },
+    { title: "RENOVA-ME", artist: "Aline Barros" },
+    { title: "ROMPENDO EM FÉ", artist: "Comunidade da zona Sul" },
+    { title: "SANTO ESPÍRITO", artist: "Renascer Praise" },
+    { title: "TODA TERRA", artist: "Gabriela Rocha" },
+    { title: "TODAVIA MINHA ALEGRAREI", artist: "Samuel Messias" },
+    { title: "TU ÉS ÁGUAS + PURIFICADORAS", artist: "Fhop Music" },
+    { title: "VITORIOSO ÉS", artist: "Gabriel Guedes" },
+    { title: "YESHUA", artist: "Fernandinho" },
+    { title: "YESHUA", artist: "Fernandinho e Heloísa Rosa" }
+  ];
+  
+  // ==========================
+  // ÍCONES DOS INSTRUMENTOS
+  // ==========================
+  const instrumentIcons = {
+    'violino': '🎻',
+    'viola': '🎻',
+    'violoncelo': '🎻',
+    'flauta': '🎵',
+    'clarinete': '🎵',
+    'sax-alto': '🎷',
+    'sax-tenor': '🎷',
+    'sax-soprano': '🎷',
+    'trompete': '🎺',
+    'trombone': '🎺',
+    'piano': '🎹',
+    'teclado': '🎹'
+  };
+  
+  // ==========================
+  // OPÇÕES DE GÊNERO POR INSTRUMENTO
+  // ==========================
+  const genreOptionsByInstrument = {
+    'violino': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'viola': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'violoncelo': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'flauta': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'clarinete': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'sax-alto': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'sax-tenor': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'sax-soprano': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' }
+    ],
+    'trompete': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'trombone': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'piano': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ],
+    'teclado': [
+      { value: 'gospel', icon: '<i class="fas fa-church"></i>', text: 'Gospel', desc: 'Fé e inspiração' },
+      { value: 'classico', icon: '<i class="fas fa-music"></i>', text: 'Clássico', desc: 'Obras atemporais e profundas' },
+      { value: 'jazz', icon: '<i class="fas fa-music"></i>', text: 'Jazz', desc: 'Improvisação e sofisticação' },
+      { value: 'pop-rock', icon: '<i class="fas fa-guitar"></i>', text: 'Pop/Rock', desc: 'Energia e familiaridade' },
+      { value: 'mpb', icon: '<i class="fas fa-music"></i>', text: 'MPB', desc: 'Alma brasileira em cada nota' },
+      { value: 'sertanejo', icon: '<i class="fas fa-guitar"></i>', text: 'Sertanejo', desc: 'Emoção e história' }
+    ]
+  };
+  
+  // ==========================
+  // LINKS DE COMBOS
+  // ==========================
+  const comboLinks = {
+    'violino': {
+      'gospel': 'https://exemplo.com/combo-violino-gospel',
+      'classico': 'https://exemplo.com/combo-violino-classico',
+      'jazz': 'https://exemplo.com/combo-violino-jazz',
+      'pop-rock': 'https://exemplo.com/combo-violino-pop-rock',
+      'mpb': 'https://exemplo.com/combo-violino-mpb',
+      'sertanejo': 'https://exemplo.com/combo-violino-sertanejo'
+    },
+    'viola': {
+      'gospel': 'https://exemplo.com/combo-viola-gospel',
+      'classico': 'https://exemplo.com/combo-viola-classico',
+      'jazz': 'https://exemplo.com/combo-viola-jazz',
+      'pop-rock': 'https://exemplo.com/combo-viola-pop-rock',
+      'mpb': 'https://exemplo.com/combo-viola-mpb',
+      'sertanejo': 'https://exemplo.com/combo-viola-sertanejo'
+    },
+    'violoncelo': {
+      'gospel': 'https://exemplo.com/combo-violoncelo-gospel',
+      'classico': 'https://exemplo.com/combo-violoncelo-classico',
+      'jazz': 'https://exemplo.com/combo-violoncelo-jazz',
+      'pop-rock': 'https://exemplo.com/combo-violoncelo-pop-rock',
+      'mpb': 'https://exemplo.com/combo-violoncelo-mpb',
+      'sertanejo': 'https://exemplo.com/combo-violoncelo-sertanejo'
+    },
+    'flauta': {
+      'gospel': 'https://exemplo.com/combo-flauta-gospel',
+      'classico': 'https://exemplo.com/combo-flauta-classico',
+      'jazz': 'https://exemplo.com/combo-flauta-jazz',
+      'pop-rock': 'https://exemplo.com/combo-flauta-pop-rock',
+      'mpb': 'https://exemplo.com/combo-flauta-mpb',
+      'sertanejo': 'https://exemplo.com/combo-flauta-sertanejo'
+    },
+    'clarinete': {
+      'gospel': 'https://exemplo.com/combo-clarinete-gospel',
+      'classico': 'https://exemplo.com/combo-clarinete-classico',
+      'jazz': 'https://exemplo.com/combo-clarinete-jazz',
+      'pop-rock': 'https://exemplo.com/combo-clarinete-pop-rock',
+      'mpb': 'https://exemplo.com/combo-clarinete-mpb',
+      'sertanejo': 'https://exemplo.com/combo-clarinete-sertanejo'
+    },
+    'sax-alto': {
+      'gospel': 'https://exemplo.com/combo-sax-alto-gospel',
+      'classico': 'https://exemplo.com/combo-sax-alto-classico',
+      'jazz': 'https://exemplo.com/combo-sax-alto-jazz',
+      'pop-rock': 'https://exemplo.com/combo-sax-alto-pop-rock',
+      'mpb': 'https://exemplo.com/combo-sax-alto-mpb',
+      'sertanejo': 'https://exemplo.com/combo-sax-alto-sertanejo'
+    },
+    'sax-tenor': {
+      'gospel': 'https://exemplo.com/combo-sax-tenor-gospel',
+      'classico': 'https://exemplo.com/combo-sax-tenor-classico',
+      'jazz': 'https://exemplo.com/combo-sax-tenor-jazz',
+      'pop-rock': 'https://exemplo.com/combo-sax-tenor-pop-rock',
+      'mpb': 'https://exemplo.com/combo-sax-tenor-mpb',
+      'sertanejo': 'https://exemplo.com/combo-sax-tenor-sertanejo'
+    },
+    'sax-soprano': {
+      'gospel': 'https://exemplo.com/combo-sax-soprano-gospel'
+    },
+    'trompete': {
+      'gospel': 'https://exemplo.com/combo-trompete-gospel',
+      'classico': 'https://exemplo.com/combo-trompete-classico',
+      'jazz': 'https://exemplo.com/combo-trompete-jazz',
+      'pop-rock': 'https://exemplo.com/combo-trompete-pop-rock',
+      'mpb': 'https://exemplo.com/combo-trompete-mpb',
+      'sertanejo': 'https://exemplo.com/combo-trompete-sertanejo'
+    },
+    'trombone': {
+      'gospel': 'https://exemplo.com/combo-trombone-gospel',
+      'classico': 'https://exemplo.com/combo-trombone-classico',
+      'jazz': 'https://exemplo.com/combo-trombone-jazz',
+      'pop-rock': 'https://exemplo.com/combo-trombone-pop-rock',
+      'mpb': 'https://exemplo.com/combo-trombone-mpb',
+      'sertanejo': 'https://exemplo.com/combo-trombone-sertanejo'
+    },
+    'piano': {
+      'gospel': 'https://exemplo.com/combo-piano-gospel',
+      'classico': 'https://exemplo.com/combo-piano-classico',
+      'jazz': 'https://exemplo.com/combo-piano-jazz',
+      'pop-rock': 'https://exemplo.com/combo-piano-pop-rock',
+      'mpb': 'https://exemplo.com/combo-piano-mpb',
+      'sertanejo': 'https://exemplo.com/combo-piano-sertanejo'
+    },
+    'teclado': {
+      'gospel': 'https://exemplo.com/combo-teclado-gospel',
+      'classico': 'https://exemplo.com/combo-teclado-classico',
+      'jazz': 'https://exemplo.com/combo-teclado-jazz',
+      'pop-rock': 'https://exemplo.com/combo-teclado-pop-rock',
+      'mpb': 'https://exemplo.com/combo-teclado-mpb',
+      'sertanejo': 'https://exemplo.com/combo-teclado-sertanejo'
+    }
+  };
+
+  // ==========================
+  // INICIALIZAÇÃO DE STEP
+  // ==========================
+  let currentStep = 0;
+  updateProgress();
+
+  // ==========================
+  // SISTEMA SIMPLES DE CLIQUE
+  // ==========================
+  function setupSimpleClickSystem() {
+    const options = document.querySelectorAll('.option');
+    
+    options.forEach(option => {
+      option.addEventListener('click', function(e) {
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        handleOptionSelection(this);
+        
+        setTimeout(() => {
+          isProcessing = false;
+        }, 300);
+      });
+    });
+  }
+
+  function handleOptionSelection(option) {
+    const parentStep = option.closest('.step');
+    const optionsInStep = parentStep.querySelectorAll('.option');
+    optionsInStep.forEach(opt => opt.classList.remove('selected'));
+    option.classList.add('selected');
+    
+    const nextButton = parentStep.querySelector('.next-button');
+    nextButton.classList.add('active');
+    
+    setTimeout(() => {
+      nextButton.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center'
+      });
     }, 100);
+    
+    const stepId = parentStep.id;
+    const value = option.getAttribute('data-value');
+    
+    if (stepId === 'step-1') { 
+      userData.instrument = value; 
+      setTimeout(() => { 
+        document.getElementById('feedback-1').classList.add('show'); 
+      }, 100); 
+      
+      // Carregar opções de gênero específicas para o instrumento selecionado
+      loadGenreOptions();
+    }
+    else if (stepId === 'step-2') { 
+      userData.level = value; 
+      setTimeout(() => { 
+        document.getElementById('feedback-2').classList.add('show'); 
+      }, 100); 
+    }
+    else if (stepId === 'step-3') { 
+      userData.genre = value; 
+      setTimeout(() => { 
+        document.getElementById('feedback-3').classList.add('show'); 
+      }, 100); 
+    }
+    else if (stepId === 'step-4') { 
+      userData.goal = value; 
+      setTimeout(() => { 
+        document.getElementById('feedback-4').classList.add('show'); 
+      }, 100); 
+    }
+    
+    updateAchievement(stepId);
+  }
+  
+  function loadGenreOptions() {
+    if (!userData.instrument) return;
+    
+    const options = genreOptionsByInstrument[userData.instrument] || [];
+    
+    genreOptions.innerHTML = '';
+    
+    options.forEach(option => {
+      const optionElement = document.createElement('div');
+      optionElement.className = 'option';
+      optionElement.setAttribute('data-value', option.value);
+      optionElement.innerHTML = `
+        <div class="option-icon">${option.icon}</div>
+        <div class="option-text">${option.text}</div>
+        <p class="option-desc">${option.desc}</p>
+      `;
+      genreOptions.appendChild(optionElement);
+    });
+    
+    // Reconfigurar os event listeners para as novas opções
+    const newOptions = genreOptions.querySelectorAll('.option');
+    newOptions.forEach(option => {
+      option.addEventListener('click', function(e) {
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        handleOptionSelection(this);
+        
+        setTimeout(() => {
+          isProcessing = false;
+        }, 300);
+      });
+    });
+  }
+  
+  setupSimpleClickSystem();
+
+  // ==========================
+  // BOTÕES DE AVANÇAR
+  // ==========================
+  nextButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      if (isProcessing) return;
+      isProcessing = true;
+      
+      nextStep();
+      
+      setTimeout(() => {
+        isProcessing = false;
+      }, 500);
+    });
+  });
+
+  function nextStep() {
+    currentStep++;
+    
+    if (currentStep > 0) { mainHeader.style.display = 'none'; }
+    if (currentStep >= steps.length - 1) { showResult(); }
+    
+    updateProgress();
+    
+    setTimeout(() => {
+      document.querySelector('.container').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }, 100);
+  }
+
+  // ==========================
+  // BARRA DE PROGRESSO
+  // ==========================
+  function updateProgress() {
+    const progress = (currentStep / (steps.length - 1)) * 100;
+    if (progressBar) progressBar.style.width = `${progress}%`;
+    
+    steps.forEach((step, index) => {
+      if (index === currentStep) step.classList.add('active');
+      else step.classList.remove('active');
+    });
+  }
+
+  // ==========================
+  // ATUALIZAR CONQUISTAS
+  // ==========================
+  function updateAchievement(stepId) {
+    let achievementIndex;
+    switch(stepId) {
+      case 'step-1': achievementIndex = 0; break;
+      case 'step-2': achievementIndex = 1; break;
+      case 'step-3': achievementIndex = 2; break;
+      case 'step-4': achievementIndex = 3; break;
+    }
+    
+    if (achievementIndex !== undefined) {
+      achievements[achievementIndex].classList.add('unlocked');
+      const achievement = achievements[achievementIndex];
+      achievement.style.animation = 'pulse 0.5s 3';
+      setTimeout(() => { achievement.style.animation = ''; }, 1500);
+    }
+  }
+
+  // ==========================
+  // RESULTADO FINAL
+  // ==========================
+  function showResult() {
+    instrumentResult.textContent = getInstrumentName(userData.instrument);
+    levelResult.textContent = getLevelName(userData.level);
+    genreResult.textContent = getGenreName(userData.genre);
+    goalResult.textContent = getGoalName(userData.goal);
+    
+    if (instrumentIcons[userData.instrument]) resultInstrumentIcon.textContent = instrumentIcons[userData.instrument];
+    
+    if (comboLinks[userData.instrument] && comboLinks[userData.instrument][userData.genre])
+      floatingComboLink.href = comboLinks[userData.instrument][userData.genre];
+    else floatingComboLink.href = 'https://exemplo.com/combo-padrao';
+    
+    if (userData.genre === 'gospel') {
+      gospelSection.style.display = 'block';
+      populateGospelGrid();
+    } else gospelSection.style.display = 'none';
+    
+    floatingComboLink.classList.add('show');
+    achievements[4].classList.add('unlocked');
+    createConfetti();
+  }
+
+  function populateGospelGrid() {
+    gospelGrid.innerHTML = '';
+    gospelSongs.forEach(song => {
+      const card = document.createElement('div');
+      card.className = 'gospel-card';
+      card.innerHTML = `
+        <i class="fas fa-music"></i>
+        <div class="gospel-card-content">
+          <div class="gospel-card-title">${song.title}</div>
+          <div class="gospel-card-artist">${song.artist}</div>
+        </div>
+      `;
+      gospelGrid.appendChild(card);
+    });
+  }
+
+  function createConfetti() {
+    const colors = ['#8A2BE2', '#00BFFF', '#FF00FF', '#00FF7F', '#FFFF00'];
+    const container = document.querySelector('.game-container');
+    
+    for (let i = 0; i < 30; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.top = '-10px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.width = Math.random() * 10 + 5 + 'px';
+      confetti.style.height = Math.random() * 10 + 5 + 'px';
+      confetti.style.opacity = '1';
+      
+      container.appendChild(confetti);
+      
+      const animation = confetti.animate([
+        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+      ], {
+        duration: Math.random() * 3000 + 2000,
+        easing: 'cubic-bezier(0.1, 0.2, 0.8, 0.9)'
+      });
+      
+      animation.onfinish = () => { confetti.remove(); };
+    }
+  }
+
+  // ==========================
+  // FUNÇÕES AUXILIARES
+  // ==========================
+  function getInstrumentName(instrument) {
+    const names = {
+      'violino': 'violino',
+      'viola': 'viola',
+      'violoncelo': 'violoncelo',
+      'flauta': 'flauta',
+      'clarinete': 'clarinete',
+      'sax-alto': 'sax alto',
+      'sax-tenor': 'sax tenor',
+      'sax-soprano': 'sax soprano',
+      'trompete': 'trompete',
+      'trombone': 'trombone',
+      'piano': 'piano',
+      'teclado': 'teclado'
+    };
+    return names[instrument] || instrument;
+  }
+  
+  function getLevelName(level) {
+    const names = {
+      'iniciante': 'descobrindo',
+      'intermediario': 'crescendo',
+      'avancado': 'dominando',
+      'profissional': 'excelência'
+    };
+    return names[level] || level;
+  }
+  
+  function getGenreName(genre) {
+    const names = {
+      'classico': 'música clássica',
+      'jazz': 'jazz',
+      'pop-rock': 'pop/rock',
+      'mpb': 'MPB',
+      'sertanejo': 'sertanejo',
+      'gospel': 'música gospel'
+    };
+    return names[genre] || genre;
+  }
+  
+  function getGoalName(goal) {
+    const names = {
+      'aprender': 'prazer pessoal através da música',
+      'aprimorar': 'evolução técnica',
+      'apresentacao': 'apresentações',
+      'ensinar': 'ensino'
+    };
+    return names[goal] || goal;
+  }
+
+  // ==========================
+  // GARANTIR QUE NÃO HÁ SCROLL HORIZONTAL
+  // ==========================
+  window.addEventListener('load', function() {
+    document.documentElement.style.overflowX = 'hidden';
+    document.body.style.overflowX = 'hidden';
+    
+    if (window.scrollX !== 0) {
+      window.scrollTo(0, window.scrollY);
+    }
+
+    // Se existir barra de progresso, esconde no final do carregamento
+    const progressContainer = document.querySelector('.progress-container');
+    if (progressContainer) {
+      progressContainer.style.display = 'none';
+    }
+    
+    console.log('Página totalmente carregada - scroll horizontal bloqueado e barra de progresso escondida');
+  });
+
+  setInterval(function() {
+    if (window.scrollX !== 0) {
+      window.scrollTo(0, window.scrollY);
+    }
+  }, 100);
 </script>
 
 </body>
