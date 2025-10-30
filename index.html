@@ -413,6 +413,51 @@ src="https://www.facebook.com/tr?id=1430390114852950&ev=PageView&noscript=1"
             word-wrap: break-word;
             padding: 0 10px;
         }
+        .contact-highlight {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));
+    border: 2px solid #FFD700;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #FFD700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    animation: pulse-gold 2s infinite;
+}
+
+.contact-highlight i {
+    font-size: 1.5rem;
+    color: #FFD700;
+}
+
+.contact-highlight strong {
+    color: #FFA500;
+    font-weight: 700;
+}
+
+@keyframes pulse-gold {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Responsividade para o destaque de contato */
+@media (max-width: 480px) {
+    .contact-highlight {
+        flex-direction: column;
+        gap: 8px;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+    
+    .contact-highlight i {
+        font-size: 1.3rem;
+    }
+}
 
         /* Botão flutuante - APENAS na última etapa */
         .floating-combo-link {
@@ -843,7 +888,7 @@ src="https://www.facebook.com/tr?id=1430390114852950&ev=PageView&noscript=1"
             <p class="subtitle">Descubra o combo perfeito para <span class="highlight">tocar as músicas que você ama</span> - do iniciante ao profissional</p>
             
             <div class="benefits-section">
-                <h4><i class="fas fa-star"></i> Para músicos que querem TOCAR, não apenas estudar:</h4>
+                <h4><i class="fas fa-star"></i> Para músicos exigentes:</h4>
                 <ul>
                     <li>Partituras revisadas e <span class="benefit">100% precisas</span></li>
                     <li>Arranjos que <span class="benefit">soam incríveis</span> no seu instrumento</li>
@@ -1036,61 +1081,65 @@ src="https://www.facebook.com/tr?id=1430390114852950&ev=PageView&noscript=1"
                 </div>
                 <button class="next-button" id="next-4">Ver Meu Combo Ideal</button>
             </div>
+<!-- Etapa 5: Resultado -->
+<div class="step" id="step-5">
+    <div class="feedback-message" id="feedback-4">
+        <p><span class="highlight">Perfeito!</span> Seu perfil musical está completo e o combo ideal está pronto!</p>
+    </div>
+    
+    <div class="result">
+        <div class="instrument-display" id="result-instrument-icon">🎻</div>
+        <h2><span class="highlight">SEU COMBO PERFEITO ESTÁ PRONTO!</span> 🎉</h2>
+        <p>Parabéns! Encontramos partituras que vão fazer você <span class="highlight">amar cada momento com seu instrumento</span>!</p>
+        <p>Preparamos um combo <span class="highlight">especialmente selecionado</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
+        <p>Este combo foi criado para músicos que buscam <span id="goal-result" class="highlight">prazer pessoal através da música</span>.</p>
+        
+        <!-- Destaque do contato da equipe -->
+        <div class="contact-highlight">
+            <i class="fas fa-bolt"></i>
+            <span><strong>Nossa equipe entrará em contato com você em até 10 minutos após a compra</strong> para montar as músicas de seu gosto!</span>
+        </div>
+        
+        <div class="benefits-section">
+            <h4><i class="fas fa-gift"></i> O que você vai receber:</h4>
+            <ul>
+                <li>Partituras <span class="benefit">revisadas e 100% precisas</span></li>
+                <li>Arranjos que <span class="benefit">funcionam na prática</span></li>
+                <li>Repertório para <span class="benefit">tocar imediatamente</span></li>
+                <li>Músicas que <span class="benefit">valem cada minuto de prática</span></li>
+            </ul>
+        </div>
+        
+        <!-- Seção Gospel (aparece apenas se o gênero for gospel) -->
+        <div class="gospel-section" id="gospel-section" style="display: none;">
+            <h3 class="gospel-title"><i class="fas fa-cross"></i> Músicas Gospel Incluídas no Combo</h3>
+            <p>Seu combo inclui estas <span class="highlight">30 músicas gospel</span> selecionadas especialmente para você:</p>
             
-            <!-- Etapa 5: Resultado -->
-            <div class="step" id="step-5">
-                <div class="feedback-message" id="feedback-4">
-                    <p><span class="highlight">Perfeito!</span> Seu perfil musical está completo e o combo ideal está pronto!</p>
-                </div>
-                
-                <div class="result">
-                    <div class="instrument-display" id="result-instrument-icon">🎻</div>
-                    <h2><span class="highlight">SEU COMBO PERFEITO ESTÁ PRONTO!</span> 🎉</h2>
-                    <p>Parabéns! Encontramos partituras que vão fazer você <span class="highlight">amar cada momento com seu instrumento</span>!</p>
-                    <p>Preparamos um combo <span class="highlight">especialmente selecionado</span> para <span id="instrument-result" class="highlight">violino</span> no nível <span id="level-result" class="highlight">intermediário</span> com foco em <span id="genre-result" class="highlight">música clássica</span>.</p>
-                    <p>Este combo foi criado para músicos que buscam <span id="goal-result" class="highlight">prazer pessoal através da música</span>.</p>
-                    
-                    <div class="benefits-section">
-                        <h4><i class="fas fa-gift"></i> O que você vai receber:</h4>
-                        <ul>
-                            <li>Partituras <span class="benefit">revisadas e 100% precisas</span></li>
-                            <li>Arranjos que <span class="benefit">funcionam na prática</span></li>
-                            <li>Repertório para <span class="benefit">tocar imediatamente</span></li>
-                            <li>Músicas que <span class="benefit">valem cada minuto de prática</span></li>
-                            <li><span class="benefit">Nossa equipe entrará em contato com você em até 10 minutos após a compra</span> para montar as músicas de seu gosto</li>
-                        </ul>
+            <div class="gospel-grid" id="gospel-grid">
+                <!-- As músicas serão inseridas aqui via JavaScript -->
+            </div>
+            
+            <div class="bonus-section">
+                <h4><i class="fas fa-gift"></i> Bônus Especial Incluso</h4>
+                <p>Além das 30 músicas, você também recebe estas partituras bônus:</p>
+                <div class="bonus-list">
+                    <div class="bonus-item">
+                        <i class="fas fa-music"></i>
+                        <span>PERTO QUERO ESTAR (TE LOUVAREI) - Trazendo a Arca</span>
                     </div>
-                    
-                    <!-- Seção Gospel (aparece apenas se o gênero for gospel) -->
-                    <div class="gospel-section" id="gospel-section" style="display: none;">
-                        <h3 class="gospel-title"><i class="fas fa-cross"></i> Músicas Gospel Incluídas no Combo</h3>
-                        <p>Seu combo inclui estas <span class="highlight">30 músicas gospel</span> selecionadas especialmente para você:</p>
-                        
-                        <div class="gospel-grid" id="gospel-grid">
-                            <!-- As músicas serão inseridas aqui via JavaScript -->
-                        </div>
-                        
-                        <div class="bonus-section">
-                            <h4><i class="fas fa-gift"></i> Bônus Especial Incluso</h4>
-                            <p>Além das 30 músicas, você também recebe estas partituras bônus:</p>
-                            <div class="bonus-list">
-                                <div class="bonus-item">
-                                    <i class="fas fa-music"></i>
-                                    <span>PERTO QUERO ESTAR (TE LOUVAREI) - Trazendo a Arca</span>
-                                </div>
-                                <div class="bonus-item">
-                                    <i class="fas fa-music"></i>
-                                    <span>RARIDADE - Anderson Freire</span>
-                                </div>
-                                <div class="bonus-item">
-                                    <i class="fas fa-music"></i>
-                                    <span>ACLAME AO SENHOR - Diante do Trono</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="bonus-item">
+                        <i class="fas fa-music"></i>
+                        <span>RARIDADE - Anderson Freire</span>
+                    </div>
+                    <div class="bonus-item">
+                        <i class="fas fa-music"></i>
+                        <span>ACLAME AO SENHOR - Diante do Trono</span>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 
