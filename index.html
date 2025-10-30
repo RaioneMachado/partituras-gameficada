@@ -36,11 +36,18 @@ src="https://www.facebook.com/tr?id=1430390114852950&ev=PageView&noscript=1"
             max-width: 100% !important;
             position: relative;
             -webkit-overflow-scrolling: touch;
+            overflow-y: hidden; /* Impedir scroll vertical inicialmente */
         }
 
         body {
-            overflow-y: auto;
+            overflow-y: hidden; /* Começar com scroll vertical desativado */
             overflow-x: hidden !important;
+            height: 100vh; /* Garantir que o body ocupe toda a altura da tela */
+        }
+
+        /* Classe para ativar o scroll vertical após o carregamento */
+        body.loaded {
+            overflow-y: auto;
         }
 
         :root {
@@ -1088,39 +1095,20 @@ src="https://www.facebook.com/tr?id=1430390114852950&ev=PageView&noscript=1"
     </div>
 
     <script>
-        // SOLUÇÃO RADICAL PARA O SCROLL FLASH
-        // Executa IMEDIATAMENTE, antes de qualquer coisa
-        (function() {
-            'use strict';
-            
-            // Forçar viewport correta IMEDIATAMENTE
-            document.documentElement.style.overflowX = 'hidden';
-            document.documentElement.style.width = '100%';
-            document.documentElement.style.margin = '0';
-            document.documentElement.style.padding = '0';
-            
-            document.body.style.overflowX = 'hidden';
-            document.body.style.width = '100vw';
-            document.body.style.margin = '0';
-            document.body.style.padding = '0';
-            document.body.style.position = 'relative';
-            
-            console.log('Viewport bloqueada contra scroll horizontal');
-            
-            // Prevenir scroll horizontal por qualquer meio
-            window.addEventListener('scroll', function() {
-                if (window.scrollX !== 0) {
-                    window.scrollTo(0, window.scrollY);
-                }
-            });
-            
-            // Prevenir touch events que possam causar scroll horizontal
-            document.addEventListener('touchmove', function(e) {
-                if (e.touches.length > 1) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
-        })();
+        // SOLUÇÃO PARA A BARRA DE ROLAGEM VERTICAL TEMPORÁRIA
+        // Inicialmente desativar o scroll vertical
+        document.documentElement.style.overflowY = 'hidden';
+        document.body.style.overflowY = 'hidden';
+        
+        // Ativar o scroll vertical após o carregamento completo
+        window.addEventListener('load', function() {
+            // Pequeno delay para garantir que tudo foi carregado
+            setTimeout(function() {
+                document.documentElement.style.overflowY = 'auto';
+                document.body.style.overflowY = 'auto';
+                document.body.classList.add('loaded');
+            }, 100);
+        });
 
         // Elementos DOM
         const steps = document.querySelectorAll('.step');
