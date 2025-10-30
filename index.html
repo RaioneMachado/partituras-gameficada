@@ -1129,519 +1129,400 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
         </div>
     </div>
 
-    <script>
-        // SOLUÇÃO RADICAL PARA O SCROLL FLASH
-        // Executa IMEDIATAMENTE, antes de qualquer coisa
-        (function() {
-            'use strict';
-            
-            // Forçar viewport correta IMEDIATAMENTE
-            document.documentElement.style.overflowX = 'hidden';
-            document.documentElement.style.width = '100%';
-            document.documentElement.style.margin = '0';
-            document.documentElement.style.padding = '0';
-            
-            document.body.style.overflowX = 'hidden';
-            document.body.style.width = '100vw';
-            document.body.style.margin = '0';
-            document.body.style.padding = '0';
-            document.body.style.position = 'relative';
-            
-            console.log('Viewport bloqueada contra scroll horizontal');
-            
-            // Prevenir scroll horizontal por qualquer meio
-            window.addEventListener('scroll', function() {
-                if (window.scrollX !== 0) {
-                    window.scrollTo(0, window.scrollY);
-                }
-            });
-            
-            // Prevenir touch events que possam causar scroll horizontal
-            document.addEventListener('touchmove', function(e) {
-                if (e.touches.length > 1) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
-        })();
+ <script>
+    // ==========================
+    // SOLUÇÃO RADICAL PARA O SCROLL FLASH
+    // Executa IMEDIATAMENTE, antes de qualquer coisa
+    // ==========================
+    (function() {
+        'use strict';
+        
+        // Forçar viewport correta IMEDIATAMENTE
+        document.documentElement.style.overflowX = 'hidden';
+        document.documentElement.style.width = '100%';
+        document.documentElement.style.margin = '0';
+        document.documentElement.style.padding = '0';
+        
+        document.body.style.overflowX = 'hidden';
+        document.body.style.width = '100vw';
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
+        document.body.style.position = 'relative';
+        
+        console.log('Viewport bloqueada contra scroll horizontal');
+        
+        // Prevenir scroll horizontal por qualquer meio
+        window.addEventListener('scroll', function() {
+            if (window.scrollX !== 0) {
+                window.scrollTo(0, window.scrollY);
+            }
+        });
+        
+        // Prevenir touch events que possam causar scroll horizontal
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    })();
 
-        // Elementos DOM
-        const steps = document.querySelectorAll('.step');
-        const progressBar = document.getElementById('progress-bar');
-        const achievements = document.querySelectorAll('.achievement');
-        const floatingComboLink = document.getElementById('floating-combo-link');
-        const mainHeader = document.getElementById('main-header');
-        const gospelSection = document.getElementById('gospel-section');
-        const gospelGrid = document.getElementById('gospel-grid');
-        const nextButtons = document.querySelectorAll('.next-button');
+    // ==========================
+    // ELEMENTOS DOM
+    // ==========================
+    const steps = document.querySelectorAll('.step');
+    const progressBar = document.getElementById('progress-bar');
+    const achievements = document.querySelectorAll('.achievement');
+    const floatingComboLink = document.getElementById('floating-combo-link');
+    const mainHeader = document.getElementById('main-header');
+    const gospelSection = document.getElementById('gospel-section');
+    const gospelGrid = document.getElementById('gospel-grid');
+    const nextButtons = document.querySelectorAll('.next-button');
+    
+    // Elementos de resultado
+    const instrumentResult = document.getElementById('instrument-result');
+    const levelResult = document.getElementById('level-result');
+    const genreResult = document.getElementById('genre-result');
+    const goalResult = document.getElementById('goal-result');
+    const resultInstrumentIcon = document.getElementById('result-instrument-icon');
+    
+    // Dados do usuário
+    const userData = {
+        instrument: '',
+        level: '',
+        genre: '',
+        goal: ''
+    };
+    
+    // Sistema SIMPLES sem travas complexas
+    let isProcessing = false;
+    
+    // ==========================
+    // LISTA DE MÚSICAS GOSPEL
+    // ==========================
+    const gospelSongs = [
+        { title: "1000 GRAUS", artist: "Renascer Praise" },
+        { title: "A BENÇÃO", artist: "Gabriel Guedes e Nívea Soares" },
+        { title: "AGNUS DEI", artist: "Gabriela Rocha" },
+        { title: "ALÉM DO RIO AZUL", artist: "Voz da Verdade" },
+        { title: "BONDADE DE DEUS", artist: "Isaías Saad" },
+        { title: "CREIO QUE TU ÉS A CURA", artist: "Gabriela Rocha" },
+        { title: "DESERTO", artist: "Maria Marçal" },
+        { title: "É TUDO SOBRE VOCÊ", artist: "Morada" },
+        { title: "ESPÍRITO SANTO", artist: "Fernanda Brum" },
+        { title: "EU TE AGRADEÇO", artist: "Preto no Branco" },
+        { title: "I SPEAK JESUS", artist: "Charity Gayle" },
+        { title: "JEOVÁ JIREH", artist: "Aline Barros" },
+        { title: "LUGAR SECRETO", artist: "Gabriela Rocha" },
+        { title: "MARANATA", artist: "Avivah" },
+        { title: "ME ATRAIU", artist: "Gabriela Rocha" },
+        { title: "NINGUÉM EXPLICA DEUS", artist: "Preto no Branco" },
+        { title: "O ESCUDO", artist: "Voz da Verdade" },
+        { title: "OCEANOS", artist: "Ana Nóbrega" },
+        { title: "PODE MORAR AQUI", artist: "Theo Rubia" },
+        { title: "PRA SEMPRE", artist: "Avivah" },
+        { title: "QUERO CONHECER JESUS", artist: "Alessandro Vilas boas" },
+        { title: "RENOVA-ME", artist: "Aline Barros" },
+        { title: "ROMPENDO EM FÉ", artist: "Comunidade da zona Sul" },
+        { title: "SANTO ESPÍRITO", artist: "Renascer Praise" },
+        { title: "TODA TERRA", artist: "Gabriela Rocha" },
+        { title: "TODAVIA MINHA ALEGRAREI", artist: "Samuel Messias" },
+        { title: "TU ÉS ÁGUAS + PURIFICADORAS", artist: "Fhop Music" },
+        { title: "VITORIOSO ÉS", artist: "Gabriel Guedes" },
+        { title: "YESHUA", artist: "Fernandinho" },
+        { title: "YESHUA", artist: "Fernandinho e Heloísa Rosa" }
+    ];
+    
+    // ==========================
+    // ÍCONES DOS INSTRUMENTOS
+    // ==========================
+    const instrumentIcons = {
+        'violino': '🎻',
+        'viola': '🎻',
+        'violoncelo': '🎻',
+        'flauta': '🎵',
+        'clarinete': '🎵',
+        'sax-alto': '🎷',
+        'sax-tenor': '🎷',
+        'sax-soprano': '🎷',
+        'trompete': '🎺',
+        'trombone': '🎺',
+        'piano': '🎹',
+        'teclado': '🎹'
+    };
+    
+    // ==========================
+    // LINKS DE COMBOS
+    // ==========================
+    const comboLinks = { /* seu objeto comboLinks completo aqui */ };
+
+    // ==========================
+    // INICIALIZAÇÃO DE STEP
+    // ==========================
+    let currentStep = 0;
+    updateProgress();
+
+    // ==========================
+    // SISTEMA SIMPLES DE CLIQUE
+    // ==========================
+    function setupSimpleClickSystem() {
+        const options = document.querySelectorAll('.option');
         
-        // Elementos de resultado
-        const instrumentResult = document.getElementById('instrument-result');
-        const levelResult = document.getElementById('level-result');
-        const genreResult = document.getElementById('genre-result');
-        const goalResult = document.getElementById('goal-result');
-        const resultInstrumentIcon = document.getElementById('result-instrument-icon');
-        
-        // Dados do usuário
-        const userData = {
-            instrument: '',
-            level: '',
-            genre: '',
-            goal: ''
-        };
-        
-        // Sistema SIMPLES sem travas complexas
-        let isProcessing = false;
-        
-        // Lista de músicas gospel
-        const gospelSongs = [
-            { title: "1000 GRAUS", artist: "Renascer Praise" },
-            { title: "A BENÇÃO", artist: "Gabriel Guedes e Nívea Soares" },
-            { title: "AGNUS DEI", artist: "Gabriela Rocha" },
-            { title: "ALÉM DO RIO AZUL", artist: "Voz da Verdade" },
-            { title: "BONDADE DE DEUS", artist: "Isaías Saad" },
-            { title: "CREIO QUE TU ÉS A CURA", artist: "Gabriela Rocha" },
-            { title: "DESERTO", artist: "Maria Marçal" },
-            { title: "É TUDO SOBRE VOCÊ", artist: "Morada" },
-            { title: "ESPÍRITO SANTO", artist: "Fernanda Brum" },
-            { title: "EU TE AGRADEÇO", artist: "Preto no Branco" },
-            { title: "I SPEAK JESUS", artist: "Charity Gayle" },
-            { title: "JEOVÁ JIREH", artist: "Aline Barros" },
-            { title: "LUGAR SECRETO", artist: "Gabriela Rocha" },
-            { title: "MARANATA", artist: "Avivah" },
-            { title: "ME ATRAIU", artist: "Gabriela Rocha" },
-            { title: "NINGUÉM EXPLICA DEUS", artist: "Preto no Branco" },
-            { title: "O ESCUDO", artist: "Voz da Verdade" },
-            { title: "OCEANOS", artist: "Ana Nóbrega" },
-            { title: "PODE MORAR AQUI", artist: "Theo Rubia" },
-            { title: "PRA SEMPRE", artist: "Avivah" },
-            { title: "QUERO CONHECER JESUS", artist: "Alessandro Vilas boas" },
-            { title: "RENOVA-ME", artist: "Aline Barros" },
-            { title: "ROMPENDO EM FÉ", artist: "Comunidade da zona Sul" },
-            { title: "SANTO ESPÍRITO", artist: "Renascer Praise" },
-            { title: "TODA TERRA", artist: "Gabriela Rocha" },
-            { title: "TODAVIA MINHA ALEGRAREI", artist: "Samuel Messias" },
-            { title: "TU ÉS ÁGUAS + PURIFICADORAS", artist: "Fhop Music" },
-            { title: "VITORIOSO ÉS", artist: "Gabriel Guedes" },
-            { title: "YESHUA", artist: "Fernandinho" },
-            { title: "YESHUA", artist: "Fernandinho e Heloísa Rosa" }
-        ];
-        
-        // Ícones dos instrumentos para o resultado
-        const instrumentIcons = {
-            'violino': '🎻',
-            'viola': '🎻',
-            'violoncelo': '🎻',
-            'flauta': '🎵',
-            'clarinete': '🎵',
-            'sax-alto': '🎷',
-            'sax-tenor': '🎷',
-            'sax-soprano': '🎷',
-            'trompete': '🎺',
-            'trombone': '🎺',
-            'piano': '🎹',
-            'teclado': '🎹'
-        };
-        
-        // Links para combos
-        const comboLinks = {
-            'violino': {
-                'classico': 'https://pay.cakto.com.br/5kzfsny_626775',
-                'jazz': 'https://pay.cakto.com.br/m7j25ek_627199',
-                'pop-rock': 'https://pay.cakto.com.br/5v2kh2c_627202',
-                'mpb': 'https://pay.cakto.com.br/kdhzdq3_627205',
-                'sertanejo': 'https://pay.cakto.com.br/3e7nhrd_627209',
-                'gospel': 'https://pay.cakto.com.br/3aewznk_589618'
-            },
-            'viola': {
-                'classico': 'https://pay.cakto.com.br/4ou5sfv_627233',
-                'jazz': 'https://pay.cakto.com.br/zaqsc6s_627235',
-                'pop-rock': 'https://pay.cakto.com.br/3b8ynwc_627236',
-                'mpb': 'https://pay.cakto.com.br/ixerak8_627240',
-                'sertanejo': 'https://pay.cakto.com.br/6g8q35d_627242',
-                'gospel': 'https://pay.cakto.com.br/qta2593_589611'
-            },
-            'violoncelo': {
-                'classico': 'https://pay.cakto.com.br/uonkrd8_627249',
-                'jazz': 'https://pay.cakto.com.br/zm8jn6c_627252',
-                'pop-rock': 'https://pay.cakto.com.br/c43jhvy_627254',
-                'mpb': 'https://pay.cakto.com.br/swnrtyd_627257',
-                'sertanejo': 'https://pay.cakto.com.br/398xdhs_627258',
-                'gospel': 'https://pay.cakto.com.br/gvupesr_589574'
-            },
-            'flauta': {
-                'classico': 'https://pay.cakto.com.br/deke6op_627282',
-                'jazz': 'https://pay.cakto.com.br/cw54n7q_627285',
-                'pop-rock': 'https://pay.cakto.com.br/64poskv_627289',
-                'mpb': 'https://pay.cakto.com.br/72fy6c2_627291',
-                'sertanejo': 'https://pay.cakto.com.br/icymtre_627293',
-                'gospel': 'https://pay.cakto.com.br/zhyf3uu_589551'
-            },
-            'clarinete': {
-                'classico': 'https://pay.cakto.com.br/pcpnj28_627299',
-                'jazz': 'https://pay.cakto.com.br/4v8nx3r_627301',
-                'pop-rock': 'https://pay.cakto.com.br/yhvv4h7_627306',
-                'mpb': 'https://pay.cakto.com.br/zainsqy_627314',
-                'sertanejo': 'https://pay.cakto.com.br/cjpce7s_627318',
-                'gospel': 'https://pay.cakto.com.br/89u4rh5_589556'
-            },
-            'sax-alto': {
-                'classico': 'https://pay.cakto.com.br/yt4zccn_627661',
-                'jazz': 'https://pay.cakto.com.br/namuk3s_627663',
-                'pop-rock': 'https://pay.cakto.com.br/3cx7xid_627666',
-                'mpb': 'https://pay.cakto.com.br/fkq66nj_627673',
-                'sertanejo': 'https://pay.cakto.com.br/3b5wzxn_627674',
-                'gospel': 'https://pay.cakto.com.br/f22fom7_589588'
-            },
-            'sax-tenor': {
-                'classico': 'https://pay.cakto.com.br/kzzqq38_627680',
-                'jazz': 'https://pay.cakto.com.br/j439wew_627682',
-                'pop-rock': 'https://pay.cakto.com.br/3be8eii_627686',
-                'mpb': 'https://pay.cakto.com.br/37gwgfd_627688',
-                'sertanejo': 'https://pay.cakto.com.br/irmp4w3_627692',
-                'gospel': 'https://pay.cakto.com.br/n5hzdct_589582'
-            },
-            'sax-soprano': {
-                'gospel': 'https://pay.cakto.com.br/w5df6x7_589587'
-            },
-            'trompete': {
-                'classico': 'https://pay.cakto.com.br/38kihsz_627693',
-                'jazz': 'https://pay.cakto.com.br/ki46iyn_627695',
-                'pop-rock': 'https://pay.cakto.com.br/9wwi8ie_627696',
-                'mpb': 'https://pay.cakto.com.br/oa7ewmo_627699',
-                'sertanejo': 'https://pay.cakto.com.br/33ivxc6_627701',
-                'gospel': 'https://pay.cakto.com.br/ioqs8av_589571'
-            },
-            'trombone': {
-                'classico': 'https://pay.cakto.com.br/fnxthnc_627704',
-                'jazz': 'https://pay.cakto.com.br/8cqxjm3_627708',
-                'pop-rock': 'https://pay.cakto.com.br/3939tf2_627711',
-                'mpb': 'https://pay.cakto.com.br/wqmipqz_627712',
-                'sertanejo': 'https://pay.cakto.com.br/wqmipqz_627712',
-                'gospel': 'https://pay.cakto.com.br/mkd3v4g_589528'
-            },
-            'piano': {
-                'classico': 'https://pay.cakto.com.br/3578tdz_627719',
-                'jazz': 'https://pay.cakto.com.br/6jmf6um_627720',
-                'pop-rock': 'https://pay.cakto.com.br/uf73ef7_627726',
-                'mpb': 'https://pay.cakto.com.br/39iwqm5_627732',
-                'sertanejo': 'https://pay.cakto.com.br/568rixb_627735',
-                'gospel': 'https://pay.cakto.com.br/9yaqtmn_589538'
-            },
-            'teclado': {
-                'classico': 'https://pay.cakto.com.br/3dwq8bu_627737',
-                'jazz': 'https://pay.cakto.com.br/6jmf6um_627720',
-                'pop-rock': 'https://pay.cakto.com.br/uf73ef7_627726',
-                'mpb': 'https://pay.cakto.com.br/39iwqm5_627732',
-                'sertanejo': 'https://pay.cakto.com.br/568rixb_627735',
-                'gospel': 'https://pay.cakto.com.br/9yaqtmn_589538'
-            }
-        };
-        
-        // Inicialização
-        let currentStep = 0;
-        updateProgress();
-        
-        // Sistema SIMPLES de clique
-        function setupSimpleClickSystem() {
-            const options = document.querySelectorAll('.option');
-            
-            options.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    if (isProcessing) return;
-                    isProcessing = true;
-                    
-                    handleOptionSelection(this);
-                    
-                    setTimeout(() => {
-                        isProcessing = false;
-                    }, 300);
-                });
-            });
-        }
-        
-        // Função para processar seleção de opção
-        function handleOptionSelection(option) {
-            const parentStep = option.closest('.step');
-            
-            const optionsInStep = parentStep.querySelectorAll('.option');
-            optionsInStep.forEach(opt => opt.classList.remove('selected'));
-            
-            option.classList.add('selected');
-            
-            const nextButton = parentStep.querySelector('.next-button');
-            nextButton.classList.add('active');
-            
-            setTimeout(() => {
-                nextButton.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'center'
-                });
-            }, 100);
-            
-            const stepId = parentStep.id;
-            const value = option.getAttribute('data-value');
-            
-            if (stepId === 'step-1') {
-                userData.instrument = value;
-                setTimeout(() => {
-                    document.getElementById('feedback-1').classList.add('show');
-                }, 100);
-            } else if (stepId === 'step-2') {
-                userData.level = value;
-                setTimeout(() => {
-                    document.getElementById('feedback-2').classList.add('show');
-                }, 100);
-            } else if (stepId === 'step-3') {
-                userData.genre = value;
-                setTimeout(() => {
-                    document.getElementById('feedback-3').classList.add('show');
-                }, 100);
-            } else if (stepId === 'step-4') {
-                userData.goal = value;
-                setTimeout(() => {
-                    document.getElementById('feedback-4').classList.add('show');
-                }, 100);
-            }
-            
-            updateAchievement(stepId);
-        }
-        
-        // Inicializar sistema simples de clique
-        setupSimpleClickSystem();
-        
-        // Event Listeners para os botões de avançar
-        nextButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
+        options.forEach(option => {
+            option.addEventListener('click', function(e) {
                 if (isProcessing) return;
                 isProcessing = true;
                 
-                nextStep();
+                handleOptionSelection(this);
                 
                 setTimeout(() => {
                     isProcessing = false;
-                }, 500);
+                }, 300);
             });
         });
+    }
+
+    function handleOptionSelection(option) {
+        const parentStep = option.closest('.step');
+        const optionsInStep = parentStep.querySelectorAll('.option');
+        optionsInStep.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
         
-        // Avançar para o próximo passo
-        function nextStep() {
-            currentStep++;
+        const nextButton = parentStep.querySelector('.next-button');
+        nextButton.classList.add('active');
+        
+        setTimeout(() => {
+            nextButton.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center'
+            });
+        }, 100);
+        
+        const stepId = parentStep.id;
+        const value = option.getAttribute('data-value');
+        
+        if (stepId === 'step-1') { userData.instrument = value; setTimeout(() => { document.getElementById('feedback-1').classList.add('show'); }, 100); }
+        else if (stepId === 'step-2') { userData.level = value; setTimeout(() => { document.getElementById('feedback-2').classList.add('show'); }, 100); }
+        else if (stepId === 'step-3') { userData.genre = value; setTimeout(() => { document.getElementById('feedback-3').classList.add('show'); }, 100); }
+        else if (stepId === 'step-4') { userData.goal = value; setTimeout(() => { document.getElementById('feedback-4').classList.add('show'); }, 100); }
+        
+        updateAchievement(stepId);
+    }
+    
+    setupSimpleClickSystem();
+
+    // ==========================
+    // BOTÕES DE AVANÇAR
+    // ==========================
+    nextButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            if (isProcessing) return;
+            isProcessing = true;
             
-            if (currentStep > 0) {
-                mainHeader.style.display = 'none';
-            }
-            
-            if (currentStep >= steps.length - 1) {
-                showResult();
-            }
-            
-            updateProgress();
+            nextStep();
             
             setTimeout(() => {
-                document.querySelector('.container').scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-            }, 100);
-        }
-        
-        // Atualizar barra de progresso
-        function updateProgress() {
-            const progress = (currentStep / (steps.length - 1)) * 100;
-            progressBar.style.width = `${progress}%`;
-            
-            steps.forEach((step, index) => {
-                if (index === currentStep) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
-                }
-            });
-        }
-        
-        // Atualizar conquistas
-        function updateAchievement(stepId) {
-            let achievementIndex;
-            
-            switch(stepId) {
-                case 'step-1':
-                    achievementIndex = 0;
-                    break;
-                case 'step-2':
-                    achievementIndex = 1;
-                    break;
-                case 'step-3':
-                    achievementIndex = 2;
-                    break;
-                case 'step-4':
-                    achievementIndex = 3;
-                    break;
-            }
-            
-            if (achievementIndex !== undefined) {
-                achievements[achievementIndex].classList.add('unlocked');
-                
-                const achievement = achievements[achievementIndex];
-                achievement.style.animation = 'pulse 0.5s 3';
-                setTimeout(() => {
-                    achievement.style.animation = '';
-                }, 1500);
-            }
-        }
-        
-        // Mostrar resultado final
-        function showResult() {
-            instrumentResult.textContent = getInstrumentName(userData.instrument);
-            levelResult.textContent = getLevelName(userData.level);
-            genreResult.textContent = getGenreName(userData.genre);
-            goalResult.textContent = getGoalName(userData.goal);
-            
-            if (instrumentIcons[userData.instrument]) {
-                resultInstrumentIcon.textContent = instrumentIcons[userData.instrument];
-            }
-            
-            if (comboLinks[userData.instrument] && comboLinks[userData.instrument][userData.genre]) {
-                floatingComboLink.href = comboLinks[userData.instrument][userData.genre];
-            } else {
-                floatingComboLink.href = 'https://exemplo.com/combo-padrao';
-            }
-            
-            if (userData.genre === 'gospel') {
-                gospelSection.style.display = 'block';
-                populateGospelGrid();
-            } else {
-                gospelSection.style.display = 'none';
-            }
-            
-            floatingComboLink.classList.add('show');
-            
-            achievements[4].classList.add('unlocked');
-            
-            createConfetti();
-        }
-        
-        // Preencher o grid de músicas gospel
-        function populateGospelGrid() {
-            gospelGrid.innerHTML = '';
-            
-            gospelSongs.forEach(song => {
-                const card = document.createElement('div');
-                card.className = 'gospel-card';
-                
-                card.innerHTML = `
-                    <i class="fas fa-music"></i>
-                    <div class="gospel-card-content">
-                        <div class="gospel-card-title">${song.title}</div>
-                        <div class="gospel-card-artist">${song.artist}</div>
-                    </div>
-                `;
-                
-                gospelGrid.appendChild(card);
-            });
-        }
-        
-        // Criar efeito de confete
-        function createConfetti() {
-            const colors = ['#8A2BE2', '#00BFFF', '#FF00FF', '#00FF7F', '#FFFF00'];
-            const container = document.querySelector('.game-container');
-            
-            for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.top = '-10px';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 10 + 5 + 'px';
-                confetti.style.height = Math.random() * 10 + 5 + 'px';
-                confetti.style.opacity = '1';
-                
-                container.appendChild(confetti);
-                
-                const animation = confetti.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], {
-                    duration: Math.random() * 3000 + 2000,
-                    easing: 'cubic-bezier(0.1, 0.2, 0.8, 0.9)'
-                });
-                
-                animation.onfinish = () => {
-                    confetti.remove();
-                };
-            }
-        }
-        
-        // Funções auxiliares para obter nomes amigáveis
-        function getInstrumentName(instrument) {
-            const names = {
-                'violino': 'violino',
-                'viola': 'viola',
-                'violoncelo': 'violoncelo',
-                'flauta': 'flauta',
-                'clarinete': 'clarinete',
-                'sax-alto': 'sax alto',
-                'sax-tenor': 'sax tenor',
-                'sax-soprano': 'sax soprano',
-                'trompete': 'trompete',
-                'trombone': 'trombone',
-                'piano': 'piano',
-                'teclado': 'teclado'
-            };
-            return names[instrument] || instrument;
-        }
-        
-        function getLevelName(level) {
-            const names = {
-                'iniciante': 'descobrindo',
-                'intermediario': 'crescendo',
-                'avancado': 'dominando',
-                'profissional': 'excelência'
-            };
-            return names[level] || level;
-        }
-        
-        function getGenreName(genre) {
-            const names = {
-                'classico': 'música clássica',
-                'jazz': 'jazz',
-                'pop-rock': 'pop/rock',
-                'mpb': 'MPB',
-                'sertanejo': 'sertanejo',
-                'gospel': 'música gospel'
-            };
-            return names[genre] || genre;
-        }
-        
-        function getGoalName(goal) {
-            const names = {
-                'aprender': 'prazer pessoal através da música',
-                'aprimorar': 'evolução técnica',
-                'apresentacao': 'apresentações',
-                'ensinar': 'ensino'
-            };
-            return names[goal] || goal;
-        }
-
-        // VERIFICAÇÃO FINAL - Garantir que não há scroll horizontal
-        window.addEventListener('load', function() {
-            // Forçar novamente para garantir
-            document.documentElement.style.overflowX = 'hidden';
-            document.body.style.overflowX = 'hidden';
-            
-            // Se por algum motivo ainda houver scroll horizontal, corrigir
-            if (window.scrollX !== 0) {
-                window.scrollTo(0, window.scrollY);
-            }
-            
-            console.log('Página totalmente carregada - scroll horizontal bloqueado');
+                isProcessing = false;
+            }, 500);
         });
+    });
 
-        // Monitorar continuamente por scroll horizontal
-        setInterval(function() {
-            if (window.scrollX !== 0) {
-                window.scrollTo(0, window.scrollY);
-            }
+    function nextStep() {
+        currentStep++;
+        
+        if (currentStep > 0) { mainHeader.style.display = 'none'; }
+        if (currentStep >= steps.length - 1) { showResult(); }
+        
+        updateProgress();
+        
+        setTimeout(() => {
+            document.querySelector('.container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
         }, 100);
-    </script>
+    }
+
+    // ==========================
+    // BARRA DE PROGRESSO
+    // ==========================
+    function updateProgress() {
+        const progress = (currentStep / (steps.length - 1)) * 100;
+        if (progressBar) progressBar.style.width = `${progress}%`;
+        
+        steps.forEach((step, index) => {
+            if (index === currentStep) step.classList.add('active');
+            else step.classList.remove('active');
+        });
+    }
+
+    // ==========================
+    // ATUALIZAR CONQUISTAS
+    // ==========================
+    function updateAchievement(stepId) {
+        let achievementIndex;
+        switch(stepId) {
+            case 'step-1': achievementIndex = 0; break;
+            case 'step-2': achievementIndex = 1; break;
+            case 'step-3': achievementIndex = 2; break;
+            case 'step-4': achievementIndex = 3; break;
+        }
+        
+        if (achievementIndex !== undefined) {
+            achievements[achievementIndex].classList.add('unlocked');
+            const achievement = achievements[achievementIndex];
+            achievement.style.animation = 'pulse 0.5s 3';
+            setTimeout(() => { achievement.style.animation = ''; }, 1500);
+        }
+    }
+
+    // ==========================
+    // RESULTADO FINAL
+    // ==========================
+    function showResult() {
+        instrumentResult.textContent = getInstrumentName(userData.instrument);
+        levelResult.textContent = getLevelName(userData.level);
+        genreResult.textContent = getGenreName(userData.genre);
+        goalResult.textContent = getGoalName(userData.goal);
+        
+        if (instrumentIcons[userData.instrument]) resultInstrumentIcon.textContent = instrumentIcons[userData.instrument];
+        
+        if (comboLinks[userData.instrument] && comboLinks[userData.instrument][userData.genre])
+            floatingComboLink.href = comboLinks[userData.instrument][userData.genre];
+        else floatingComboLink.href = 'https://exemplo.com/combo-padrao';
+        
+        if (userData.genre === 'gospel') {
+            gospelSection.style.display = 'block';
+            populateGospelGrid();
+        } else gospelSection.style.display = 'none';
+        
+        floatingComboLink.classList.add('show');
+        achievements[4].classList.add('unlocked');
+        createConfetti();
+    }
+
+    function populateGospelGrid() {
+        gospelGrid.innerHTML = '';
+        gospelSongs.forEach(song => {
+            const card = document.createElement('div');
+            card.className = 'gospel-card';
+            card.innerHTML = `
+                <i class="fas fa-music"></i>
+                <div class="gospel-card-content">
+                    <div class="gospel-card-title">${song.title}</div>
+                    <div class="gospel-card-artist">${song.artist}</div>
+                </div>
+            `;
+            gospelGrid.appendChild(card);
+        });
+    }
+
+    function createConfetti() {
+        const colors = ['#8A2BE2', '#00BFFF', '#FF00FF', '#00FF7F', '#FFFF00'];
+        const container = document.querySelector('.game-container');
+        
+        for (let i = 0; i < 30; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.top = '-10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            confetti.style.opacity = '1';
+            
+            container.appendChild(confetti);
+            
+            const animation = confetti.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'cubic-bezier(0.1, 0.2, 0.8, 0.9)'
+            });
+            
+            animation.onfinish = () => { confetti.remove(); };
+        }
+    }
+
+    // ==========================
+    // FUNÇÕES AUXILIARES
+    // ==========================
+    function getInstrumentName(instrument) {
+        const names = {
+            'violino': 'violino',
+            'viola': 'viola',
+            'violoncelo': 'violoncelo',
+            'flauta': 'flauta',
+            'clarinete': 'clarinete',
+            'sax-alto': 'sax alto',
+            'sax-tenor': 'sax tenor',
+            'sax-soprano': 'sax soprano',
+            'trompete': 'trompete',
+            'trombone': 'trombone',
+            'piano': 'piano',
+            'teclado': 'teclado'
+        };
+        return names[instrument] || instrument;
+    }
+    
+    function getLevelName(level) {
+        const names = {
+            'iniciante': 'descobrindo',
+            'intermediario': 'crescendo',
+            'avancado': 'dominando',
+            'profissional': 'excelência'
+        };
+        return names[level] || level;
+    }
+    
+    function getGenreName(genre) {
+        const names = {
+            'classico': 'música clássica',
+            'jazz': 'jazz',
+            'pop-rock': 'pop/rock',
+            'mpb': 'MPB',
+            'sertanejo': 'sertanejo',
+            'gospel': 'música gospel'
+        };
+        return names[genre] || genre;
+    }
+    
+    function getGoalName(goal) {
+        const names = {
+            'aprender': 'prazer pessoal através da música',
+            'aprimorar': 'evolução técnica',
+            'apresentacao': 'apresentações',
+            'ensinar': 'ensino'
+        };
+        return names[goal] || goal;
+    }
+
+    // ==========================
+    // GARANTIR QUE NÃO HÁ SCROLL HORIZONTAL
+    // ==========================
+    window.addEventListener('load', function() {
+        document.documentElement.style.overflowX = 'hidden';
+        document.body.style.overflowX = 'hidden';
+        
+        if (window.scrollX !== 0) {
+            window.scrollTo(0, window.scrollY);
+        }
+
+        // Se existir barra de progresso, esconde no final do carregamento
+        const progressContainer = document.querySelector('.progress-container');
+        if (progressContainer) {
+            progressContainer.style.display = 'none';
+        }
+        
+        console.log('Página totalmente carregada - scroll horizontal bloqueado e barra de progresso escondida');
+    });
+
+    setInterval(function() {
+        if (window.scrollX !== 0) {
+            window.scrollTo(0, window.scrollY);
+        }
+    }, 100);
+</script>
+
 </body>
 </html>
