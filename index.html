@@ -26,98 +26,95 @@ src="https://www.facebook.com/tr?id=1178969987383927&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 
  
-    <style>
-        /* reserve espaço pra elementos grandes que mudam depois */
-.light-1, .light-2, .light-3 {
-  min-width: 300px;
-  min-height: 300px;
-  /* evita mudança brusca no layout se a posição ou tamanho ajustar */
-}
+ <style>
+  /* Reserve espaço para elementos grandes que mudam depois */
+  .light-1, .light-2, .light-3 {
+    min-width: 300px;
+    min-height: 300px;
+  }
 
-        html {
-  overflow-y: scroll; /* força a barra sempre existir, mesmo sem necessidade */
-  scrollbar-width: none; /* Firefox */
-}
+  /* Barra de rolagem invisível */
+  html {
+    overflow-y: scroll; /* força a barra sempre existir */
+    scrollbar-width: none; /* Firefox */
+  }
 
-html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
-}
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
 
-        /* CORREÇÃO IMEDIATA - ANTES DE QUALQUER OUTRO ESTILO */
-        html, body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            position: relative;
-            -webkit-overflow-scrolling: touch;
-        }
+  /* CORREÇÃO IMEDIATA */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* previne scroll horizontal */
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth; /* rolagem suave */
+  }
 
-        body {
-            overflow-y: auto;
-            overflow-x: hidden !important;
-        }
+  body {
+    background: linear-gradient(135deg, var(--darker), var(--dark));
+    color: var(--light);
+    min-height: 100vh;
+    overflow-y: auto; /* permite scroll vertical */
+    position: relative;
+  }
 
-        :root {
-            --primary: #8A2BE2;
-            --secondary: #00BFFF;
-            --accent: #FF00FF;
-            --dark: #0A0A1A;
-            --darker: #050510;
-            --light: #F0F8FF;
-            --success: #00FF7F;
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+  /* Variáveis globais */
+  :root {
+    --primary: #8A2BE2;
+    --secondary: #00BFFF;
+    --accent: #FF00FF;
+    --dark: #0A0A1A;
+    --darker: #050510;
+    --light: #F0F8FF;
+    --success: #00FF7F;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            max-width: 100%;
-        }
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
 
-        body {
-            background: linear-gradient(135deg, var(--darker), var(--dark));
-            color: var(--light);
-            min-height: 100vh;
-            overflow-x: hidden !important;
-            position: relative;
-        }
+  /* Evitar scroll horizontal globalmente */
+  .no-horizontal-scroll {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 
-        /* PREVENIR SCROLL HORIZONTAL GLOBALMENTE */
-        .no-horizontal-scroll {
-            overflow-x: hidden !important;
-            width: 100% !important;
-            max-width: 100% !important;
-        }
+  /* Luzes de fundo otimizadas */
+  .light {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    z-index: 0;
+    will-change: transform;
+  }
 
-        /* Efeitos de luz de fundo otimizados */
-        .light {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            z-index: 0;
-            will-change: transform;
-        }
+  .light-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--primary);
+    top: -200px;
+    left: -200px;
+  }
 
-        .light-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--primary);
-            top: -200px;
-            left: -200px;
-        }
-
-        .light-2 {
-            width: 400px;
-            height: 400px;
-            background: var(--secondary);
-            bottom: -150px;
-            right: -100px;
-        }
+  .light-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--secondary);
+    bottom: -150px;
+    right: -100px;
+  }
 
         .light-3 {
             width: 300px;
@@ -832,6 +829,7 @@ html::-webkit-scrollbar {
                 font-size: 1.3rem;
             }
         }
+        
     </style>
 </head>
 <body class="no-horizontal-scroll">
